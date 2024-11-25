@@ -1,0 +1,12 @@
+@use "./_base/main.scss";
+@use "./_mixins/container-queries" as *;
+
+body {
+  background-color: var(--primary);
+}
+
+.hero {
+  @include container-down('main', 1440px) {
+    background-color: var(--secondary);
+  }
+}

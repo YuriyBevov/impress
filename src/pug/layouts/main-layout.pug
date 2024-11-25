@@ -1,0 +1,11 @@
+include ./main-head
+
+doctype html
+
+block variables
+
+html(lang="ru")
+  +main-head(title, description)
+  body.page-wrapper
+    block content
+

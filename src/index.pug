@@ -1,0 +1,19 @@
+block variables
+  -
+    const title = "Impression"
+    const description = ""
+    const keywords = ""
+    const styles = ['./styles/index']
+
+include ./pug/layouts/main-layout
+
+//- include ./pug/layouts/main-header/main-header
+
+main
+
+  block content
+    include ./pug/blocks/hero/hero
+
+//- include ./pug/layouts/main-footer/main-footer
+
+//- script(async="true" src="https://api-maps.yandex.ru/2.1/?apikey=e16eca43-c079-4eee-bcdb-fc2063125604&lang=ru_RU")
