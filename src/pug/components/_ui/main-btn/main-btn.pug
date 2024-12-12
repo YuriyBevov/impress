@@ -1,0 +1,2 @@
+mixin main-btn(data)
+  #{data.href ? 'a' : 'button'}.main-btn( href= data.href ? data.href : null class= data.cls ? data.cls : null)!= data.text

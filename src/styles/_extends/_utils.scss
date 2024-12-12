@@ -1,0 +1,21 @@
+%section-afterline {
+  position: relative;
+  margin-bottom: 30px;
+
+  &::after {
+    position: absolute;
+
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    content: "";
+    width: 100%;
+    max-width: 90vw;
+    max-width: 90dvw;
+    height: 40px;
+    background-image: url("@img/section-afterline.svg"); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+}

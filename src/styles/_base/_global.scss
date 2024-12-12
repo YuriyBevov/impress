@@ -1,8 +1,11 @@
+@forward "@styles/_extends/offsets.scss";
+@forward "@styles/_extends/utils.scss";
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  user-select: none;
+  // user-select: none;
 }
 
 html,
@@ -17,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overscroll-behavior: contain;
 }
 
 body.page-wrapper {
@@ -52,6 +56,11 @@ body {
   }
 }
 
+main {
+  flex-grow: 1;
+  container: main / inline-size;
+}
+
 footer {
   margin-top: auto;
 }
@@ -67,7 +76,8 @@ a[href='tel:*'] {
 
 a,
 button,
-[data-fancybox] {
+[data-fancybox],
+input[type='submit'] {
   cursor: pointer;
 }
 
@@ -82,4 +92,12 @@ address {
 picture,
 img {
   display: flex;
+}
+
+.base-section {
+  @extend %section-offset;
+
+  &--underlined {
+    @extend %section-afterline;
+  }
 }

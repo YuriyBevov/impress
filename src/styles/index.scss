@@ -1,12 +1,6 @@
-@use "./_base/main.scss";
-@use "./_mixins/container-queries" as *;
-
-body {
-  background-color: var(--primary);
-}
-
-.hero {
-  @include container-down('main', 1440px) {
-    background-color: var(--secondary);
-  }
-}
+@use "@pug/blocks/hero/hero";
+@use "@pug/blocks/services-preview/services-preview";
+@use "@pug/blocks/features/features";
+// @use "@pug/blocks/about-preview/about-preview";
+@use "@pug/blocks/price-preview/price-preview";
+@use "@pug/blocks/catalog-top/catalog-top";

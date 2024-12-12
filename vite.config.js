@@ -11,7 +11,7 @@ import { defineConfig } from 'vite';
 import { getFileName } from './app.config';
 
 const MODE = process.env.NODE_ENV || 'development';
-// console.log('MODE: ', _MODE);
+
 export default defineConfig({
   plugins: [
     Inspect(),
@@ -112,8 +112,7 @@ export default defineConfig({
     // cssCodeSplit: true,
     rollupOptions: {
       input: [
-        '_bx-templates/**/*.{pug,html}',
-        '*.{pug,html}',
+        '_bx-templates/**/*.{pug,html}'
 			],
 			output: {
 				assetFileNames: getFileName,
@@ -130,7 +129,8 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
       '@assets': resolve(__dirname, './src/assets'),
       '@styles': resolve(__dirname, './src/styles'),
-      '@pug': resolve(__dirname, './src/pug')
+      '@pug': resolve(__dirname, './src/pug'),
+      '@img': resolve(__dirname, './src/assets/img')
     }
   }
 });

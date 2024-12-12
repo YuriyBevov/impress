@@ -1,0 +1,62 @@
+@forward "@styles/_extends/flexbox.scss";
+
+.main-btn {
+  @extend %flex-align;
+  width: fit-content;
+
+  font-size: clamp(14px, 2.2vw, 16px);
+  font-weight: 600;
+  padding: 10px 20px 8px;
+  border: 2px solid var(--primary);
+  border-radius: 30px;
+
+  
+
+
+
+  transition: opacity var(--main-transition), background-color var(--main-transition), color var(--main-transition);
+
+
+  &:not(.main-btn--outlined) {
+    background-color: var(--primary);
+    color: var(--light);
+ 
+    @media(hover:hover)  {
+      &:hover {
+        background-color: transparent;
+        color: var(--primary);
+      }
+    }
+
+    &:focus {
+      background-color: transparent; 
+      color: var(--primary);
+    }
+
+    &:active {
+      opacity: .6;
+    }
+  }
+
+
+  &--outlined {
+    background-color: transparent;
+    color: var(--primary);
+
+    @media(hover:hover)  {
+      &:hover {
+        background-color: var(--primary);
+        color: var(--light);
+      }
+    }
+  
+    &:focus {
+      background-color: var(--primary); 
+      color: var(--light);
+    }
+  
+    &:active {
+      opacity: .6;
+    }
+  }
+}

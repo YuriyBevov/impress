@@ -1,0 +1,48 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/resets.scss";
+@forward "@styles/_extends/effects.scss";
+@forward "@styles/_extends/offsets.scss";
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.features {
+ &__list {
+  @extend %list-reset;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-offset);
+
+  @include container-down('main', $laptop-lg-width) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include container-down('main', $tablet-width) {
+    grid-template-columns: 1fr;
+  }
+ }
+}
+
+.feature-card {
+  @extend %flex-column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: clamp(16px, 3vw, 30px);
+  height: 100%;
+  border-radius: var(--main-border-radius);
+  background-color: var(--white);
+
+  &__icon {
+    @extend %flex-center;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background-color: var(--primary);
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
