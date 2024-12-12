@@ -1,5 +1,86 @@
-@forward "@styles/_extends/utils.scss";
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/resets.scss";
+@forward "@styles/_extends/effects.scss";
+@use "@styles/_mixins/text-truncate" as *;
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
 
 .sales-preview {
-  
+  &__list {
+    @extend %list-reset;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 30px;
+    margin: 40px 0;
+
+    container: sales-preview-list / inline-size;
+
+    @include container-down('main', $laptop-width) {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      a {
+        @extend %flex-align;
+        gap: 10px 20px;
+        padding: clamp(18px, 3vw, 30px);
+        padding-right: 100px;
+        border-radius: 20px;
+        background-color: var(--secondary);
+        height: 100%;
+        min-height: 96px;
+        margin-right: 25px;
+        @extend %hover-opacity;
+
+        position: relative;
+
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: -25px;
+          width: auto;
+          aspect-ratio: 1/1;
+          height: 100%;
+          transform: translateY(-50%);
+          content: "";
+          background-color: var(--secondary);
+          background-image: url("@img/icon-arrow.svg");
+          background-position: center;
+          background-size: 24px;
+          background-repeat: no-repeat;
+          border: 3px solid var(--light);
+          border-radius: 50%;
+
+          @include container-down('main', $tablet-width) {
+            right: clamp(18px, 3vw, 30px);
+            width: 50px;
+            height: 50px;
+          }
+
+          @include container-down('sales-preview-list ', 440px) {
+            display: none;
+          }
+        }
+
+        @include container-down('main', $tablet-width) {
+          margin-right: 0;
+        }
+
+        @include container-down('sales-preview-list ', 440px) {
+          flex-direction: column;
+          align-items: flex-start;
+          padding-right: clamp(18px, 3vw, 30px);
+        }
+
+        span {
+          font-size: clamp(14px, 2.4vw, 16px); 
+          font-weight: 600;
+
+          @include container-up('main', $tablet-width) {
+            @include text-truncate(2);
+          }
+        }
+      }
+    }
+  }
 }
