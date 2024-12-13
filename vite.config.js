@@ -112,7 +112,8 @@ export default defineConfig({
     // cssCodeSplit: true,
     rollupOptions: {
       input: [
-        '_bx-templates/**/*.{pug,html}'
+        '_bx-templates/**/*.{pug,html}',
+        '*.{pug,html,js}',
 			],
 			output: {
 				assetFileNames: getFileName,

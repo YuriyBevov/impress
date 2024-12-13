@@ -1,0 +1,27 @@
+include ../../components/_ui/accordeon/accordeon
+
+section.section.faq-preview
+  .container
+    h2.base-title Вопросы и ответы
+
+    +accordeon([
+      {
+        cls: 'expanded',
+        text: 'Обязательно ли мне приходить за готовым переводом лично?',
+        content: 'Ответ на вопрос'
+      },
+      {
+        text: 'Какова продолжительность выполнения перевода для одной страницы текста?',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iusto dicta odio qui pariatur autem iure? Quisquam placeat in, eum excepturi sint molestiae. Nemo accusamus consequatur quae. Reprehenderit, quod ratione.'
+      },
+      {
+        text: 'Возможно ли сотрудничество с вашим бюро переводов дистанционно?',
+        content: 'Ответ на вопрос'
+      },
+    ])
+
+    +main-btn({
+      href: "#",
+      text: 'Задать вопрос',
+    })
+      

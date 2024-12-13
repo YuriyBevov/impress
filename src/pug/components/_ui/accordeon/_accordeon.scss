@@ -1,0 +1,79 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss";
+@forward "@styles/_extends/offsets.scss";
+
+:root {
+  --accordeon-transition: .3s ease-in;
+}
+
+.accordeon {
+  @extend %flex-column;
+  gap:16px;
+  @extend %main-inner-offset;
+
+  &-item {
+    @extend %flex-column;
+
+    border-radius: 30px;
+    border: 1px solid var(--primary);
+    background-color: var(--secondary);
+
+    svg {
+      fill: var(--primary);
+    }
+
+    &.expanded {
+      .accordeon-content {
+        opacity: 1;
+        height: 100%;
+        padding: 16px 20px;
+      }
+
+      .accordeon-header {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  &-header {
+    @extend %flex-align;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 16px 20px;
+    cursor: pointer;
+    @extend %hover-opacity;
+
+    span {
+      font-weight: 700;
+    }
+    svg {
+      min-width: 24px;
+      transition: transform var(--accordeon-transition);
+    }
+  }
+
+  &-content {
+    @extend %flex-column;
+    gap: 12px;
+
+    opacity: 0;
+    height: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    transition:
+      opacity var(--accordeon-transition),
+      height var(--accordeon-transition),
+      padding var(--accordeon-transition);
+
+    &.content-block {
+      margin: 0;
+      gap: 8px;
+    }
+
+    & > * {
+      margin: 0;
+    }
+  }
+}

@@ -9,35 +9,7 @@
 }
 
 .services-preview {
-  position: relative;
-  padding: calc(var(--section-offset-vertical) * 2) 0;
-
   background-image: url("@img/services-preview-bg.svg");
-  background-size: cover;
-  background-position: top;
-
-  &::before,
-  &::after {
-    position: absolute;
-
-    left: 0;
-    width: 100%;
-    height: var(--section-offset-vertical);
-    content: '';
-    background-size: cover;
-    background-position: center;
-    z-index: 2;
-  }
-
-  &::before {
-    top: 0;
-    background-image: url("@img/section-overlay.svg");
-  }
-
-  &::after {
-    bottom: 0;
-    background-image: url("@img/section-underlay.svg");
-  }
 
   &__list {
     @extend %list-reset;

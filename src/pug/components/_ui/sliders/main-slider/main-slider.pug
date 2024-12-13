@@ -1,0 +1,12 @@
+mixin main-slider(slides)
+  .swiper.main-slider
+    .swiper-wrapper
+      each slide in slides
+        .swiper-slide
+          != slide
+    .swiper-controls
+      .swiper-pagination
+      .swiper-navigation
+        button(aria-label="Предыдущий слайд").swiper-button-prev
+        button(aria-label="Следующий слайд").swiper-button-next
+

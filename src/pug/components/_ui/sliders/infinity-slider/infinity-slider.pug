@@ -1,0 +1,6 @@
+mixin infinity-slider(slides)
+  .swiper.infinity-slider
+    .swiper-wrapper
+      each slide in slides
+        .swiper-slide
+          img(src=`./assets/img/${slide.img}` alt="Партнер" width="200" height="120")

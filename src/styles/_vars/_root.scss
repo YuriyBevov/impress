@@ -10,7 +10,7 @@
 
   --primary: #7d3a3a;
   --secondary: #f4f1ed;
-  // --success: #117e1a;
+  --success: #b1c2ab;
   // --warning: #fbe4e5;
   // --info: rgba(167, 0, 37, .1);
   // --danger: #e6292c;
@@ -61,6 +61,7 @@
 :root {
   --section-offset-vertical: clamp(40px, 4vw, 100px);
   --grid-offset: clamp(16px, 3vw, 36px);
+  --main-offset: 40px;
 }
 
 // utils

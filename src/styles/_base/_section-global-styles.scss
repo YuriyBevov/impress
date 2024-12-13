@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 .section {
   padding: var(--section-offset-vertical) 0;
 
@@ -17,8 +18,40 @@
       height: 40px;
       background-image: url("@img/section-afterline.svg"); 
       background-repeat: no-repeat;
-      background-size: contain;
+      // background-size: cover;
       background-position: center; 
     }
   }
+
+  &--decorated {
+    position: relative;
+
+    padding: calc(var(--section-offset-vertical) * 2) 0;
+    background-size: cover;
+    background-position: top;
+  
+    &::before,
+    &::after {
+      position: absolute;
+  
+      left: 0;
+      width: 100%;
+      height: var(--section-offset-vertical);
+      content: '';
+      background-size: cover;
+      background-position: center;
+      z-index: 2;
+    }
+  
+    &::before {
+      top: 0;
+      background-image: url("@img/section-overlay.svg");
+    }
+  
+    &::after {
+      bottom: 0;
+      background-image: url("@img/section-underlay.svg");
+    }
+  }
 }
+/* purgecss end ignore */
