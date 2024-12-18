@@ -3,7 +3,6 @@
 @forward "@styles/_extends/resets.scss";
 
 .catalog-top {
-  // @extend %section-afterline; 
 
   &__list {
     @extend %list-reset;

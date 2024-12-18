@@ -1,0 +1,122 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/resets.scss";
+@forward "@styles/_extends/effects.scss";
+@use "@styles/_mixins/text-truncate" as *;
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.linked-list {
+  @extend %list-reset;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 30px;
+  margin: 40px 0;
+
+  container: linked-list / inline-size;
+
+  @include container-down('main', 920px) {
+    grid-template-columns: 1fr;
+  }
+
+  li {
+    a {
+      @extend %flex-align;
+      gap: 10px 20px;
+      position: relative;
+      padding: 12px clamp(18px, 3vw, 24px);
+      padding-right: 60px;
+      border-radius: 20px;
+      background-color: var(--secondary);
+      height: 100%;
+      min-height: 64px;
+      width: calc(100% - 25px);
+      background-image: url(/assets/img/mountain-bg.svg);
+      background-size: 100%;
+      background-position: center;
+
+      transition: background-size 1s linear;
+
+      @include container-down('main', $tablet-width) {
+        width: 90%;
+      }
+
+      @include container-down('linked-list ', 440px) {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding-right: 50px;
+      }
+
+      span {
+        font-size: clamp(16px, 2.6vw, 18px);
+        color: var(--white);
+        font-weight: 700;
+       
+        transition: color var(--main-transition);
+
+        @include container-up('main', $tablet-width) {
+          @include text-truncate(2);
+        }
+      }
+
+      &::before {
+        position: relative;
+        left: 0;
+        top: 0;
+        content: '';
+        width: 36px;
+        min-width: 36px;
+        height: 36px;
+        background-image: url("@img/logo-small.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        @include container-down('linked-list ', 440px) {
+          display: none;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: auto;
+        aspect-ratio: 1/1;
+        height: 100%;
+        transform: translate(25px,-50%);
+        content: "";
+        background-color: var(--secondary);
+        background-image: url("@img/icon-arrow.svg");
+        background-position: center;
+        background-size: 24px;
+        background-repeat: no-repeat;
+        border: 3px solid var(--light);
+        border-radius: 50%;
+
+        transition: transform var(--main-transition);
+
+        @include container-down('linked-list ', 440px) {
+          top: -12px;
+          right: -12px;
+          transform: none;
+          background-size: 16px;
+          width: 50px;
+          height: 50px;
+          background-color: var(--site-bg-color);
+          border-color: var(--white);
+        }
+      }
+
+      @include container-up('main', $tablet-width) {
+        &:hover::after {
+          transform: translate(15px, -50%);
+        }
+
+        &:focus::after {
+          transform: translate(15px, -50%);
+        }
+      }
+
+    }
+  }
+}

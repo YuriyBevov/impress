@@ -1,20 +1,17 @@
 include ../../components/_ui/main-btn/main-btn
+include ../../components/_ui/lists/linked-list/linked-list
 
 section.section.catalog-top
   .container
-    h2.base-title Популярные услуги 
-    
-    ul.catalog-top__list.catalog-top__list--simple
-      li
-        a(href="") Юридический перевод
-      li
-        a(href="") Консульская легализация для ОАЭ
-      li
-        a(href="") Консульская легализация справки о судимости
-      li
-        a(href="") Консульская легализация паспорта
-      li
-        a(href="") Консульская легализация документов из ЗАГСа
+    h2.base-title Популярные услуги
+
+    +linked-list([
+      { text: 'Юридический перевод'},
+      { text: 'Консульская легализация для ОАЭ'},
+      { text: 'Консульская легализация справки о судимости'},
+      { text: 'Консульская легализация паспорта'},
+      { text: 'Консульская легализация документов из ЗАГСа'},
+    ])
 
     +main-btn({
       href: "#",

@@ -2,8 +2,9 @@
 @forward "@styles/_extends/effects.scss";
 @forward "@styles/_extends/offsets.scss";
 
+/* purgecss start ignore */
 :root {
-  --accordeon-transition: .3s ease-in;
+  --accordeon-transition: .4s ease-out;
 }
 
 .accordeon {
@@ -14,6 +15,7 @@
   &-item {
     @extend %flex-column;
 
+    padding: 16px 20px;
     border-radius: 30px;
     border: 1px solid var(--primary);
     background-color: var(--secondary);
@@ -24,9 +26,10 @@
 
     &.expanded {
       .accordeon-content {
+        padding: 16px 0 0;
+        visibility: visible;
+        height: auto;
         opacity: 1;
-        height: 100%;
-        padding: 16px 20px;
       }
 
       .accordeon-header {
@@ -41,7 +44,6 @@
     @extend %flex-align;
     justify-content: space-between;
     gap: 32px;
-    padding: 16px 20px;
     cursor: pointer;
     @extend %hover-opacity;
 
@@ -57,15 +59,19 @@
   &-content {
     @extend %flex-column;
     gap: 12px;
-
-    opacity: 0;
-    height: 0;
-    padding: 0 20px;
+    font-size: 16px;
     overflow: hidden;
+
+    padding: 0;
+    height:0;
+    opacity:0;
+    visibility: hidden;
+
     transition:
-      opacity var(--accordeon-transition),
-      height var(--accordeon-transition),
-      padding var(--accordeon-transition);
+      visibility var(--accordeon-transition), 
+      padding var(--accordeon-transition), 
+      opacity var(--accordeon-transition), 
+      height var(--accordeon-transition);
 
     &.content-block {
       margin: 0;
@@ -77,3 +83,5 @@
     }
   }
 }
+
+/* purgecss end ignore */

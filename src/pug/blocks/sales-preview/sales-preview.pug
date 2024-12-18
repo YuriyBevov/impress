@@ -1,21 +1,31 @@
+include ../../components/_ui/cards/base-card/base-card
+
 section.section.section--underlined.sales-preview
   .container
     h2.base-title Акции и предложения
 
     ul.sales-preview__list
       li
-        a(href="#")
-          img(src="./assets/img/sale-icon.svg" alt="sale" width="40" height="40px")
-          span Скидка 20% на все услуги по медицинскому переводу!
-      li
-        a(href="#") 
-          img(src="./assets/img/sale-icon.svg" alt="sale" width="40" height="40px")
-          span Скидка 20% на все услуги по медицинскому переводу! Скидка 20% на все услуги по медицинскому переводу!
+        +base-card({
+          icon: true,
+          iconPath: './assets/img/sale-icon.svg',
+          title: 'Скидка 20% на все услуги по медицинскому переводу!',
+          text: 'Осуществляем письменные и устные переводы со всех распространённых языков мира. К Вашим услугам дипломированные переводчики и носители языка. Мы удостоверяем письменные переводы подписью переводчика и печатью нашего бюро или нотариально, в зависимости от требований, которые предъявляет к переводу принимающая сторона.'
+        })
       
       li
-        a(href="#")
-          img(src="./assets/img/sale-icon.svg" alt="sale" width="40" height="40px")
-          span Скидка 20% на все услуги 
+        +base-card({
+          icon: true,
+          iconPath: './assets/img/sale-icon.svg',
+          title: 'Скидка 20% на все услуги по медицинскому переводу!',
+          text: 'Осуществляем письменные и устные переводы со всех распространённых языков мира.'
+        })
+      li
+        +base-card({
+          icon: true,
+          iconPath: './assets/img/sale-icon.svg',
+          title: 'Скидка 20% на все услуги по медицинскому переводу!',
+        })
 
     +main-btn({
       href: "#",

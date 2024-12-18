@@ -1,0 +1,22 @@
+mixin base-card(data)
+  .base-card
+    .base-card__header
+      if data.icon
+        img(src= data.iconPath ? data.iconPath : "./assets/img/services-mock-icon.svg" alt="Переводы" width="40" height="40")
+      a(href="#").base-subtitle!= data.title
+
+    if data.list
+      ul.base-card__list
+        each item in data.list
+          li
+            a(href="#")!= item.title
+    
+    if data.text
+      p.base-text!= data.text
+
+    if data.info
+      .base-card__info
+        each info in data.info
+          .base-card__info-item
+            span!= info.title
+            a(href="#")!= info.link
