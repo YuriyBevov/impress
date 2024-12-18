@@ -23,6 +23,14 @@
     margin: auto;
   }
 
+  & .social__list {
+    flex-direction: column;
+
+    @include container-down('main', $mobile-width) {
+      flex-direction: row;
+    }
+  }
+
   & &__wrapper {
     @extend %flex-center;
     justify-content: space-between;
