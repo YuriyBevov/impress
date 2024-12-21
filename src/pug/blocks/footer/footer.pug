@@ -1,3 +1,42 @@
-footer.footer
-  .container
-    p footer
+include ../../components/_ui/main-logo/main-logo
+include ../../components/_ui/nav/bottom-menu/bottom-menu
+
+footer.footer 
+  .container.footer__container
+    include ../callback/callback
+
+    .footer__top
+      .footer__top-section
+        +main-logo({
+          description: false,
+          colored: false
+        })
+        
+        .law-info
+          | Общество с ограниченной ответственностью «Импрешн»<br>
+          | ИНН/КПП 7721677539/773401001 ОГРН 1097746707662<br>
+          | 109147, г. Москва, ул. Марксистская, дом 10, стр.1, офис 306<br>
+          | Расч. счет 40702810638000075695 в банке ПАО СБЕРБАНК, г. Москва.<br>
+          | к/с 30101810400000000225<br>
+          | БИК 044525225<br>
+          | ОКПО 63782765
+        
+        .company-rights © 2024, Бюро переводов Impression
+      .footer__top-section 
+        +bottom-menu([
+          { title: 'О компании'},
+          { title: 'Примеры наших работ'},
+          { title: 'Блог'},
+          { title: 'Полезная информация'},
+          { title: 'Акции'},
+          { title: 'Отзывы о нас'},
+          { title: 'Контакты'},
+          { title: 'Вакансии переводчиков'},
+        ])
+
+    .footer__bottom
+      include ../../components/_ui/social/social
+
+      a(href="#" aria-label="Littleweb.ru - разработака и продвижение сайтов" rel="nofollow noopener norefferer").developer
+        span Создано в
+        img(src="../assets/img/dev-logo.svg" alt="Логотип" width="160" height="20")

@@ -1,3 +1,5 @@
 @use "./_base/main.scss";
 
+@use "@pug/blocks/header/_header.scss";
 @use "@pug/components/template-components";
+@use "@pug/blocks/footer/_footer.scss";

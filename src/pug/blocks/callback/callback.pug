@@ -1,0 +1,44 @@
+include ../../components/_ui/form-controls/main-input/main-input
+include ../../components/_ui/form-controls/main-checkbox/main-checkbox
+include ../../components/_ui/form-controls/main-textarea/main-textarea
+
+
+.callback
+  form(action="#")
+    h2.base-title Форма обратной связи
+    p.base-text Оставьте заявку и мы обязательно свяжемся с вами в ближайшее время!
+
+    fieldset
+      +main-input({
+        id: 'user_name',
+        placeholder: 'Ваше имя',
+        name: 'Имя'
+      })
+
+      +main-input({
+        id: 'user_phone',
+        type: 'tel',
+        placeholder: 'Телефон',
+        name: 'Телефон',
+        isInvalid: true
+      })
+
+      +main-input({
+        id: 'user_mail',
+        placeholder: 'Email',
+        name: 'Email'
+      })
+    
+    +main-textarea({
+      placeholder: 'Опишите услугу, которая Вас интересует',
+      name: 'Комментарий'
+    })
+
+    +main-checkbox({
+      id: 'user_accept',
+      name: 'Согласие на обработку персональных данных',
+      label: 'Отправляю форму, Вы даете свое согласие на <a href="#" target="_blank">обработку персональных данных</a>'
+    })  
+    
+
+    input(type="submit" value="Отправить").main-btn

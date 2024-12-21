@@ -1,0 +1,38 @@
+@forward "@styles/_extends/resets.scss";
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss";
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.bottom-menu {
+  ul {
+    @extend %list-reset;
+    width: fit-content;
+
+    @include container-up('footer', 475px) {
+      columns: 2;
+    }
+
+    @include container-up('footer', $tablet-width) {
+      margin-left: auto;
+      padding-top: 63px;
+    }
+
+    & + * {
+      margin-top: var(--main-offset);
+    }
+
+    & > li {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin-bottom: 10px;
+
+      a {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--white);
+        @extend %hover-opacity;
+      }
+    }
+  }
+}

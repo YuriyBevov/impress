@@ -24,6 +24,7 @@
   font-weight: 600;
   font-size: clamp(16px, 2.6vw, 20px);
   margin: 0;
+  color: var(--site-base-text-color);
 }
 
 .base-text {
@@ -31,4 +32,5 @@
   font-size: 15px;
   font-weight: 500;
   margin: 0;
+  color: var(--site-base-text-color);
 }

@@ -1,0 +1,68 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/resets.scss";
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.callback {
+  position: relative;
+  @extend %flex-column;
+  gap: 12px;
+  padding: clamp(24px, 2.6vw, 40px);
+  border-radius: 30px;
+  background-color: var(--white);
+  overflow: hidden;
+  margin-bottom: var(--main-offset);
+
+  container: callback / inline-size;
+
+  & .base-title {
+    margin-bottom: 0;
+  }
+
+  @include container-up('callback', $mobile-width) {
+    &::after {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      content: '';
+      width: calc(40% - 16px);
+      height: calc(100% + 4px);
+      background-size: cover;
+      background-position: left;
+      background-image: image-set(
+        url('@img/callback-bg@2x.webp') type("image/webp") 2x,
+        url('@img/callback-bg@1x.webp') type("image/webp") 1x,
+        url('@img/callback-bg@2x.jpg') 2x,
+        url('@img/callback-bg@1x.jpg') 1x
+      );
+    }   
+  }
+
+  form {
+    @extend %flex-column;
+    gap: 20px;
+    width: 60%;
+
+    @include container-down('callback', $mobile-width) {
+      width: 100%;
+    }
+  }
+
+  fieldset {
+    @extend %fieldset-reset;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  small {
+    font-size: 12px;
+    font-weight: 400;
+    a {
+      font-weight: 500;
+      text-decoration: underline;
+      color: var(--primary);
+    }
+  }
+}

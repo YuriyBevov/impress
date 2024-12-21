@@ -2,6 +2,8 @@
 
 .services-preview {
   background-image: url("@img/services-preview-bg.svg");
+  background-size: cover;
+  background-position: center;
 
   &__list {
     @extend %column-list;

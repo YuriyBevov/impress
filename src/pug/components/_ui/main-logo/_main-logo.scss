@@ -1,0 +1,26 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss";
+
+.main-logo {
+  position: relative;
+  @extend %flex-column;
+  width: fit-content;
+  @extend %hover-opacity;
+
+  img {
+    width: 150px;
+    height: auto;
+    object-fit: contain; 
+  }
+  
+  small {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    padding-left: 44px;
+    color: var(--muted);
+  }
+}

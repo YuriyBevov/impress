@@ -1,0 +1,8 @@
+mixin main-logo(data)
+  a(href="#" aria-label="На главную").main-logo
+    if data.colored
+      img(src="../assets/img/main-logo.svg" alt="Логотип" width="180" height="50")
+    else
+      img(src="../assets/img/main-logo-white.svg" alt="Логотип" width="180" height="50")
+    if data.description
+      small Бюро переводов

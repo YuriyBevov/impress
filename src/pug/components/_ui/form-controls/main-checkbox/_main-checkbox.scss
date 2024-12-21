@@ -1,0 +1,62 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss"; 
+
+.main-checkbox-wrapper {
+  label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    color: var(--site-base-text-color);
+
+    font-size: clamp(16px, 2.2vw, 18px);
+    font-weight: 500;
+
+    span {
+      font-size: 14px;
+      line-height: 1;
+      color: var(--site-base-text-color);
+    }
+
+    a {
+      font-weight: 600;
+      text-decoration: underline;
+      color: var(--primary);
+
+      @extend %hover-opacity;
+    }
+
+    &::before {
+      position: relative;
+      content: '';
+      width: 20px;
+      height: 20px;
+      aspect-ratio: 1/1;
+      border: 2px solid var(--primary);
+      border-radius: 4px;
+    }
+  }
+
+  input {
+    display: none;
+  }
+
+  &:has(input:checked) label::before {
+    background-image: url("@/assets/img/icon-checkbox.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  /* purgecss start ignore */
+  &.invalid-fld {
+    label {
+      color: var(--primary);
+    }
+
+    animation: shaker var(--main-transition);
+  }
+  /* purgecss end ignore */
+}
+

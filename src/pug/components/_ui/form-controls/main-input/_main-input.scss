@@ -1,0 +1,43 @@
+@forward "@styles/_extends/flexbox.scss";
+
+.main-input-wrapper {
+  @extend %flex-column;
+  gap: 8px;
+
+  input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: clamp(14px, 2.2vw, 16px);
+    font-weight: 400;
+    outline: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid transparent;
+    background-color: var(--secondary);
+    color: var(--dark);
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active{
+        -webkit-box-shadow: 0 0 0 30px var(--secondary) inset !important;
+    }
+
+    &::placeholder {
+      font-size: clamp(14px, 2.2vw, 16px);
+      font-weight: 400;
+      color: var(--dark);
+      width: 100%;
+    }
+  }
+
+  /* purgecss start ignore */
+  &.invalid-fld {
+    border: 1px solid var(--primary);
+
+    animation: shaker var(--main-transition);
+  }
+  /* purgecss end ignore */
+}
+
+

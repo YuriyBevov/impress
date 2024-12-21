@@ -6,16 +6,11 @@
 
   font-size: clamp(14px, 2.2vw, 16px);
   font-weight: 600;
-  padding: 10px 20px 8px;
+  padding: 10px 20px 10px;
   border: 2px solid var(--primary);
   border-radius: 30px;
 
-  
-
-
-
   transition: opacity var(--main-transition), background-color var(--main-transition), color var(--main-transition);
-
 
   &:not(.main-btn--outlined) {
     background-color: var(--primary);
@@ -37,7 +32,6 @@
       opacity: .6;
     }
   }
-
 
   &--outlined {
     background-color: transparent;
