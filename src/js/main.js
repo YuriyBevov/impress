@@ -3,3 +3,5 @@ import "@pug/components/_ui/sliders/main-slider/main-slider";
 import "@pug/components/_ui/sliders/infinity-slider/infinity-slider";
 import "./modules/fancy";
 import "./modules/table-wrapper";
+import "@pug/components/_ui/tabs/tabs";
+import "../pug/components/_ui/yMaps/yMaps";

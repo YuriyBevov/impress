@@ -1,0 +1,30 @@
+@forward "@styles/_extends/common.scss";
+@use "@pug/components/blocks/contact-block/contact-block.scss";
+
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.contacts-preview {
+  position: relative;
+
+  &.section--decorated::after,
+  &.section--decorated::before {
+    height: 190px;
+  }
+
+  @include container-down('main', $tablet-lg-width) {
+    padding: 0;
+
+    .container {
+      padding: 0;
+    }
+
+    &.section--decorated::before {
+      display: none;
+    }
+
+    &.section--decorated::after {
+      height: 120px;
+    }
+  } 
+} 

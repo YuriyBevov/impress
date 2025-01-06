@@ -1,4 +1,3 @@
-console.log('tables');
 let tables = document.getElementsByTagName('table');
 
 if (tables.length) {

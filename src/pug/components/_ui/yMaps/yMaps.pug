@@ -1,0 +1,21 @@
+script(src="https://api-maps.yandex.ru/2.1/?apikey=919ce949-0832-41f4-99a8-f4151b2f14ef&lang=ru_RU")
+
+#y-maps(
+  data-options={
+    desktopViewCenter: '55.75060444006543,37.61944846239627',
+    mobileViewCenter: '55.75049225880714,37.66043457984441',
+    zoom: 13,
+    placemarks: [
+      {
+        iconPath: './assets/img/map-pin-yellow.svg',
+        placemarkCoords: '55.73975206899516,37.656819499999955',
+        placemarkContent: 'Офис на марксистской'
+      },
+      {
+        iconPath: './assets/img/map-pin-violet.svg',
+        placemarkCoords: '55.75701906897993,37.63815249999991',
+        placemarkContent: 'Офис на Китай-городе'
+      },
+    ]
+  }
+)

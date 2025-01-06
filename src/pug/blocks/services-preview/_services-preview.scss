@@ -1,9 +1,9 @@
 @forward "@styles/_extends/common.scss";
 
 .services-preview {
-  background-image: url("@img/services-preview-bg.svg");
+  background-image: url("@img/services-preview-bg.svg"); 
   background-size: cover;
-  background-position: center;
+  background-position: top;
 
   &__list {
     @extend %column-list;

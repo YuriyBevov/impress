@@ -10,14 +10,14 @@
 .accordeon {
   @extend %flex-column;
   gap:16px;
-  @extend %main-inner-offset;
+  // @extend %main-inner-offset;
 
   &-item {
     @extend %flex-column;
 
     padding: 16px 20px;
     border-radius: 30px;
-    border: 1px solid var(--primary);
+    border: 2px solid var(--primary);
     background-color: var(--secondary);
 
     svg {

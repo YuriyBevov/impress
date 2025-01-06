@@ -1,0 +1,9 @@
+mixin tabs(data)
+  .tabs
+    h2.base-title!= data.title
+    .tabs-header
+      each switcher, index in data.switchers
+        button.tabs-switcher(class= index === 0 ? 'active' : null data-tab= index)!= switcher.title
+    .tabs-content-wrapper
+      each content, index in data.contentBlocks
+        .tabs-content(class= index === 0 ? 'active' : null data-tab-content= index)!= content.html

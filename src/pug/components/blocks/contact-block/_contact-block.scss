@@ -1,0 +1,57 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss";
+@forward "@pug/components/_ui/yMaps/yMaps.scss";
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.contact-block {
+  position: relative;
+  z-index: 100;
+  width: 35vw;
+  max-width: 512px;
+  margin: initial;
+  border-radius: 30px;
+  background-color: var(--site-bg-color);
+  padding: clamp(16px, 2vw, 30px);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  @include container-down('main', $tablet-lg-width) {
+    width: calc(100% - 20px);
+    min-width: initial;
+    max-width: initial;
+    margin: 0 auto;
+    margin-bottom: -160px;
+    box-shadow: initial;
+    padding: calc(var(--container-offset) - 10px);
+    padding-bottom: 10px;
+    border-radius: 4px;
+  }
+
+  & .base-title {
+    margin-bottom: 0;
+  }
+
+  &-field {
+    @extend %flex-column;
+    gap: 16px;
+    width: 100%;
+
+    & img {
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    & a {
+      @extend %primary-color-hover;
+      width: fit-content;
+    }
+
+    &-section {
+      @extend %flex-column;
+      gap: 6px;
+    }
+  }
+}

@@ -1,6 +1,42 @@
-// @forward "@styles/_extends/utils.scss";
+@forward "@styles/_extends/flexbox.scss";
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
 
 .faq-preview {
-  // @extend %section-afterline;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    gap: var(--main-offset);
+
+    @include container-down('main', $tablet-lg-width) {
+      grid-template-columns: 1fr;
+    }
+
+    &-item {
+      @extend %flex-column;
+      position: sticky;
+      top: var(--main-offset);
+      gap: var(--main-offset);
+
+      @include container-down('main', $tablet-lg-width) {
+        position: static;
+        top: 0;
+      }
+
+      .base-title {
+        margin-bottom: 0;
+      }
+
+      .base-text {
+        font-size: 16px;
+        text-wrap: pretty;
+      }
+
+      a {
+        color: var(--primary);
+      }
+    }
+  }
 }
 
