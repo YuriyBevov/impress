@@ -1,0 +1,94 @@
+include ../../form-controls/main-input/main-input
+include ../../form-controls/main-checkbox/main-checkbox
+include ../../form-controls/main-textarea/main-textarea 
+
+.calc-form
+  h2.base-title Калькулятор стоимости перевода
+
+  form(action="#")
+    .calc-form__header
+      fieldset
+        span.base-text Язык оригинала
+        select.custom-select
+          option(selected="selected") Английский язык
+          option Французский язык
+          option Немецкий язык
+          option Русский язык
+
+      fieldset
+        span.base-text Язык перевода
+        select.custom-select
+          option Английский язык
+          option Французский язык
+          option Немецкий язык
+          option(selected="selected") Русский язык
+
+    span.base-text Дополнительные услуги
+
+    fieldset
+      +main-checkbox({
+        id: 'calc_1',
+        name: 'Редактура перевода',
+        label: 'Редактура перевода',
+        price: '0'
+      })
+      +main-checkbox({
+        id: 'calc_2',
+        name: 'Консульская легализация',
+        label: 'Консульская легализация',
+        price: '6000'
+      })
+      +main-checkbox({
+        id: 'calc_3',
+        name: 'Нотариальное заверение',
+        label: 'Нотариальное заверение',
+        price: '800'
+      })
+      +main-checkbox({
+        id: 'calc_4',
+        name: 'Апостиль',
+        label: 'Апостиль',
+        price: '6000'
+      })
+      +main-checkbox({
+        id: 'calc_5',
+        name: 'Доставка документации',
+        label: 'Доставка документации',
+        price: '500'
+      })
+
+    span.base-text Стоимость: <strong class="calc__total-price" data-base-price="500"> от <span></span> руб*</strong>
+
+    fieldset
+      +main-input({
+        id: 'user_name',
+        placeholder: 'Ваше имя',
+        name: 'Имя'
+      })
+
+      +main-input({
+        id: 'user_phone',
+        type: 'tel',
+        placeholder: 'Телефон',
+        name: 'Телефон',
+        isInvalid: true
+      })
+
+      +main-input({
+        id: 'user_mail',
+        placeholder: 'Email',
+        name: 'Email'
+      })
+
+      .main-input-wrapper 
+        input(type="submit" value="Отправить").main-btn 
+
+    +main-checkbox({
+      id: 'user_accept_2',
+      name: 'Согласие на обработку персональных данных',
+      label: 'Отправляю форму, Вы даете свое согласие на <a href="#" target="_blank">обработку персональных данных</a>',
+      checked: true
+    })
+
+    small.base-text *Вся информация предварительная, точную стоимость и срок выполнения услуг Вам сообщит менеджер.
+

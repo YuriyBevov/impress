@@ -1,5 +1,5 @@
 mixin main-checkbox(data)
-  .main-checkbox-wrapper.invalid-fld
-    input(type="checkbox" id= data.id name= data.name checked)
+  .main-checkbox-wrapper
+    input(type="checkbox" id= data.id name= data.name checked= data.checked ? 'true' : null data-price= data.price ? data.price : null)
     label(for= data.id).main-checkbox
       span!= data.label

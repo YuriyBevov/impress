@@ -1,0 +1,135 @@
+@use "@styles/_mixins/text-truncate" as *;
+
+$height: 100%;
+
+.custom-select-container {
+  position: relative;
+  height: fit-content;
+  width: 220px;
+
+  &.is-open {
+    .custom-select-opener::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+}
+
+.custom-select-container.is-disabled {
+  opacity: .333;
+}
+
+.custom-select-opener {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  width: inherit;
+  height: inherit;
+
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 12px 20px;
+  padding-right: 50px;
+
+  cursor: pointer;
+
+  color: var(--dark);
+  background-color: var(--secondary);
+  border-radius: 30px;
+  
+  span {
+    @include text-truncate(1);
+  }
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+
+    content: '';
+    width: 24px;
+    height: 24px;
+
+    background-image: url("@img/icon-chevron-down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    transition: transform var(--main-transition);
+  }
+}
+
+.custom-select-container select {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: inherit;
+  height: inherit;
+}
+
+.custom-select-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  overflow: hidden;
+
+  width: 100%;
+  height: auto;
+  max-height: 0;
+
+  transition: opacity var(--main-transition);
+  opacity: 0;
+
+  background-color: var(--secondary);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 30px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+.custom-select-container.is-open .custom-select-panel {
+  max-height: 250px;
+  opacity: 1;
+  overflow-y: auto;
+  z-index: 11;
+}
+
+.custom-select-option {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 8px 20px;
+
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--secondary);
+  }
+
+  &:first-child {
+    padding-top: 12px;
+  }
+
+  &:last-child {
+    padding-bottom: 12px;
+  }
+  color: var(--dark);
+  background-color: var(--site-bg-color);
+
+  transition: color var(--main-transition), background-color var(--main-transition);
+
+  &::after {
+    display: none;
+  }
+
+  @include text-truncate(1);
+}
+
+.custom-select-option.has-focus {
+  color: var(--primary);
+  background-color: var(--white);
+}

@@ -3,6 +3,8 @@
 .main-input-wrapper {
   @extend %flex-column;
   gap: 8px;
+  border-radius: 30px;
+  overflow: hidden;
 
   input {
     width: 100%;
@@ -12,7 +14,7 @@
     outline: none;
     overflow: hidden;
     text-overflow: ellipsis;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     background-color: var(--secondary);
     color: var(--dark);
 
@@ -28,6 +30,14 @@
       font-weight: 400;
       color: var(--dark);
       width: 100%;
+    }
+
+    &[type="submit"] {
+      width: fit-content;
+      min-width: 200px;
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: var(--light);
     }
   }
 

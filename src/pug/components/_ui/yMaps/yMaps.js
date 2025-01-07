@@ -43,7 +43,7 @@ if (map) {
       center: isDesktopView ? JSON.parse('[' + options.desktopViewCenter + ']') : JSON.parse('[' + options.mobileViewCenter + ']'),
       zoom: Number(options.zoom),
       controls: [],
-      behaviors: ['drag'],
+      behaviors: ['drag','dblClickZoom'],
     });
 
     window.addEventListener('resize', () => {
