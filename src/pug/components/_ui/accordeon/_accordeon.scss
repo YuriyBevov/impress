@@ -47,9 +47,9 @@
     cursor: pointer;
     @extend %hover-opacity;
 
-    span {
-      font-weight: 700;
-    }
+    // span {
+    //   font-weight: 700;
+    // }
     svg {
       min-width: 24px;
       transition: transform var(--accordeon-transition);

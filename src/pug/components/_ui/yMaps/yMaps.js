@@ -2,6 +2,7 @@ const map = document.querySelector('#y-maps');
 
 if (map) {
   let myMap = null;
+  const responsiveWidth = 960;
   const tabSwitchers = document.querySelectorAll('.tabs-switcher');
 
   window.addEventListener('load', () => {
@@ -11,8 +12,8 @@ if (map) {
   function init() {
     const options = JSON.parse(map.dataset.options);
 
-    let isMobileView = window.innerWidth >= 960 ? false : true;
-    let isDesktopView = window.innerWidth >= 960 ? true : false;
+    let isMobileView = window.innerWidth >= responsiveWidth ? false : true;
+    let isDesktopView = window.innerWidth >= responsiveWidth ? true : false;
 
     const setView = (map, view) => {
       let coords = null;
@@ -34,7 +35,7 @@ if (map) {
         coords = JSON.parse('[' + options.mobileViewCenter + ']');
       }
       
-      map.setCenter(coords, 13);
+      map.setCenter(coords, options.zoom);
       map.container.fitToViewport();
     }
 
@@ -44,12 +45,14 @@ if (map) {
       zoom: Number(options.zoom),
       controls: [],
       behaviors: ['drag','dblClickZoom'],
+    }, {
+      maxZoom: options.maxZoom
     });
 
     window.addEventListener('resize', () => {
-      if(window.innerWidth >= 960 && isMobileView) {
+      if(window.innerWidth >= responsiveWidth && isMobileView) {
         setView(myMap, 'desktop');
-      } else if(window.innerWidth < 960 && isDesktopView){
+      } else if(window.innerWidth < responsiveWidth && isDesktopView){
         setView(myMap, 'mobile');
       }
     });
@@ -70,7 +73,7 @@ if (map) {
         {
           // Опции.
           // Необходимо указать данный тип макета.
-          iconId: index,
+          placemarkID: index,
           iconLayout: 'default#imageWithContent',
           // Своё изображение иконки метки.
           iconImageHref: placemark.iconPath,
@@ -87,15 +90,13 @@ if (map) {
       myMap.geoObjects.add(pin);
 
       pin.events.add('click', (evt) => {
-        myMap.setZoom(18).then(() => {
-          const id = evt.originalEvent.target.options._options.iconId;
+        myMap.setZoom(options.maxZoom).then(() => {
+          const id = evt.get('target').options.get('placemarkID');
           tabSwitchers.forEach(switcher => {
             if(Number(switcher.dataset.tab) === Number(id)) {
               switcher.click();
             }
           });
-        }).then(() => {
-          myMap.panTo(evt.originalEvent.target.geometry._coordinates, {duration: 0});
         });
       })
     });
@@ -103,13 +104,13 @@ if (map) {
     const tabs = document.querySelectorAll('.tabs-switcher');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        myMap.container.fitToViewport();
         const id = tab.dataset.tab;
 
         myMap.geoObjects.each(placemark => {
-          if(Number(placemark.options._options.iconId) === Number(id)) {
-            myMap.setZoom(18).then(() => {
-              myMap.panTo(placemark.geometry._coordinates, {duration: 0});
+          if(Number(placemark.options.get('placemarkID')) === Number(id)) {
+            myMap.setZoom(options.maxZoom).then(() => {
+              myMap.panTo(placemark.geometry.getCoordinates(), {duration: 0});
+              myMap.container.fitToViewport();
             });
           }
         });
