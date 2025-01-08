@@ -36,15 +36,15 @@
 
       transition: background-size 1s linear;
 
-      @include container-down('main', $tablet-width) {
-        width: 90%;
-      }
-
       @include container-down('linked-list ', 440px) {
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
         padding-right: 50px;
+      }
+
+      @include container-down('linked-list ', 375px) {
+        padding-right: 36px;
       }
 
       span {
@@ -95,15 +95,10 @@
 
         transition: transform var(--main-transition);
 
-        @include container-down('linked-list ', 440px) {
-          top: -12px;
-          right: -12px;
-          transform: none;
-          background-size: 16px;
+        @include container-down('linked-list ', 375px) {
+          background-size: 20px;
           width: 50px;
           height: 50px;
-          background-color: var(--site-bg-color);
-          border-color: var(--white);
         }
       }
 
@@ -116,7 +111,6 @@
           transform: translate(15px, -50%);
         }
       }
-
     }
   }
 }

@@ -7575,7 +7575,7 @@ const te = { Hash: class extends _ {
   static destroy() {
     window.removeEventListener("hashchange", vt, false);
   }
-}, Html: Lt, Images: wt, Slideshow: Dt, Thumbs: Yt, Toolbar: Qt }, ee = "with-fancybox", ie = "hide-scrollbar", ne = "--fancybox-scrollbar-compensate", se = "--fancybox-body-margin", oe = "aria-hidden", ae = "is-using-tab", re = "is-animated", le = "is-compact", ce = "is-loading", he = "is-opening", de = "has-caption", ue = "disabled", pe = "tabindex", fe = "download", ge = "href", me = "src", ve = (t2) => "string" == typeof t2, be = function() {
+}, Html: Lt, Images: wt, Slideshow: Dt, Thumbs: Yt, Toolbar: Qt }, ee = "with-fancybox", ie = "hide-scrollbar", ne = "--fancybox-scrollbar-compensate", se = "--fancybox-body-margin", oe = "aria-hidden", ae = "is-using-tab", re = "is-animated", le = "is-compact", ce$1 = "is-loading", he = "is-opening", de = "has-caption", ue = "disabled", pe = "tabindex", fe = "download", ge = "href", me = "src", ve = (t2) => "string" == typeof t2, be = function() {
   var t2 = window.getSelection();
   return !!t2 && "Range" === t2.type;
 };
@@ -7909,7 +7909,7 @@ class Oe extends g {
     t2.state = lt.Loading;
     const e2 = t2.el;
     if (!e2) return;
-    P(e2, ce), this.emit("loading", t2), t2.spinnerEl || setTimeout(() => {
+    P(e2, ce$1), this.emit("loading", t2), t2.spinnerEl || setTimeout(() => {
       if (!this.isClosing() && !t2.spinnerEl && t2.state === lt.Loading) {
         let i2 = n(x);
         P(i2, "fancybox-spinner"), t2.spinnerEl = i2, e2.prepend(i2), this.animate(i2, "f-fadeIn");
@@ -7920,7 +7920,7 @@ class Oe extends g {
     const e2 = t2.el;
     if (!e2) return;
     const i2 = t2.spinnerEl;
-    this.isClosing() ? null == i2 || i2.remove() : (S(e2, ce), i2 && this.animate(i2, "f-fadeOut", () => {
+    this.isClosing() ? null == i2 || i2.remove() : (S(e2, ce$1), i2 && this.animate(i2, "f-fadeOut", () => {
       i2.remove();
     }), t2.state === lt.Loading && (this.emit("loaded", t2), t2.state = lt.Ready));
   }
@@ -8128,6 +8128,508 @@ if (tables.length) {
     wrapper.appendChild(tables[i2]);
   }
 }
+var build = {};
+try {
+  var ce = new window.CustomEvent("test");
+  ce.preventDefault();
+  if (ce.defaultPrevented !== true) {
+    throw new Error("Could not prevent default");
+  }
+} catch (e2) {
+  var CustomEvent$1 = function(event, params) {
+    var evt, origPrevent;
+    params = params || {
+      bubbles: false,
+      cancelable: false,
+      detail: void 0
+    };
+    evt = document.createEvent("CustomEvent");
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    origPrevent = evt.preventDefault;
+    evt.preventDefault = function() {
+      origPrevent.call(this);
+      try {
+        Object.defineProperty(this, "defaultPrevented", {
+          get: function() {
+            return true;
+          }
+        });
+      } catch (e3) {
+        this.defaultPrevented = true;
+      }
+    };
+    return evt;
+  };
+  CustomEvent$1.prototype = window.Event.prototype;
+  window.CustomEvent = CustomEvent$1;
+}
+Object.defineProperty(build, "__esModule", {
+  value: true
+});
+var _extends = Object.assign || function(target) {
+  for (var i2 = 1; i2 < arguments.length; i2++) {
+    var source = arguments[i2];
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
+var _slicedToArray = /* @__PURE__ */ function() {
+  function sliceIterator(arr, i2) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = void 0;
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+        if (i2 && _arr.length === i2) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"]) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+  return function(arr, i2) {
+    if (Array.isArray(arr)) {
+      return arr;
+    } else if (Symbol.iterator in Object(arr)) {
+      return sliceIterator(arr, i2);
+    } else {
+      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    }
+  };
+}();
+var _default = build.default = customSelect;
+var defaultParams = {
+  containerClass: "custom-select-container",
+  openerClass: "custom-select-opener",
+  panelClass: "custom-select-panel",
+  optionClass: "custom-select-option",
+  optgroupClass: "custom-select-optgroup",
+  isSelectedClass: "is-selected",
+  hasFocusClass: "has-focus",
+  isDisabledClass: "is-disabled",
+  isOpenClass: "is-open"
+};
+function builder(el, builderParams) {
+  var containerClass = "customSelect";
+  var isOpen = false;
+  var uId = "";
+  var select = el;
+  var container = void 0;
+  var opener = void 0;
+  var focusedElement = void 0;
+  var selectedElement = void 0;
+  var panel = void 0;
+  var currLabel = void 0;
+  var resetSearchTimeout = void 0;
+  var searchKey = "";
+  function setFocusedElement(cstOption) {
+    if (focusedElement) {
+      focusedElement.classList.remove(builderParams.hasFocusClass);
+    }
+    if (typeof cstOption !== "undefined") {
+      focusedElement = cstOption;
+      focusedElement.classList.add(builderParams.hasFocusClass);
+      if (isOpen) {
+        if (cstOption.offsetTop < cstOption.offsetParent.scrollTop || cstOption.offsetTop > cstOption.offsetParent.scrollTop + cstOption.offsetParent.clientHeight - cstOption.clientHeight) {
+          cstOption.dispatchEvent(new CustomEvent("custom-select:focus-outside-panel", { bubbles: true }));
+        }
+      }
+    } else {
+      focusedElement = void 0;
+    }
+  }
+  function setSelectedElement(cstOption) {
+    if (selectedElement) {
+      selectedElement.classList.remove(builderParams.isSelectedClass);
+      selectedElement.removeAttribute("id");
+      opener.removeAttribute("aria-activedescendant");
+    }
+    if (typeof cstOption !== "undefined") {
+      cstOption.classList.add(builderParams.isSelectedClass);
+      cstOption.setAttribute("id", containerClass + "-" + uId + "-selectedOption");
+      opener.setAttribute("aria-activedescendant", containerClass + "-" + uId + "-selectedOption");
+      selectedElement = cstOption;
+      opener.children[0].textContent = selectedElement.customSelectOriginalOption.text;
+    } else {
+      selectedElement = void 0;
+      opener.children[0].textContent = "";
+    }
+    setFocusedElement(cstOption);
+  }
+  function setValue(value) {
+    var toSelect = select.querySelector("option[value='" + value + "']");
+    if (!toSelect) {
+      var _select$options = _slicedToArray(select.options, 1);
+      toSelect = _select$options[0];
+    }
+    toSelect.selected = true;
+    setSelectedElement(select.options[select.selectedIndex].customSelectCstOption);
+  }
+  function moveFocuesedElement(direction) {
+    var currentFocusedIndex = [].indexOf.call(select.options, focusedElement.customSelectOriginalOption);
+    if (select.options[currentFocusedIndex + direction]) {
+      setFocusedElement(select.options[currentFocusedIndex + direction].customSelectCstOption);
+    }
+  }
+  function open(bool) {
+    if (bool || typeof bool === "undefined") {
+      var openedCustomSelect = document.querySelector("." + containerClass + "." + builderParams.isOpenClass);
+      if (openedCustomSelect) {
+        openedCustomSelect.customSelect.open = false;
+      }
+      container.classList.add(builderParams.isOpenClass);
+      container.classList.add(builderParams.isOpenClass);
+      opener.setAttribute("aria-expanded", "true");
+      if (selectedElement) {
+        panel.scrollTop = selectedElement.offsetTop;
+      }
+      container.dispatchEvent(new CustomEvent("custom-select:open"));
+      isOpen = true;
+    } else {
+      container.classList.remove(builderParams.isOpenClass);
+      opener.setAttribute("aria-expanded", "false");
+      isOpen = false;
+      setFocusedElement(selectedElement);
+      container.dispatchEvent(new CustomEvent("custom-select:close"));
+    }
+    return isOpen;
+  }
+  function clickEvent(e2) {
+    if (e2.target === opener || opener.contains(e2.target)) {
+      if (isOpen) {
+        open(false);
+      } else {
+        open();
+      }
+    } else if (e2.target.classList && e2.target.classList.contains(builderParams.optionClass) && panel.contains(e2.target)) {
+      setSelectedElement(e2.target);
+      selectedElement.customSelectOriginalOption.selected = true;
+      open(false);
+      select.dispatchEvent(new CustomEvent("change"));
+    } else if (e2.target === select) {
+      if (opener !== document.activeElement && select !== document.activeElement) {
+        opener.focus();
+      }
+    } else if (isOpen && !container.contains(e2.target)) {
+      open(false);
+    }
+  }
+  function mouseoverEvent(e2) {
+    if (e2.target.classList && e2.target.classList.contains(builderParams.optionClass)) {
+      setFocusedElement(e2.target);
+    }
+  }
+  function keydownEvent(e2) {
+    if (!isOpen) {
+      if (e2.keyCode === 40 || e2.keyCode === 38 || e2.keyCode === 32) {
+        open();
+      }
+    } else {
+      switch (e2.keyCode) {
+        case 13:
+        case 32:
+          setSelectedElement(focusedElement);
+          selectedElement.customSelectOriginalOption.selected = true;
+          select.dispatchEvent(new CustomEvent("change"));
+          open(false);
+          break;
+        case 27:
+          open(false);
+          break;
+        case 38:
+          moveFocuesedElement(-1);
+          break;
+        case 40:
+          moveFocuesedElement(1);
+          break;
+        default:
+          if (e2.keyCode >= 48 && e2.keyCode <= 90) {
+            if (resetSearchTimeout) {
+              clearTimeout(resetSearchTimeout);
+            }
+            resetSearchTimeout = setTimeout(function() {
+              searchKey = "";
+            }, 1500);
+            searchKey += String.fromCharCode(e2.keyCode);
+            for (var i3 = 0, l2 = select.options.length; i3 < l2; i3++) {
+              if (select.options[i3].text.toUpperCase().substr(0, searchKey.length) === searchKey) {
+                setFocusedElement(select.options[i3].customSelectCstOption);
+                break;
+              }
+            }
+          }
+          break;
+      }
+    }
+  }
+  function changeEvent() {
+    var index = select.selectedIndex;
+    var element = index === -1 ? void 0 : select.options[index].customSelectCstOption;
+    setSelectedElement(element);
+  }
+  function scrollToFocused(e2) {
+    var currPanel = e2.currentTarget;
+    var currOption = e2.target;
+    if (currOption.offsetTop < currPanel.scrollTop) {
+      currPanel.scrollTop = currOption.offsetTop;
+    } else {
+      currPanel.scrollTop = currOption.offsetTop + currOption.clientHeight - currPanel.clientHeight;
+    }
+  }
+  function addEvents() {
+    document.addEventListener("click", clickEvent);
+    panel.addEventListener("mouseover", mouseoverEvent);
+    panel.addEventListener("custom-select:focus-outside-panel", scrollToFocused);
+    select.addEventListener("change", changeEvent);
+    container.addEventListener("keydown", keydownEvent);
+  }
+  function removeEvents() {
+    document.removeEventListener("click", clickEvent);
+    panel.removeEventListener("mouseover", mouseoverEvent);
+    panel.removeEventListener("custom-select:focus-outside-panel", scrollToFocused);
+    select.removeEventListener("change", changeEvent);
+    container.removeEventListener("keydown", keydownEvent);
+  }
+  function disabled(bool) {
+    if (bool && !select.disabled) {
+      container.classList.add(builderParams.isDisabledClass);
+      select.disabled = true;
+      opener.removeAttribute("tabindex");
+      container.dispatchEvent(new CustomEvent("custom-select:disabled"));
+      removeEvents();
+    } else if (!bool && select.disabled) {
+      container.classList.remove(builderParams.isDisabledClass);
+      select.disabled = false;
+      opener.setAttribute("tabindex", "0");
+      container.dispatchEvent(new CustomEvent("custom-select:enabled"));
+      addEvents();
+    }
+  }
+  function parseMarkup(children) {
+    var nodeList = children;
+    var cstList = [];
+    if (typeof nodeList.length === "undefined") {
+      throw new TypeError("Invalid Argument");
+    }
+    for (var i3 = 0, li = nodeList.length; i3 < li; i3++) {
+      if (nodeList[i3] instanceof HTMLElement && nodeList[i3].tagName.toUpperCase() === "OPTGROUP") {
+        var cstOptgroup = document.createElement("div");
+        cstOptgroup.classList.add(builderParams.optgroupClass);
+        cstOptgroup.setAttribute("data-label", nodeList[i3].label);
+        cstOptgroup.customSelectOriginalOptgroup = nodeList[i3];
+        nodeList[i3].customSelectCstOptgroup = cstOptgroup;
+        var subNodes = parseMarkup(nodeList[i3].children);
+        for (var j2 = 0, lj = subNodes.length; j2 < lj; j2++) {
+          cstOptgroup.appendChild(subNodes[j2]);
+        }
+        cstList.push(cstOptgroup);
+      } else if (nodeList[i3] instanceof HTMLElement && nodeList[i3].tagName.toUpperCase() === "OPTION") {
+        var cstOption = document.createElement("div");
+        cstOption.classList.add(builderParams.optionClass);
+        cstOption.textContent = nodeList[i3].text;
+        cstOption.setAttribute("data-value", nodeList[i3].value);
+        cstOption.setAttribute("role", "option");
+        cstOption.customSelectOriginalOption = nodeList[i3];
+        nodeList[i3].customSelectCstOption = cstOption;
+        if (nodeList[i3].selected) {
+          setSelectedElement(cstOption);
+        }
+        cstList.push(cstOption);
+      } else {
+        throw new TypeError("Invalid Argument");
+      }
+    }
+    return cstList;
+  }
+  function _append(nodePar, appendIntoOriginal, targetPar) {
+    var target = void 0;
+    if (typeof targetPar === "undefined" || targetPar === select) {
+      target = panel;
+    } else if (targetPar instanceof HTMLElement && targetPar.tagName.toUpperCase() === "OPTGROUP" && select.contains(targetPar)) {
+      target = targetPar.customSelectCstOptgroup;
+    } else {
+      throw new TypeError("Invalid Argument");
+    }
+    var node = nodePar instanceof HTMLElement ? [nodePar] : nodePar;
+    if (appendIntoOriginal) {
+      for (var i3 = 0, l2 = node.length; i3 < l2; i3++) {
+        if (target === panel) {
+          select.appendChild(node[i3]);
+        } else {
+          target.customSelectOriginalOptgroup.appendChild(node[i3]);
+        }
+      }
+    }
+    var markupToInsert = parseMarkup(node);
+    for (var _i = 0, _l = markupToInsert.length; _i < _l; _i++) {
+      target.appendChild(markupToInsert[_i]);
+    }
+    return node;
+  }
+  function _insertBefore(node, targetPar) {
+    var target = void 0;
+    if (targetPar instanceof HTMLElement && targetPar.tagName.toUpperCase() === "OPTION" && select.contains(targetPar)) {
+      target = targetPar.customSelectCstOption;
+    } else if (targetPar instanceof HTMLElement && targetPar.tagName.toUpperCase() === "OPTGROUP" && select.contains(targetPar)) {
+      target = targetPar.customSelectCstOptgroup;
+    } else {
+      throw new TypeError("Invalid Argument");
+    }
+    var markupToInsert = parseMarkup(node.length ? node : [node]);
+    target.parentNode.insertBefore(markupToInsert[0], target);
+    return targetPar.parentNode.insertBefore(node.length ? node[0] : node, targetPar);
+  }
+  function remove(node) {
+    var cstNode = void 0;
+    if (node instanceof HTMLElement && node.tagName.toUpperCase() === "OPTION" && select.contains(node)) {
+      cstNode = node.customSelectCstOption;
+    } else if (node instanceof HTMLElement && node.tagName.toUpperCase() === "OPTGROUP" && select.contains(node)) {
+      cstNode = node.customSelectCstOptgroup;
+    } else {
+      throw new TypeError("Invalid Argument");
+    }
+    cstNode.parentNode.removeChild(cstNode);
+    var removedNode = node.parentNode.removeChild(node);
+    changeEvent();
+    return removedNode;
+  }
+  function empty() {
+    var removed = [];
+    while (select.children.length) {
+      panel.removeChild(panel.children[0]);
+      removed.push(select.removeChild(select.children[0]));
+    }
+    setSelectedElement();
+    return removed;
+  }
+  function destroy() {
+    for (var i3 = 0, l2 = select.options.length; i3 < l2; i3++) {
+      delete select.options[i3].customSelectCstOption;
+    }
+    var optGroup = select.getElementsByTagName("optgroup");
+    for (var _i2 = 0, _l2 = optGroup.length; _i2 < _l2; _i2++) {
+      delete optGroup.customSelectCstOptgroup;
+    }
+    removeEvents();
+    return container.parentNode.replaceChild(select, container);
+  }
+  container = document.createElement("div");
+  container.classList.add(builderParams.containerClass, containerClass);
+  opener = document.createElement("span");
+  opener.className = builderParams.openerClass;
+  opener.setAttribute("role", "combobox");
+  opener.setAttribute("aria-autocomplete", "list");
+  opener.setAttribute("aria-expanded", "false");
+  opener.innerHTML = "<span>\n   " + (select.selectedIndex !== -1 ? select.options[select.selectedIndex].text : "") + "\n   </span>";
+  panel = document.createElement("div");
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i2 = 0; i2 < 5; i2++) {
+    uId += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  panel.id = containerClass + "-" + uId + "-panel";
+  panel.className = builderParams.panelClass;
+  panel.setAttribute("role", "listbox");
+  opener.setAttribute("aria-owns", panel.id);
+  _append(select.children, false);
+  container.appendChild(opener);
+  select.parentNode.replaceChild(container, select);
+  container.appendChild(select);
+  container.appendChild(panel);
+  if (document.querySelector('label[for="' + select.id + '"]')) {
+    currLabel = document.querySelector('label[for="' + select.id + '"]');
+  } else if (container.parentNode.tagName.toUpperCase() === "LABEL") {
+    currLabel = container.parentNode;
+  }
+  if (typeof currLabel !== "undefined") {
+    currLabel.setAttribute("id", containerClass + "-" + uId + "-label");
+    opener.setAttribute("aria-labelledby", containerClass + "-" + uId + "-label");
+  }
+  if (select.disabled) {
+    container.classList.add(builderParams.isDisabledClass);
+  } else {
+    opener.setAttribute("tabindex", "0");
+    select.setAttribute("tabindex", "-1");
+    addEvents();
+  }
+  container.customSelect = {
+    get pluginOptions() {
+      return builderParams;
+    },
+    get open() {
+      return isOpen;
+    },
+    set open(bool) {
+      open(bool);
+    },
+    get disabled() {
+      return select.disabled;
+    },
+    set disabled(bool) {
+      disabled(bool);
+    },
+    get value() {
+      return select.value;
+    },
+    set value(val) {
+      setValue(val);
+    },
+    append: function append(node, target) {
+      return _append(node, true, target);
+    },
+    insertBefore: function insertBefore(node, target) {
+      return _insertBefore(node, target);
+    },
+    remove,
+    empty,
+    destroy,
+    opener,
+    select,
+    panel,
+    container
+  };
+  select.customSelect = container.customSelect;
+  return container.customSelect;
+}
+function customSelect(element, customParams) {
+  var nodeList = [];
+  var selects = [];
+  return function init() {
+    if (element && element instanceof HTMLElement && element.tagName.toUpperCase() === "SELECT") {
+      nodeList.push(element);
+    } else if (element && typeof element === "string") {
+      var elementsList = document.querySelectorAll(element);
+      for (var i2 = 0, l2 = elementsList.length; i2 < l2; ++i2) {
+        if (elementsList[i2] instanceof HTMLElement && elementsList[i2].tagName.toUpperCase() === "SELECT") {
+          nodeList.push(elementsList[i2]);
+        }
+      }
+    } else if (element && element.length) {
+      for (var _i3 = 0, _l3 = element.length; _i3 < _l3; ++_i3) {
+        if (element[_i3] instanceof HTMLElement && element[_i3].tagName.toUpperCase() === "SELECT") {
+          nodeList.push(element[_i3]);
+        }
+      }
+    }
+    for (var _i4 = 0, _l4 = nodeList.length; _i4 < _l4; ++_i4) {
+      selects.push(builder(nodeList[_i4], _extends({}, defaultParams, customParams)));
+    }
+    return selects;
+  }();
+}
+_default(".custom-select");
 const switchers = document.querySelectorAll(".tabs-switcher");
 if (switchers.length) {
   let getElem = function(sel, switcher) {
@@ -8151,8 +8653,8 @@ const map = document.querySelector("#y-maps");
 if (map) {
   let init = function() {
     const options = JSON.parse(map.dataset.options);
-    let isMobileView = window.innerWidth >= 960 ? false : true;
-    let isDesktopView = window.innerWidth >= 960 ? true : false;
+    let isMobileView = window.innerWidth >= responsiveWidth ? false : true;
+    let isDesktopView = window.innerWidth >= responsiveWidth ? true : false;
     const setView = (map2, view) => {
       let coords = null;
       isDesktopView = view === "desktop" ? true : false;
@@ -8163,19 +8665,21 @@ if (map) {
       if (view === "mobile") {
         coords = JSON.parse("[" + options.mobileViewCenter + "]");
       }
-      map2.setCenter(coords, 13);
+      map2.setCenter(coords, options.zoom);
       map2.container.fitToViewport();
     };
     myMap = new ymaps.Map("y-maps", {
       center: isDesktopView ? JSON.parse("[" + options.desktopViewCenter + "]") : JSON.parse("[" + options.mobileViewCenter + "]"),
       zoom: Number(options.zoom),
       controls: [],
-      behaviors: ["drag"]
+      behaviors: ["drag", "dblClickZoom"]
+    }, {
+      maxZoom: options.maxZoom
     });
     window.addEventListener("resize", () => {
-      if (window.innerWidth >= 960 && isMobileView) {
+      if (window.innerWidth >= responsiveWidth && isMobileView) {
         setView(myMap, "desktop");
-      } else if (window.innerWidth < 960 && isDesktopView) {
+      } else if (window.innerWidth < responsiveWidth && isDesktopView) {
         setView(myMap, "mobile");
       }
     });
@@ -8191,7 +8695,7 @@ if (map) {
         {
           // Опции.
           // Необходимо указать данный тип макета.
-          iconId: index,
+          placemarkID: index,
           iconLayout: "default#imageWithContent",
           // Своё изображение иконки метки.
           iconImageHref: placemark.iconPath,
@@ -8206,27 +8710,25 @@ if (map) {
       );
       myMap.geoObjects.add(pin);
       pin.events.add("click", (evt) => {
-        myMap.setZoom(18).then(() => {
-          const id = evt.originalEvent.target.options._options.iconId;
+        myMap.setZoom(options.maxZoom).then(() => {
+          const id = evt.get("target").options.get("placemarkID");
           tabSwitchers.forEach((switcher) => {
             if (Number(switcher.dataset.tab) === Number(id)) {
               switcher.click();
             }
           });
-        }).then(() => {
-          myMap.panTo(evt.originalEvent.target.geometry._coordinates, { duration: 0 });
         });
       });
     });
     const tabs = document.querySelectorAll(".tabs-switcher");
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
-        myMap.container.fitToViewport();
         const id = tab.dataset.tab;
         myMap.geoObjects.each((placemark) => {
-          if (Number(placemark.options._options.iconId) === Number(id)) {
-            myMap.setZoom(18).then(() => {
-              myMap.panTo(placemark.geometry._coordinates, { duration: 0 });
+          if (Number(placemark.options.get("placemarkID")) === Number(id)) {
+            myMap.setZoom(options.maxZoom).then(() => {
+              myMap.panTo(placemark.geometry.getCoordinates(), { duration: 0 });
+              myMap.container.fitToViewport();
             });
           }
         });
@@ -8283,8 +8785,40 @@ if (map) {
   };
   var init2 = init;
   let myMap = null;
+  const responsiveWidth = 960;
   const tabSwitchers = document.querySelectorAll(".tabs-switcher");
   window.addEventListener("load", () => {
     ymaps.ready(init);
+  });
+}
+const calc = document.querySelector(".calc-form");
+if (calc) {
+  const ctrls = calc.querySelectorAll("[data-price]");
+  const total = calc.querySelector(".calc__total-price span");
+  const basePrice = calc.querySelector("[data-base-price]");
+  let currentValue = Number(basePrice.dataset.basePrice.replaceAll(" ", ""));
+  const numberPrettify = (number) => {
+    const separator = " ";
+    return number.toString().replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, "$1" + separator);
+  };
+  const fillPriceNode = (value) => {
+    total.innerHTML = numberPrettify(Math.round(value));
+  };
+  fillPriceNode(currentValue);
+  const setTotalPrice = () => {
+    let total2 = currentValue;
+    ctrls.forEach((ctrl) => {
+      if (ctrl.checked && ctrl.dataset.price) {
+        total2 += Number(ctrl.dataset.currentPrice) ? Number(ctrl.dataset.currentPrice) : Number(ctrl.dataset.price);
+      }
+    });
+    fillPriceNode(total2);
+  };
+  ctrls.forEach((ctrl) => {
+    ctrl.addEventListener("click", () => {
+      if (ctrl.dataset.price) {
+        setTotalPrice();
+      }
+    });
   });
 }
