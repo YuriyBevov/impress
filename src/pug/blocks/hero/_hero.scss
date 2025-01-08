@@ -7,7 +7,8 @@
   position: relative;
   height: 100%;
   min-height: 30vw;
-  padding: clamp(50px, 7vw, 125px) 0 125px;
+  padding: clamp(75px, 7vw, 150px) 0 125px;
+  // margin-top: 140px;
      
   background-image: image-set(
     url('@img/hero-bg@2x.webp') type("image/webp") 2x,

@@ -1,0 +1,47 @@
+@forward '@styles/_extends/flexbox.scss';
+@forward '@styles/_extends/effects.scss';
+@use '@styles/_mixins/container-queries' as *;
+@use '@styles/_vars/scoped' as *;
+
+/* purgecss start ignore */ 
+.lang-switcher {
+  position: relative;
+  height: 24px;
+  width: 55px;
+  background-color: var(--primary);
+  border-radius: 15px;
+  padding: 0 7px;
+  @extend %hover-opacity;
+
+  span {
+    color: var(--white);
+    line-height: 1;
+  }
+
+  &--en::after,
+  &--ru::before { 
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    content: "";
+    background-color: var(--site-bg-color);
+  }
+
+  &--en {
+    padding-right: 25px; 
+    &::after {
+      right: 3px;
+    }
+  }
+
+  &--ru {
+    padding-left: 25px;
+    &::before {
+      left: 3px;
+    }
+  }
+}
+/* purgecss end ignore */ 

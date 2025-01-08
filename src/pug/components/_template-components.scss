@@ -13,4 +13,9 @@
 @use "@pug/components/_ui/form-controls/main-textarea/main-textarea";
 @use "@pug/components/_ui/form-controls/custom-select/custom-select";
 @use "@pug/components/_ui/tabs/tabs";
+// @use "@pug/components/_ui/search-field/search-field";
+@use "@pug/components/_ui/lang-switcher/lang-switcher";
+@use "@pug/components/_ui/burger/burger";
+@use "@pug/components/_ui/nav/top-menu/top-menu";
+@use "@pug/components/_ui/search-title/search-title";
 /* purgecss end ignore */

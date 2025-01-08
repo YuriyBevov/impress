@@ -7,3 +7,5 @@ import "./modules/custom-select";
 import "@pug/components/_ui/tabs/tabs";
 import "@pug/components/_ui/yMaps/yMaps";
 import "@pug/components/_ui/forms/calc-form/calc-form";
+import "@pug/blocks/header/header";
+import "./modules/scroll-up-btn";

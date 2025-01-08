@@ -1,10 +1,38 @@
 include ../../components/_ui/main-logo/main-logo
+include ../../components/_ui/main-btn/main-btn
+
 header.header
   .container
-    +main-logo({
-      description: true,
-      colored: true
-    })
+    .header__grid
+      .header__grid-item.header__grid-item--side 
+        +main-logo({
+          description: true,
+          colored: true
+        })
+      .header__grid-item.header__grid-item--top
+        include ../../components/_ui/nav/top-menu/top-menu
+        include ../../components/_ui/search-title/search-title
 
-    include ../../components/_ui/nav/top-multilevel-menu/top-multilevel-menu
+        .header__address
+          address
+            small г.Москва, ул.Марксистская, д.10с1, 3й эт., оф.306
+            small г. Москва, Петроверигский переулок, дом № 3, строение 1
+        .header__contacts
+          a(href="#") +7 495 928-53-66
+          a(href="#") info@buroimpression.ru
+        
+        include ../../components/_ui/burger/burger
+      .header__grid-item.header__grid-item--bottom
+        
+        span тут будет меню без услуг
+
+        include ../../components/_ui/lang-switcher/lang-switcher
+        +main-btn(
+          {
+            text: 'Заказать услугу'
+          }
+        )
+
+      
+      //- include ../../components/_ui/nav/top-multilevel-menu/top-multilevel-menu
         
