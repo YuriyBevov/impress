@@ -9,3 +9,4 @@ import "@pug/components/_ui/yMaps/yMaps";
 import "@pug/components/_ui/forms/calc-form/calc-form";
 import "@pug/blocks/header/header";
 import "./modules/scroll-up-btn";
+import "@pug/components/_ui/nav/top-multilevel-menu/top-multilevel-menu";

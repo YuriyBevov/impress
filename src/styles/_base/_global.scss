@@ -2,7 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  // user-select: none;
+  overscroll-behavior: contain;
 }
 
 html,
@@ -17,7 +17,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overscroll-behavior: contain;
 }
 
 body.page-wrapper {
