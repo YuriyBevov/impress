@@ -30,6 +30,10 @@ $list-offset: 16px;
 		border: 2px solid var(--primary);
 		z-index: 4;
 
+		@include container-down("header", $tablet-lg-width) {
+			height: 36px;
+		}
+
 		@extend %hover-opacity;
 
 		span {

@@ -5,10 +5,17 @@ include ../../components/_ui/nav/top-menu/top-menu
 header.header
   .container
     .header__section.header__section--top
+      .header__contacts
+        a(href="#") +7 495 928-53-66
+        a(href="#") info@buroimpression.ru
+
       .header__address
         address
           small г.Москва, ул.Марксистская, д.10с1, 3й эт., оф.306
           small г. Москва, Петроверигский переулок, дом № 3, строение 1
+      .header__search-field
+        include ../../components/_ui/nav/top-multilevel-menu/top-multilevel-menu
+        include ../../components/_ui/search-title/search-title
       include ../../components/_ui/lang-switcher/lang-switcher
     .header__section.header__section--middle
       +main-logo({
@@ -22,7 +29,14 @@ header.header
       .header__contacts
         a(href="#") +7 495 928-53-66
         a(href="#") info@buroimpression.ru
+
+      +main-btn(
+        {
+          text: 'Заказать услугу'
+        }
+      )
       
+      include ../../components/_ui/lang-switcher/lang-switcher
       include ../../components/_ui/burger/burger
     .header__section.header__section--bottom
       +top-menu([
