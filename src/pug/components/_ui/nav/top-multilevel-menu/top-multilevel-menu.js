@@ -1,48 +1,89 @@
-import {gsap} from 'gsap';
-const menu = document.querySelector('.top-multilevel-menu');
-const wrapper = document.querySelector('.top-multilevel-menu__wrapper');
-const inners = menu.querySelectorAll('.has-inner');
-console.log('test');
+import { gsap } from "gsap";
+// refactoring !!!
+const topMenu = document.querySelector(
+	".header__section--top .top-multilevel-menu",
+);
+const topMenuWrapper = topMenu.querySelector(".top-multilevel-menu__wrapper");
+const middleMenu = document.querySelector(
+	".header__section--middle .top-multilevel-menu",
+);
+const middleMenuWrapper = middleMenu.querySelector(
+	".top-multilevel-menu__wrapper",
+);
 
-if(menu) {
-  const tl = gsap.timeline().pause();
+if (topMenu) {
+	const tl = gsap.timeline().pause();
 
-  tl.fromTo(wrapper, {
-    visibility: 'hidden',
-    y: -5,
-    opacity: 0
-  },
-  {
-    visibility: 'visible',
-    y: 0,
-    duration: 0.3,
-    opacity: 1
-  });
+	tl.fromTo(
+		topMenuWrapper,
+		{
+			visibility: "hidden",
+			y: -5,
+			opacity: 0,
+		},
+		{
+			visibility: "visible",
+			y: 0,
+			duration: 0.3,
+			opacity: 1,
+		},
+	);
 
-  menu.addEventListener('mouseenter', (evt) => {
-    console.log('over');
-    tl.play();
-  });
+	topMenu.addEventListener("mouseenter", (evt) => {
+		console.log("over");
+		tl.play();
+	});
 
-  menu.addEventListener('mouseleave', (evt) => {
-    console.log('leave');
-    tl.reverse();
-  });
+	topMenu.addEventListener("mouseleave", (evt) => {
+		console.log("leave");
+		tl.reverse();
+	});
 }
 
-if(inners) {
-  const onClickToggleNavItemHandler = (evt) => {
-    evt.stopPropagation();
-    const target = evt.target;
-    console.log(evt.target, evt.currentTarget);
-    if(target.classList.contains('top-multilevel-menu__expander')) {
-      evt.preventDefault();
+if (middleMenu) {
+	const tl = gsap.timeline().pause();
 
-      evt.currentTarget.classList.toggle('expanded');
-    }
-  }
+	tl.fromTo(
+		middleMenuWrapper,
+		{
+			visibility: "hidden",
+			y: -5,
+			opacity: 0,
+		},
+		{
+			visibility: "visible",
+			y: 0,
+			duration: 0.3,
+			opacity: 1,
+		},
+	);
 
-  inners.forEach(inner => {
-    inner.addEventListener('click', onClickToggleNavItemHandler);
-  })
+	middleMenu.addEventListener("mouseenter", (evt) => {
+		console.log("over");
+		tl.play();
+	});
+
+	middleMenu.addEventListener("mouseleave", (evt) => {
+		console.log("leave");
+		tl.reverse();
+	});
+}
+
+// refactoring !!!
+const inners = document.querySelectorAll(".has-inner");
+if (inners) {
+	const onClickToggleNavItemHandler = (evt) => {
+		evt.stopPropagation();
+		const target = evt.target;
+		console.log(evt.target, evt.currentTarget);
+		if (target.classList.contains("top-multilevel-menu__expander")) {
+			evt.preventDefault();
+
+			evt.currentTarget.classList.toggle("expanded");
+		}
+	};
+
+	inners.forEach((inner) => {
+		inner.addEventListener("click", onClickToggleNavItemHandler);
+	});
 }

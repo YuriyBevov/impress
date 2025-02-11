@@ -8120,12 +8120,12 @@ if (fancy.length) {
 }
 let tables = document.getElementsByTagName("table");
 if (tables.length) {
-  let length = tables.length, i2, wrapper2;
+  let length = tables.length, i2, wrapper;
   for (i2 = 0; i2 < length; i2++) {
-    wrapper2 = document.createElement("div");
-    wrapper2.setAttribute("class", "table-wrapper");
-    tables[i2].parentNode.insertBefore(wrapper2, tables[i2]);
-    wrapper2.appendChild(tables[i2]);
+    wrapper = document.createElement("div");
+    wrapper.setAttribute("class", "table-wrapper");
+    tables[i2].parentNode.insertBefore(wrapper, tables[i2]);
+    wrapper.appendChild(tables[i2]);
   }
 }
 var build = {};
@@ -9359,9 +9359,9 @@ var _config = {
   };
 }, normalize = function normalize2(min, max, value) {
   return mapRange(min, max, 0, 1, value);
-}, _wrapArray = function _wrapArray2(a2, wrapper2, value) {
+}, _wrapArray = function _wrapArray2(a2, wrapper, value) {
   return _conditionalReturn(value, function(index) {
-    return a2[~~wrapper2(index)];
+    return a2[~~wrapper(index)];
   });
 }, wrap = function wrap2(min, max, value) {
   var range = max - min;
@@ -12875,14 +12875,20 @@ window.addEventListener("load", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
-const menu = document.querySelector(".top-multilevel-menu");
-const wrapper = document.querySelector(".top-multilevel-menu__wrapper");
-const inners = menu.querySelectorAll(".has-inner");
-console.log("test");
-if (menu) {
+const topMenu = document.querySelector(
+  ".header__section--top .top-multilevel-menu"
+);
+const topMenuWrapper = topMenu.querySelector(".top-multilevel-menu__wrapper");
+const middleMenu = document.querySelector(
+  ".header__section--middle .top-multilevel-menu"
+);
+const middleMenuWrapper = middleMenu.querySelector(
+  ".top-multilevel-menu__wrapper"
+);
+if (topMenu) {
   const tl = gsapWithCSS.timeline().pause();
   tl.fromTo(
-    wrapper,
+    topMenuWrapper,
     {
       visibility: "hidden",
       y: -5,
@@ -12895,15 +12901,41 @@ if (menu) {
       opacity: 1
     }
   );
-  menu.addEventListener("mouseenter", (evt) => {
+  topMenu.addEventListener("mouseenter", (evt) => {
     console.log("over");
     tl.play();
   });
-  menu.addEventListener("mouseleave", (evt) => {
+  topMenu.addEventListener("mouseleave", (evt) => {
     console.log("leave");
     tl.reverse();
   });
 }
+if (middleMenu) {
+  const tl = gsapWithCSS.timeline().pause();
+  tl.fromTo(
+    middleMenuWrapper,
+    {
+      visibility: "hidden",
+      y: -5,
+      opacity: 0
+    },
+    {
+      visibility: "visible",
+      y: 0,
+      duration: 0.3,
+      opacity: 1
+    }
+  );
+  middleMenu.addEventListener("mouseenter", (evt) => {
+    console.log("over");
+    tl.play();
+  });
+  middleMenu.addEventListener("mouseleave", (evt) => {
+    console.log("leave");
+    tl.reverse();
+  });
+}
+const inners = document.querySelectorAll(".has-inner");
 if (inners) {
   const onClickToggleNavItemHandler = (evt) => {
     evt.stopPropagation();
