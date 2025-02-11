@@ -6,125 +6,134 @@
 @use "@styles/_vars/scoped" as *;
 
 .header {
-  position: sticky;
-  top: -40px;
-  z-index: 101;
-  background-color: var(--site-bg-color);
-  box-shadow: var(--base-box-shadow);
+	position: sticky;
+	top: -40px;
+	z-index: 101;
+	background-color: var(--site-bg-color);
+	box-shadow: var(--base-box-shadow);
+	container: header / inline-size;
 
-  &__search-field {
-    position: relative;
-    @extend %flex-align;
-    flex-grow: 1;
-    min-width: 440px;
-  }
+	&__search-field {
+		position: relative;
+		@extend %flex-align;
+		flex-grow: 1;
+		min-width: 440px;
+	}
 
-  &__section {
-    container: header / inline-size;
-    @extend %flex-align;
-    gap: 32px;
-    justify-content: space-between;
-    padding: 8px 0;
+	&__section {
+		@extend %flex-align;
+		gap: 32px;
+		justify-content: space-between;
+		padding: 8px 0;
 
-    &--top,
-    &--bottom {
-      padding-left: 182px;
-    }
+		&--top,
+		&--bottom {
+			padding-left: 182px;
 
-    &--middle {
-      position: relative;
+			@include container-down("header", 1160px) {
+				padding-left: 0;
+			}
+		}
 
-      .search-title {
-        flex-grow: 1;
-        margin-left: -40px;
-      }
+		&--middle {
+			position: relative;
 
-      &::after,
-      &::before {
-        position: absolute;
-        left: 240px;
-        content: '';
-        height: 1px;
-        width: calc(100% - 240px);
-        background-color: var(--secondary);
-      }
+			.search-title {
+				flex-grow: 1;
+				margin-left: -40px;
+			}
 
-      &::before {
-        top: 0px;
-      }
+			&::after,
+			&::before {
+				position: absolute;
+				left: 240px;
+				content: "";
+				height: 1px;
+				width: calc(100% - 240px);
+				background-color: var(--secondary);
+			}
 
-      &::after {
-        bottom: 0px;
-      }
-    }
-  }
+			&::before {
+				top: 0px;
+			}
 
-  & .container {
-    position: relative;
-    z-index: 5;
-  }
+			&::after {
+				bottom: 0px;
+			}
+		}
 
-  .main-logo {
-    margin-right: auto;
-  }
+		&--bottom {
+			.main-btn {
+				min-width: 172px;
+			}
+		}
+	}
 
-  & .burger:not(.nav .burger) {
-    display: none;
-  }
+	& .container {
+		position: relative;
+		z-index: 5;
+	}
 
-  &__address {
-    address {
-      @extend %flex-align;
-      gap: 2px 32px;
-      
-      width: fit-content;
-      position: relative;
-      // padding: 12px 0;
+	.main-logo {
+		margin-right: auto;
+	}
 
-      small {
-        position: relative;
-        @extend %flex-align;
-        font-size: 12px;
-        font-weight: 500;
-        min-height: 20px;
-        padding-left: 24px;
+	& .burger:not(.nav .burger) {
+		display: none;
+	}
 
-        &::before {
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%);
-          width: 20px;
-          height: 20px;
-          content: '';
-          background-size: 20px;
-          background-position: center;
-          background-repeat: no-repeat;
-        }
+	&__address {
+		address {
+			@extend %flex-align;
+			gap: 2px 32px;
 
-        &:first-child::before {
-          background-image: url("@img/icon-location-pin.svg");
-        }
+			width: fit-content;
+			position: relative;
+			// padding: 12px 0;
 
-        &:last-child::before {
-          background-image: url("@img/icon-location-pin-yellow.svg");
-        }
-      }
-    }
-  }
+			small {
+				position: relative;
+				@extend %flex-align;
+				font-size: 12px;
+				font-weight: 500;
+				min-height: 20px;
+				padding-left: 24px;
 
-  &__contacts {
-    @extend %flex-wrap;
-    flex-grow: 1;
-    justify-content: flex-end;
-    gap: 2px 24px;
+				&::before {
+					position: absolute;
+					top: 50%;
+					left: 0;
+					transform: translateY(-50%);
+					width: 20px;
+					height: 20px;
+					content: "";
+					background-size: 20px;
+					background-position: center;
+					background-repeat: no-repeat;
+				}
 
-    a {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--primary);
-      @extend %hover-opacity;
-    }
-  }
+				&:first-child::before {
+					background-image: url("@img/icon-location-pin.svg");
+				}
+
+				&:last-child::before {
+					background-image: url("@img/icon-location-pin-yellow.svg");
+				}
+			}
+		}
+	}
+
+	&__contacts {
+		@extend %flex-wrap;
+		flex-grow: 1;
+		justify-content: flex-end;
+		gap: 2px 24px;
+
+		a {
+			font-size: 16px;
+			font-weight: 500;
+			color: var(--primary);
+			@extend %hover-opacity;
+		}
+	}
 }
-

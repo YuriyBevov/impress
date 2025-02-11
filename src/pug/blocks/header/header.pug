@@ -1,5 +1,6 @@
 include ../../components/_ui/main-logo/main-logo
 include ../../components/_ui/main-btn/main-btn
+include ../../components/_ui/nav/top-menu/top-menu
 
 header.header
   .container
@@ -24,16 +25,18 @@ header.header
       
       include ../../components/_ui/burger/burger
     .header__section.header__section--bottom
-      
-      span тут будет меню без услуг
+      +top-menu([
+        { title: 'О компании' },
+        { title: 'Услуги' },
+        { title: 'Примеры работ' },
+        { title: 'Блог' },
+        { title: 'Цены' },
+        { title: 'Контакты' },
+      ])
 
-      //- include ../../components/_ui/lang-switcher/lang-switcher
       +main-btn(
         {
           text: 'Заказать услугу'
         }
       )
-
-      
-      //- include ../../components/_ui/nav/top-multilevel-menu/top-multilevel-menu
         

@@ -1,0 +1,6 @@
+mixin top-menu(data)
+  nav.top-menu(class= data.cls ? data.cls : null)
+    ul
+      each item in data
+        li
+          a(href="#").base-text!= item.title
