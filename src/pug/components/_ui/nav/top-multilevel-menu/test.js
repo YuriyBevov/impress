@@ -40,9 +40,10 @@ if (inners) {
 	const onClickToggleNavItemHandler = (evt) => {
 		evt.stopPropagation();
 		const target = evt.target;
-
+		console.log(evt.target, evt.currentTarget);
 		if (target.classList.contains("top-multilevel-menu__expander")) {
 			evt.preventDefault();
+
 			evt.currentTarget.classList.toggle("expanded");
 		}
 	};
