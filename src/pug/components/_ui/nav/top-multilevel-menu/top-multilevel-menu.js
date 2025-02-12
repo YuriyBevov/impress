@@ -23,13 +23,13 @@ function timeline(node) {
 if (menus.length) {
 	let node = null;
 	menus.forEach((menu) => {
-		menu.addEventListener("mouseenter", (evt) => {
+		menu.addEventListener("mouseenter", () => {
 			node = menu.querySelector(".top-multilevel-menu__wrapper");
 			tl = gsap.timeline().pause();
 			timeline(node).play();
 		});
 
-		menu.addEventListener("mouseleave", (evt) => {
+		menu.addEventListener("mouseleave", () => {
 			timeline(node).reverse();
 		});
 	});

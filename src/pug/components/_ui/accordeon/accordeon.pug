@@ -5,7 +5,7 @@ mixin accordeon(data)
         .accordeon-header
           span.base-text!= item.text
           svg(width='24' height='24' role='img' aria-hidden='true' focusable='false')
-            use(xlink:href='./__spritemap#sprite-icon-chevron-down')
+            use(xlink:href='./assets/sprite.svg#sprite-icon-chevron-down')
         .accordeon-body
           .content-block!= item.content
 
