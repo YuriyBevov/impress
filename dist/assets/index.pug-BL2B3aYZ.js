@@ -5085,9 +5085,9 @@ function Autoplay(_ref) {
     resume
   });
 }
-const sliders$1 = document.querySelectorAll(".main-slider");
-if (sliders$1.length) {
-  sliders$1.forEach((slider) => {
+const sliders = document.querySelectorAll(".main-slider");
+if (sliders.length) {
+  sliders.forEach((slider) => {
     const pagination = slider.querySelector(".swiper-pagination");
     const btnNext = slider.querySelector(".swiper-button-next");
     const btnPrev = slider.querySelector(".swiper-button-prev");
@@ -5106,27 +5106,29 @@ if (sliders$1.length) {
     });
   });
 }
-const sliders = document.querySelectorAll(".infinity-slider");
-if (sliders.length) {
-  sliders.forEach((slider) => {
-    new Swiper(slider, {
-      modules: [Autoplay],
-      autoplay: {
-        enabled: true,
-        delay: 0,
-        pauseOnMouseEnter: false,
-        disableOnInteraction: false
-      },
-      loop: true,
-      noSwipingClass: "swiper-slide",
-      allowTouchMove: false,
-      slidesPerView: "auto",
-      spaceBetween: 60,
-      speed: 5e3,
-      freeMode: true
+document.addEventListener("DOMContentLoaded", () => {
+  const sliders2 = document.querySelectorAll(".infinity-slider");
+  if (sliders2.length) {
+    sliders2.forEach((slider) => {
+      new Swiper(slider, {
+        modules: [Autoplay],
+        autoplay: {
+          enabled: true,
+          delay: 0,
+          pauseOnMouseEnter: false,
+          disableOnInteraction: false
+        },
+        loop: true,
+        noSwipingClass: "swiper-slide",
+        allowTouchMove: false,
+        slidesPerView: "auto",
+        spaceBetween: 60,
+        speed: 5e3,
+        freeMode: true
+      });
     });
-  });
-}
+  }
+});
 const t = (t2, e2 = 1e4) => (t2 = parseFloat(t2 + "") || 0, Math.round((t2 + Number.EPSILON) * e2) / e2), e = function(t2) {
   if (!(t2 && t2 instanceof Element && t2.offsetParent)) return false;
   const e2 = t2.scrollHeight > t2.clientHeight, i2 = window.getComputedStyle(t2).overflowY, n2 = -1 !== i2.indexOf("hidden"), s2 = -1 !== i2.indexOf("visible");
@@ -8668,14 +8670,18 @@ if (map) {
       map2.setCenter(coords, options.zoom);
       map2.container.fitToViewport();
     };
-    myMap = new ymaps.Map("y-maps", {
-      center: isDesktopView ? JSON.parse("[" + options.desktopViewCenter + "]") : JSON.parse("[" + options.mobileViewCenter + "]"),
-      zoom: Number(options.zoom),
-      controls: [],
-      behaviors: ["drag", "dblClickZoom"]
-    }, {
-      maxZoom: options.maxZoom
-    });
+    myMap = new ymaps.Map(
+      "y-maps",
+      {
+        center: isDesktopView ? JSON.parse("[" + options.desktopViewCenter + "]") : JSON.parse("[" + options.mobileViewCenter + "]"),
+        zoom: Number(options.zoom),
+        controls: [],
+        behaviors: ["drag", "dblClickZoom"]
+      },
+      {
+        maxZoom: options.maxZoom
+      }
+    );
     window.addEventListener("resize", () => {
       if (window.innerWidth >= responsiveWidth && isMobileView) {
         setView(myMap, "desktop");
@@ -8710,33 +8716,14 @@ if (map) {
       );
       myMap.geoObjects.add(pin);
       pin.events.add("click", (evt) => {
-        myMap.setZoom(options.maxZoom).then(() => {
-          const id = evt.get("target").options.get("placemarkID");
-          tabSwitchers.forEach((switcher) => {
-            if (Number(switcher.dataset.tab) === Number(id)) {
-              switcher.click();
-            }
-          });
-        });
-      });
-    });
-    const tabs = document.querySelectorAll(".tabs-switcher");
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const id = tab.dataset.tab;
-        myMap.geoObjects.each((placemark) => {
-          if (Number(placemark.options.get("placemarkID")) === Number(id)) {
-            myMap.setZoom(options.maxZoom).then(() => {
-              myMap.panTo(placemark.geometry.getCoordinates(), { duration: 0 });
-              myMap.container.fitToViewport();
-            });
-          }
-        });
+        evt.preventDefault();
+        console.log("test");
       });
     });
     let ZoomLayout = ymaps.templateLayoutFactory.createClass(
       //Шаблон html кнопок зума
-      "<div class='zoom-btns'><button id='zoom-in' class='zoom-btn zoom-btn-in' aria-label='Увеличить масштаб'></button><button id='zoom-out' class='zoom-btn zoom-btn-out' aria-label='Уменьшить масштаб'></button><button id='zoom-refresh' class='zoom-btn zoom-btn-refresh' aria-label='Вернуть карту в первоначальное состояние'></button></div>",
+      // "<button id='zoom-refresh' class='zoom-btn zoom-btn-refresh' aria-label='Вернуть карту в первоначальное состояние'></button>" +
+      "<div class='zoom-btns'><button id='zoom-in' class='zoom-btn zoom-btn-in' aria-label='Увеличить масштаб'></button><button id='zoom-out' class='zoom-btn zoom-btn-out' aria-label='Уменьшить масштаб'></button></div>",
       {
         // Переопределяем методы макета, чтобы выполнять дополнительные действия
         // при построении и очистке макета.
@@ -8746,17 +8733,8 @@ if (map) {
           this.zoomOutCallback = ymaps.util.bind(this.zoomOut, this);
           let zoomInBtn2 = document.getElementById("zoom-in");
           let zoomOutBtn2 = document.getElementById("zoom-out");
-          let zoomRefreshBtn = document.getElementById("zoom-refresh");
           zoomInBtn2.addEventListener("click", this.zoomInCallback);
           zoomOutBtn2.addEventListener("click", this.zoomOutCallback);
-          zoomRefreshBtn.addEventListener("click", () => {
-            tabSwitchers[0].click();
-            const center = isDesktopView ? JSON.parse("[" + options.desktopViewCenter + "]") : JSON.parse("[" + options.mobileViewCenter + "]");
-            const zoom = Number(options.zoom);
-            myMap.setZoom(zoom).then(() => {
-              myMap.panTo(center, { duration: 0 });
-            });
-          });
         },
         clear: function() {
           zoomInBtn.removeEventListener("click", this.zoomInCallback);
@@ -8778,7 +8756,7 @@ if (map) {
     let zoomControl = new ymaps.control.ZoomControl({
       options: {
         layout: ZoomLayout,
-        position: { right: "30px", top: "300px" }
+        position: { right: "30px", bottom: "30px" }
       }
     });
     myMap.controls.add(zoomControl);
@@ -8786,7 +8764,6 @@ if (map) {
   var init5 = init4;
   let myMap = null;
   const responsiveWidth = 960;
-  const tabSwitchers = document.querySelectorAll(".tabs-switcher");
   window.addEventListener("load", () => {
     ymaps.ready(init4);
   });

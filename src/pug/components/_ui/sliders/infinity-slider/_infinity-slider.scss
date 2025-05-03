@@ -1,23 +1,22 @@
 .infinity-slider {
+	.swiper-slide {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: fit-content;
+		height: auto;
+		touch-action: none;
+		user-select: none;
 
-  .swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-    height: auto;
-    touch-action: none;
-    user-select: none;
+		img {
+			width: clamp(120px, 5vw, 200px);
+			height: auto;
+			object-fit: contain;
+			pointer-events: none;
+		}
+	}
 
-    img {
-      width: clamp(120px, 5vw, 200px);
-      height: auto;
-      object-fit: contain;
-      pointer-events: none;
-    }
-  }
-
-  .swiper-wrapper{
-    transition-timing-function : linear;
-  }
+	.swiper-wrapper {
+		transition-timing-function: linear;
+	}
 }

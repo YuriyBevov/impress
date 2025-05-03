@@ -5,74 +5,77 @@
 @use "@styles/_vars/scoped" as *;
 
 #y-maps {
-  position: absolute;
-  top: 0;
-  left: 0;
+	// position: absolute;
+	// top: 0;
+	// left: 0;
 
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
+	min-height: 600px;
+	position: relative;
 
-  @include container-down('main', $tablet-lg-width) {
-    position: static;
-    height: 100%;
-    min-height: 600px;
-  } 
+	@include container-down("main", $tablet-lg-width) {
+		position: static;
+		height: 100%;
+		min-height: 600px;
+	}
 
-  .ymaps-icon-content-layout {
-    &-inner {
-      display: inline-block;
-      width: fit-content;
-      font-size: 12px;
-      line-height: 1;
-      font-weight: 500;
-      white-space: nowrap;
-      padding: 8px 12px;
-      box-shadow: 0 4px 10px rgb(100 94 112 / 30%);
-      border-radius: 6px;
-      color: var(--site-color);
-      background-color: var(--site-bg-color); 
-      text-align: start; 
-    }
-  }
+	.ymaps-icon-content-layout {
+		&-inner {
+			display: inline-block;
+			width: fit-content;
+			font-size: 12px;
+			line-height: 1;
+			font-weight: 500;
+			white-space: nowrap;
+			padding: 8px 12px;
+			box-shadow: 0 4px 10px rgb(100 94 112 / 30%);
+			border-radius: 6px;
+			color: var(--site-color);
+			background-color: var(--site-bg-color);
+			text-align: start;
+		}
+	}
 
-  .zoom-btns {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 150px;
-    width: 40px;
+	.zoom-btns {
+		display: flex;
+		// flex-direction: column;
+		align-items: center;
+		gap: 5px;
+		height: 40px;
+		width: fit-content;
 
-    button {
-      @extend %btn-reset;
-      @extend %flex-center;
+		button {
+			@extend %btn-reset;
+			@extend %flex-center;
 
-      width: 40px;
-      height: 40px;
-      margin: 5px 0;
-      box-shadow: 0 4px 10px rgb(100 94 112 / 30%);
-      border-radius: 6px;
-      background-color: var(--white);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 14px;
+			width: 40px;
+			height: 40px;
+			// margin: 5px 0;
+			box-shadow: 0 4px 10px rgb(100 94 112 / 30%);
+			border-radius: 6px;
+			background-color: var(--white);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 14px;
 
-      &.zoom-btn-in {
-        background-image: url('@img/icon-zoom-in.svg');
-      }
+			&.zoom-btn-in {
+				background-image: url("@img/icon-zoom-in.svg");
+			}
 
-      &.zoom-btn-refresh {
-        background-image: url('@img/icon-reload-2.svg');
-      }
+			&.zoom-btn-refresh {
+				background-image: url("@img/icon-reload-2.svg");
+			}
 
-      &.zoom-btn-out {
-        background-image: url('@img/icon-zoom-out.svg');
-      }
+			&.zoom-btn-out {
+				background-image: url("@img/icon-zoom-out.svg");
+			}
 
-      &:active {
-        background-color: var(--accent);
-      }
-    }
-  }
+			&:active {
+				background-color: var(--accent);
+			}
+		}
+	}
 }
 
 /* purge css end ignore */

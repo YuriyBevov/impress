@@ -4,68 +4,71 @@
 
 /* purgecss start ignore */
 :root {
-  --accordeon-transition: .25s ease;
+	--accordeon-transition: 0.25s ease;
 }
 
 .accordeon {
-  @extend %flex-column;
-  gap:16px;
+	@extend %flex-column;
+	gap: 16px;
 
-  &-item {
-    @extend %flex-column;
+	&-item {
+		@extend %flex-column;
 
-    padding: 16px 20px;
-    border-radius: 30px;
-    background-color: var(--white);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+		padding: 16px 20px;
+		border-radius: 30px;
+		background-color: var(--white);
+		box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-    svg {
-      fill: var(--primary);
-    }
+		svg {
+			fill: var(--primary);
+		}
 
-    &.expanded {
-      .accordeon-body {
-        grid-template-rows: 1fr;
-        opacity: 1;
+		&.expanded {
+			.accordeon-body {
+				grid-template-rows: 1fr;
+				opacity: 1;
 
-        .content-block {
-          padding: 16px 0 0;
-        }
-      }
+				.content-block {
+					padding: 16px 0 0;
+				}
+			}
 
-      .accordeon-header {
-        svg {
-          transform: rotate(180deg);
-        }
-      }
-    }
-  }
+			.accordeon-header {
+				svg {
+					transform: rotate(180deg);
+				}
+			}
+		}
+	}
 
-  &-header {
-    @extend %flex-align;
-    justify-content: space-between;
-    gap: 32px;
-    cursor: pointer;
-    @extend %hover-opacity;
+	&-header {
+		@extend %flex-align;
+		justify-content: space-between;
+		gap: 32px;
+		padding: 16px 20px;
+		margin: -16px -20px;
+		cursor: pointer;
+		@extend %hover-opacity;
 
-    svg {
-      min-width: 24px;
-      transition: transform var(--accordeon-transition);
-    }
-  }
+		svg {
+			min-width: 24px;
+			transition: transform var(--accordeon-transition);
+		}
+	}
 
-  &-body {
-    display: grid; 
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transition: grid-template-rows var(--accordeon-transition), opacity .1s var(--accordeon-transition);
+	&-body {
+		display: grid;
+		grid-template-rows: 0fr;
+		opacity: 0;
+		transition: grid-template-rows var(--accordeon-transition),
+			opacity 0.1s var(--accordeon-transition);
 
-    & > .content-block {
-      margin: 0;
-      overflow: hidden;
-      transition: padding var(--accordeon-transition);
-    }
-  }
+		& > .content-block {
+			margin: 0;
+			overflow: hidden;
+			transition: padding var(--accordeon-transition);
+		}
+	}
 }
 
 /* purgecss end ignore */

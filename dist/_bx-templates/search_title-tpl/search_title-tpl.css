@@ -1,0 +1,73 @@
+.search-title-btn{
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-align:center;
+      -ms-flex-align:center;
+          align-items:center;
+  -webkit-box-pack:center;
+      -ms-flex-pack:center;
+          justify-content:center;
+  border:1px solid transparent;
+  padding:0;
+  background-color:transparent;
+  -webkit-transition:opacity 0.3s ease-in-out;
+  transition:opacity 0.3s ease-in-out;
+  opacity:1;
+  position:absolute;
+  top:50%;
+  right:0;
+  -webkit-transform:translateY(-50%);
+      -ms-transform:translateY(-50%);
+          transform:translateY(-50%);
+  width:60px;
+  height:44px;
+  border-radius:20px;
+  background-color:var(--primary);
+  background-image:url("data:image/svg+xml,%3csvg%20width='17'%20height='16'%20viewBox='0%200%2017%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M14.4122%2016C14.1984%2016%2013.9875%2015.9062%2013.8435%2015.7273L10.9344%2012.0909C10.8141%2011.9401%2010.7586%2011.7479%2010.7798%2011.5562C10.8011%2011.3645%2010.8975%2011.1891%2011.0478%2011.0684C11.1986%2010.9481%2011.3909%2010.8926%2011.5825%2010.9138C11.7742%2010.9351%2011.9496%2011.0315%2012.0704%2011.1818L14.9795%2014.8182C15.0645%2014.9253%2015.1177%2015.0541%2015.1329%2015.19C15.1482%2015.3259%2015.1249%2015.4633%2015.0657%2015.5866C15.0065%2015.7099%2014.9139%2015.814%2014.7983%2015.8871C14.6827%2015.9602%2014.5489%2015.9993%2014.4122%2016Z'%20fill='%23f4f1ed'/%3e%3cpath%20d='M8.59331%201.45455C11.3999%201.45455%2013.6842%203.73818%2013.6842%206.54545C13.6842%209.352%2011.3999%2011.6364%208.59331%2011.6364C5.78676%2011.6364%203.5024%209.352%203.5024%206.54545C3.5024%203.73818%205.78676%201.45455%208.59331%201.45455ZM8.59331%200C6.85734%200%205.19248%200.689609%203.96497%201.91712C2.73746%203.14463%202.04785%204.80949%202.04785%206.54545C2.04785%208.28142%202.73746%209.94628%203.96497%2011.1738C5.19248%2012.4013%206.85734%2013.0909%208.59331%2013.0909C9.45287%2013.0909%2010.304%2012.9216%2011.0981%2012.5927C11.8923%2012.2637%2012.6138%2011.7816%2013.2216%2011.1738C13.8294%2010.566%2014.3116%209.84442%2014.6405%209.05029C14.9695%208.25616%2015.1388%207.40502%2015.1388%206.54545C15.1388%205.68589%2014.9695%204.83475%2014.6405%204.04062C14.3116%203.24649%2013.8294%202.52492%2013.2216%201.91712C12.6138%201.30932%2011.8923%200.827183%2011.0981%200.498243C10.304%200.169303%209.45287%200%208.59331%200Z'%20fill='%23f4f1ed'/%3e%3c/svg%3e");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:20px;
+}
+
+.search-title{
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-align:center;
+      -ms-flex-align:center;
+          align-items:center;
+  background-color:var(--primary);
+  border-radius:30px;
+  padding:2px;
+  position:relative;
+  overflow:hidden;
+}
+.search-title-btn:focus{
+  opacity:0.6;
+}
+.search-title-btn:active{
+  opacity:0.4;
+}
+.search-title input{
+  width:calc(100% - 48px);
+  height:40px;
+  padding:12px 24px;
+  padding-right:80px;
+  border-radius:30px;
+  border:none;
+  background-color:var(--site-bg-color);
+  cursor:pointer;
+  outline:none;
+  z-index:5;
+}
+@container header (max-width: 960px){
+  .search-title input{
+    height:32px;
+  }
+}
+@media (hover: hover){
+  .search-title-btn:hover{
+    opacity:0.6;
+  }
+}

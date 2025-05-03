@@ -1,0 +1,55 @@
+.callback, .callback form{
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+      -ms-flex-direction:column;
+          flex-direction:column;
+}
+
+.callback fieldset{
+  margin:0;
+  padding:0;
+  border:none;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:20px;
+}
+
+.callback{
+  position:relative;
+  gap:12px;
+  padding:clamp(24px, 2.6vw, 40px);
+  border-radius:30px;
+  background-color:var(--white);
+  overflow:hidden;
+  margin-bottom:var(--main-offset);
+  container:callback/inline-size;
+}
+.callback .base-title{
+  margin-bottom:0;
+}
+@container callback (min-width: 534px ){
+  .callback::after{
+    position:absolute;
+    top:-2px;
+    right:-2px;
+    content:"";
+    width:calc(40% - 16px);
+    height:calc(100% + 4px);
+    background-size:cover;
+    background-position:left;
+    background-image:-webkit-image-set(url("../../assets/webp/callback-bg@2x.webp") type("image/webp") 2x, url("../../assets/webp/callback-bg@1x.webp") type("image/webp") 1x, url("../../assets/img/callback-bg@2x.png") 2x, url("../../assets/img/callback-bg@1x.png") 1x);
+    background-image:image-set(url("../../assets/webp/callback-bg@2x.webp") type("image/webp") 2x, url("../../assets/webp/callback-bg@1x.webp") type("image/webp") 1x, url("../../assets/img/callback-bg@2x.png") 2x, url("../../assets/img/callback-bg@1x.png") 1x);
+  }
+}
+.callback form{
+  gap:20px;
+  width:60%;
+}
+@container callback (max-width: 534px){
+  .callback form{
+    width:100%;
+  }
+}

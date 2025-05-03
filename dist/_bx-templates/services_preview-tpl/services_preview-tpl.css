@@ -1,0 +1,25 @@
+.services-preview__list{
+  margin:0;
+  padding:0;
+  list-style:none;
+  -webkit-columns:480px;
+     -moz-columns:480px;
+          columns:480px;
+  gap:10px;
+}
+.services-preview__list + *{
+  margin-top:var(--main-offset);
+}
+.services-preview__list > li{
+  page-break-inside:avoid;
+  -webkit-column-break-inside:avoid;
+     -moz-column-break-inside:avoid;
+          break-inside:avoid;
+  margin-bottom:10px;
+}
+
+.services-preview{
+  background-image:url("../../assets/img/services-preview-bg.svg");
+  background-size:cover;
+  background-position:top;
+}

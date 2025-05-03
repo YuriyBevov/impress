@@ -1,0 +1,36 @@
+.infinity-slider .swiper-slide{
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-align:center;
+      -ms-flex-align:center;
+          align-items:center;
+  -webkit-box-pack:center;
+      -ms-flex-pack:center;
+          justify-content:center;
+  width:-webkit-fit-content;
+  width:-moz-fit-content;
+  width:fit-content;
+  height:auto;
+  -ms-touch-action:none;
+      touch-action:none;
+  -webkit-user-select:none;
+     -moz-user-select:none;
+      -ms-user-select:none;
+          user-select:none;
+}
+.infinity-slider .swiper-slide img{
+  width:clamp(120px, 5vw, 200px);
+  height:auto;
+  -o-object-fit:contain;
+     object-fit:contain;
+  pointer-events:none;
+}
+.infinity-slider .swiper-wrapper{
+  -webkit-transition-timing-function:linear;
+          transition-timing-function:linear;
+}
+
+.clients-preview{
+  background-image:url("../../assets/img/mountain-bg.svg");
+}
