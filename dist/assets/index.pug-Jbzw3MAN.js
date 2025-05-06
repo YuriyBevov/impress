@@ -5085,9 +5085,9 @@ function Autoplay(_ref) {
     resume
   });
 }
-const sliders = document.querySelectorAll(".main-slider");
-if (sliders.length) {
-  sliders.forEach((slider) => {
+const sliders$1 = document.querySelectorAll(".main-slider");
+if (sliders$1.length) {
+  sliders$1.forEach((slider) => {
     const pagination = slider.querySelector(".swiper-pagination");
     const btnNext = slider.querySelector(".swiper-button-next");
     const btnPrev = slider.querySelector(".swiper-button-prev");
@@ -5106,29 +5106,27 @@ if (sliders.length) {
     });
   });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  const sliders2 = document.querySelectorAll(".infinity-slider");
-  if (sliders2.length) {
-    sliders2.forEach((slider) => {
-      new Swiper(slider, {
-        modules: [Autoplay],
-        autoplay: {
-          enabled: true,
-          delay: 0,
-          pauseOnMouseEnter: false,
-          disableOnInteraction: false
-        },
-        loop: true,
-        noSwipingClass: "swiper-slide",
-        allowTouchMove: false,
-        slidesPerView: "auto",
-        spaceBetween: 60,
-        speed: 5e3,
-        freeMode: true
-      });
+const sliders = document.querySelectorAll(".infinity-slider");
+if (sliders.length) {
+  sliders.forEach((slider) => {
+    new Swiper(slider, {
+      modules: [Autoplay],
+      autoplay: {
+        enabled: true,
+        delay: 0,
+        pauseOnMouseEnter: false,
+        disableOnInteraction: false
+      },
+      loop: true,
+      noSwipingClass: "swiper-slide",
+      allowTouchMove: false,
+      slidesPerView: "auto",
+      spaceBetween: 60,
+      speed: 5e3,
+      freeMode: true
     });
-  }
-});
+  });
+}
 const t = (t2, e2 = 1e4) => (t2 = parseFloat(t2 + "") || 0, Math.round((t2 + Number.EPSILON) * e2) / e2), e = function(t2) {
   if (!(t2 && t2 instanceof Element && t2.offsetParent)) return false;
   const e2 = t2.scrollHeight > t2.clientHeight, i2 = window.getComputedStyle(t2).overflowY, n2 = -1 !== i2.indexOf("hidden"), s2 = -1 !== i2.indexOf("visible");
