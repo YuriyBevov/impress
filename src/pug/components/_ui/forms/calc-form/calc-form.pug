@@ -5,25 +5,22 @@ include ../../form-controls/main-textarea/main-textarea
 .calc-form
   form(action="#")
     h2.base-title Калькулятор стоимости перевода
-    .calc-form__top
-      fieldset
-        span.base-text Язык оригинала
-        select.custom-select
-          option(selected="selected") Английский язык
-          option Французский язык
-          option Немецкий язык
-          option Русский язык
-
-      fieldset
-        span.base-text Язык перевода
-        select.custom-select
-          option Английский язык
-          option Французский язык
-          option Немецкий язык
-          option(selected="selected") Русский язык
+    p.base-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium maxime, nemo nisi, iste dicta qui labore cupiditate, deserunt architecto aspernatur veniam sunt atque pariatur rem distinctio delectus laboriosam non mollitia?
     
-    span.base-text Дополнительные услуги
-    fieldset
+    fieldset.calc-form__section.calc-form__section--input-group
+      +main-input({
+        id: 'lang_from',
+        placeholder: 'Язык оригинала',
+        name: 'Язык оригинала'
+      })
+      +main-input({
+        id: 'lang_to',
+        placeholder: 'Язык перевода',
+        name: 'Язык перевода'
+      })
+    
+    fieldset.calc-form__section.calc-form__section--wrap
+      span.base-text.calc-form__section-title Дополнительные услуги
       +main-checkbox({
         id: 'calc_1',
         name: 'Редактура перевода',
@@ -55,8 +52,9 @@ include ../../form-controls/main-textarea/main-textarea
         price: '500'
       })
 
-    span.base-text Стоимость: <strong class="calc__total-price" data-base-price="500"> от <span></span> руб*</strong>
-    fieldset
+
+    <strong class="calc-form__total-price" data-base-price="500"> Предварительная стоимость: от <span></span> руб*</strong>
+    fieldset.calc-form__section.calc-form__section--input-group
       +main-input({
         id: 'user_name',
         placeholder: 'Ваше имя',
@@ -77,15 +75,16 @@ include ../../form-controls/main-textarea/main-textarea
         name: 'Email'
       })
 
-      .main-input-wrapper 
-        input(type="submit" value="Отправить").main-btn 
+    fieldset.calc-form__section.calc-form__section--column
+      +main-checkbox({
+        id: 'user_accept_2',
+        name: 'Согласие на обработку персональных данных',
+        label: 'Отправляю форму, Вы даете свое согласие на <a href="#" target="_blank">обработку персональных данных</a>',
+        checked: true
+      })
 
-    +main-checkbox({
-      id: 'user_accept_2',
-      name: 'Согласие на обработку персональных данных',
-      label: 'Отправляю форму, Вы даете свое согласие на <a href="#" target="_blank">обработку персональных данных</a>',
-      checked: true
-    })
+      .main-input-wrapper 
+        input(type="submit" value="Отправить").main-btn
 
     small.base-text *Вся информация предварительная, точную стоимость и срок выполнения услуг Вам сообщит менеджер.
 

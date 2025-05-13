@@ -1,18 +1,17 @@
-/* purge css start ignore */
 @forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss";
 @forward "@styles/_extends/resets.scss";
 @use "@styles/_mixins/container-queries" as *;
 @use "@styles/_vars/scoped" as *;
 
+/* purgecss start ignore */
 #y-maps {
-	// position: absolute;
-	// top: 0;
-	// left: 0;
-
 	width: 100%;
 	height: 100%;
 	min-height: 600px;
 	position: relative;
+	border-top: 4px solid var(--primary);
+	border-bottom: 4px solid var(--primary);
 
 	@include container-down("main", $tablet-lg-width) {
 		position: static;
@@ -39,7 +38,6 @@
 
 	.zoom-btns {
 		display: flex;
-		// flex-direction: column;
 		align-items: center;
 		gap: 5px;
 		height: 40px;
@@ -51,7 +49,6 @@
 
 			width: 40px;
 			height: 40px;
-			// margin: 5px 0;
 			box-shadow: 0 4px 10px rgb(100 94 112 / 30%);
 			border-radius: 6px;
 			background-color: var(--white);
@@ -76,6 +73,138 @@
 			}
 		}
 	}
+
+	// baloon
+
+	.custom-balloon {
+		position: fixed;
+		top: 80px;
+		left: -100vw;
+
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		width: calc(100vw - 40px);
+		max-width: 840px;
+		height: 100%;
+		min-height: 420px;
+		overflow: hidden;
+		overflow-y: auto;
+
+		border-radius: 0 8px 8px 0;
+		box-shadow: var(--base-box-shadow);
+		opacity: 0;
+
+		background-color: var(--white);
+		animation: showBallon 0.7s 0.2s forwards;
+
+		& > * {
+			margin: 0;
+		}
+	}
+
+	// .balloon-closer {
+	// 	position: absolute;
+	// 	top: 20px;
+	// 	right: 30px;
+	// }
+
+	.balloon-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100%;
+		min-height: 600px;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: -1;
+		animation: fadeIn var(--main-transition);
+	}
+
+	// map-contact
+
+	.map-contact {
+		&-header {
+			position: sticky;
+			top: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 0 40px;
+			background-color: var(--white);
+			border-bottom: 2px solid var(--primary);
+
+			padding: 8px 16px;
+
+			&-title {
+				font-size: 22px;
+				font-weight: 500;
+			}
+
+			.balloon-closer {
+				width: 40px;
+				height: 40px;
+				@extend %btn-reset;
+			}
+		}
+
+		&-grid {
+			outline: 1px solid red;
+			display: grid;
+			grid-template-columns: 360px auto;
+			gap: 20px;
+			padding: 24px;
+
+			img {
+				width: 100%;
+				height: auto;
+				object-fit: contain;
+				position: sticky;
+				top: 82px;
+				border-radius: 12px;
+			}
+		}
+
+		.contact-card {
+			display: flex;
+			flex-direction: column;
+			font-size: 14px;
+			gap: 12px;
+
+			&-field {
+				display: flex;
+				flex-direction: column;
+				font-size: 14px;
+
+				&:not(.contact-card-field--info) {
+					gap: 8px;
+				}
+
+				a {
+					color: var(--primary);
+					@extend %hover-opacity;
+				}
+
+				strong {
+					color: var(--dark);
+					font-weight: 600;
+				}
+			}
+		}
+	}
 }
 
-/* purge css end ignore */
+@keyframes showBallon {
+	from {
+		opacity: 0;
+		left: -100vw;
+	}
+
+	to {
+		opacity: 1;
+		left: 0;
+	}
+}
+
+/* purgecss end ignore */

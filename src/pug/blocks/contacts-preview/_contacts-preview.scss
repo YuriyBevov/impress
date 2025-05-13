@@ -6,26 +6,27 @@
 
 .contacts-preview {
 	position: relative;
-	outline: 1px solid red;
+
+	padding: 0;
 
 	// &.section--decorated::after,
 	// &.section--decorated::before {
 	// 	height: 190px;
 	// }
 
-	@include container-down("main", $tablet-lg-width) {
-		padding: 0;
+	// @include container-down("main", $tablet-lg-width) {
+	// 	padding: 0;
 
-		.container {
-			padding: 0;
-		}
+	// 	.container {
+	// 		padding: 0;
+	// 	}
 
-		&.section--decorated::before {
-			display: none;
-		}
+	// 	&.section--decorated::before {
+	// 		display: none;
+	// 	}
 
-		&.section--decorated::after {
-			height: 120px;
-		}
-	}
+	// 	&.section--decorated::after {
+	// 		height: 120px;
+	// 	}
+	// }
 }

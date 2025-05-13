@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" crossorigin href="./_bx-templates/calс-tpl/calс-tpl.css">
+  </head>
+  <body> 
+    <main>
+      <section class="section section--decorated calc">
+        <div class="container">
+          <div class="calc-form">
+            <form action="#">
+              <h2 class="base-title">Калькулятор стоимости перевода</h2>
+              <div class="calc-form__top">
+                <fieldset>
+                  <span class="base-text">Язык оригинала</span>
+                  <select class="custom-select">
+                    <option selected="selected">Английский язык</option>
+                    <option>Французский язык</option>
+                    <option>Немецкий язык</option>
+                    <option>Русский язык</option>
+                  </select>
+                </fieldset>
+                <fieldset><span class="base-text">Язык перевода</span>
+                  <select class="custom-select">
+                    <option>Английский язык</option>
+                    <option>Французский язык</option>
+                    <option>Немецкий язык</option>
+                    <option selected="selected">Русский язык</option>
+                  </select>
+                </fieldset>
+              </div><span class="base-text">Дополнительные услуги</span>
+              <fieldset>
+                          <div class="main-checkbox-wrapper">
+                            <input type="checkbox" id="calc_1" name="Редактура перевода" data-price="0">
+                            <label class="main-checkbox" for="calc_1"><span>Редактура перевода</span></label>
+                          </div>
+                          <div class="main-checkbox-wrapper">
+                            <input type="checkbox" id="calc_2" name="Консульская легализация" data-price="6000">
+                            <label class="main-checkbox" for="calc_2"><span>Консульская легализация</span></label>
+                          </div>
+                          <div class="main-checkbox-wrapper">
+                            <input type="checkbox" id="calc_3" name="Нотариальное заверение" data-price="800">
+                            <label class="main-checkbox" for="calc_3"><span>Нотариальное заверение</span></label>
+                          </div>
+                          <div class="main-checkbox-wrapper">
+                            <input type="checkbox" id="calc_4" name="Апостиль" data-price="6000">
+                            <label class="main-checkbox" for="calc_4"><span>Апостиль</span></label>
+                          </div>
+                          <div class="main-checkbox-wrapper">
+                            <input type="checkbox" id="calc_5" name="Доставка документации" data-price="500">
+                            <label class="main-checkbox" for="calc_5"><span>Доставка документации</span></label>
+                          </div>
+              </fieldset><span class="base-text">Стоимость: <strong class="calc__total-price" data-base-price="500"> от <span></span> руб*</strong></span>
+              <fieldset>
+                          <div class="main-input-wrapper">
+                            <label>
+                              <input type="text" id="user_name" placeholder="Ваше имя" name="Имя">
+                            </label>
+                          </div>
+                          <div class="main-input-wrapper invalid-fld">
+                            <label>
+                              <input type="tel" id="user_phone" placeholder="Телефон" name="Телефон">
+                            </label>
+                          </div>
+                          <div class="main-input-wrapper">
+                            <label>
+                              <input type="text" id="user_mail" placeholder="Email" name="Email">
+                            </label>
+                          </div>
+                <div class="main-input-wrapper"> 
+                  <input class="main-btn" type="submit" value="Отправить">
+                </div>
+              </fieldset>
+                        <div class="main-checkbox-wrapper">
+                          <input type="checkbox" id="user_accept_2" name="Согласие на обработку персональных данных" checked="true">
+                          <label class="main-checkbox" for="user_accept_2"><span>Отправляю форму, Вы даете свое согласие на <a href="#" target="_blank">обработку персональных данных</a></span></label>
+                        </div><small class="base-text">*Вся информация предварительная, точную стоимость и срок выполнения услуг Вам сообщит менеджер.</small>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
