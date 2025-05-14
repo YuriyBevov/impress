@@ -2,7 +2,7 @@ const map = document.querySelector("#y-maps");
 
 if (map) {
 	let myMap = null;
-	const responsiveWidth = 960;
+	// const responsiveWidth = 960;
 
 	window.addEventListener("load", () => {
 		ymaps.ready(init);
@@ -10,10 +10,6 @@ if (map) {
 
 	function init() {
 		const options = JSON.parse(map.dataset.options);
-
-		let isMobileView = window.innerWidth >= responsiveWidth ? false : true;
-		let isDesktopView = window.innerWidth >= responsiveWidth ? true : false;
-
 		const BalloonLayout = ymaps.templateLayoutFactory.createClass(
 			'<div class="balloon-overlay"></div>' +
 				'<div class="custom-balloon">' +
@@ -54,30 +50,10 @@ if (map) {
 			},
 		);
 
-		const setView = (map, view) => {
-			let coords = null;
-
-			isDesktopView = view === "desktop" ? true : false;
-			isMobileView = view === "mobile" ? true : false;
-
-			if (view === "desktop") {
-				coords = JSON.parse("[" + options.desktopViewCenter + "]");
-			}
-
-			if (view === "mobile") {
-				coords = JSON.parse("[" + options.mobileViewCenter + "]");
-			}
-
-			map.setCenter(coords, options.zoom);
-			map.container.fitToViewport();
-		};
-
 		myMap = new ymaps.Map(
 			"y-maps",
 			{
-				center: isDesktopView
-					? JSON.parse("[" + options.desktopViewCenter + "]")
-					: JSON.parse("[" + options.mobileViewCenter + "]"),
+				center: JSON.parse("[" + options.coords + "]"),
 				zoom: Number(options.zoom),
 				controls: [],
 				behaviors: ["drag", "dblClickZoom"],
@@ -86,14 +62,6 @@ if (map) {
 				maxZoom: options.maxZoom,
 			},
 		);
-
-		window.addEventListener("resize", () => {
-			if (window.innerWidth >= responsiveWidth && isMobileView) {
-				setView(myMap, "desktop");
-			} else if (window.innerWidth < responsiveWidth && isDesktopView) {
-				setView(myMap, "mobile");
-			}
-		});
 
 		const MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 			'<div class="ymaps-icon-content-layout">$[properties.iconContent]</div>',
@@ -178,7 +146,7 @@ if (map) {
 		let zoomControl = new ymaps.control.ZoomControl({
 			options: {
 				layout: ZoomLayout,
-				position: { right: "30px", bottom: "30px" },
+				position: { right: "40px", bottom: "40px" },
 			},
 		});
 		myMap.controls.add(zoomControl);

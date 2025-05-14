@@ -75,7 +75,6 @@
 	}
 
 	// baloon
-
 	.custom-balloon {
 		position: fixed;
 		top: 80px;
@@ -104,12 +103,6 @@
 		}
 	}
 
-	// .balloon-closer {
-	// 	position: absolute;
-	// 	top: 20px;
-	// 	right: 30px;
-	// }
-
 	.balloon-overlay {
 		position: fixed;
 		top: 0;
@@ -117,14 +110,15 @@
 		width: 100vw;
 		height: 100%;
 		min-height: 600px;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.7);
 		z-index: -1;
 		animation: fadeIn var(--main-transition);
 	}
 
-	// map-contact
-
+	// baloon-content
 	.map-contact {
+		container: map-contact / inline-size;
+
 		&-header {
 			position: sticky;
 			top: 0;
@@ -134,11 +128,11 @@
 			gap: 0 40px;
 			background-color: var(--white);
 			border-bottom: 2px solid var(--primary);
-
 			padding: 8px 16px;
+			z-index: 10;
 
 			&-title {
-				font-size: 22px;
+				font-size: clamp(16px, 3vw, 22px);
 				font-weight: 500;
 			}
 
@@ -146,39 +140,68 @@
 				width: 40px;
 				height: 40px;
 				@extend %btn-reset;
+				background-image: url("@img/icon-close.svg");
+				background-size: 18px;
+				background-repeat: no-repeat;
+				background-position: center;
 			}
 		}
 
-		&-grid {
-			outline: 1px solid red;
-			display: grid;
-			grid-template-columns: 360px auto;
-			gap: 20px;
+		&-content {
 			padding: 24px;
+			font-size: 16px;
 
-			img {
-				width: 100%;
-				height: auto;
-				object-fit: contain;
-				position: sticky;
-				top: 82px;
-				border-radius: 12px;
+			@include container-down("map-contact", 680px) {
+				padding: 16px;
+				padding-top: 0;
+			}
+
+			&-top {
+				display: grid;
+				grid-template-columns: 420px auto;
+				gap: 20px;
+
+				@include container-down("map-contact", 680px) {
+					grid-template-columns: 1fr;
+				}
+
+				img {
+					width: 100%;
+					height: 100%;
+					min-height: 160px;
+					object-fit: cover;
+					border-radius: 12px;
+
+					@include container-down("map-contact", 680px) {
+						margin-left: -24px;
+						margin-right: -24px;
+						border-radius: 0;
+						width: calc(100% + 48px);
+					}
+				}
+			}
+
+			&-bottom > * {
+				font-size: 16px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
 			}
 		}
 
 		.contact-card {
 			display: flex;
 			flex-direction: column;
-			font-size: 14px;
-			gap: 12px;
+			font-size: 16px;
+			gap: 8px;
 
 			&-field {
 				display: flex;
 				flex-direction: column;
-				font-size: 14px;
 
 				&:not(.contact-card-field--info) {
-					gap: 8px;
+					gap: 4px;
 				}
 
 				a {
