@@ -1,0 +1,28 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss";
+@forward "@styles/_extends/resets.scss";
+@forward "@styles/_extends/common.scss";
+@use "@styles/_mixins/text-truncate" as *;
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.linked-side-list {
+	margin: 40px 0;
+
+	.base-subtitle {
+		margin-bottom: 24px;
+	}
+
+	ul {
+		@extend %list-reset;
+		@extend %flex-column;
+		gap: 12px;
+
+		li {
+			a {
+				@extend %linked-link;
+				width: 100%;
+			}
+		}
+	}
+}

@@ -1,0 +1,46 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss";
+@forward "@styles/_extends/resets.scss";
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.features-sm {
+	padding: clamp(18px, 3vw, 32px) 0;
+	container: features-sm / inline-size;
+	// border-bottom: 1px solid var(--primary);
+	margin-bottom: 36px;
+
+	ul {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: clamp(16px, 2.2vw, 24px);
+		@extend %list-reset;
+
+		@include container-down("features-sm", 1140px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include container-down("features-sm", 1140px) {
+			grid-template-columns: 1fr;
+		}
+
+		li {
+			font-size: 16px;
+			padding: clamp(16px, 1.8vw, 24px) clamp(18px, 2vw, 28px);
+			border: 1px solid var(--muted);
+			border-radius: 24px;
+			background-color: var(--lighter);
+
+			&::first-letter {
+				font-size: 22px;
+				font-weight: 700;
+				text-transform: uppercase;
+				color: var(--primary);
+			}
+
+			@include container-down("features-sm", 1140px) {
+				text-align: center;
+			}
+		}
+	}
+}

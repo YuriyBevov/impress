@@ -13,26 +13,20 @@
           <div class="calc-form">
             <form action="#">
               <h2 class="base-title">Калькулятор стоимости перевода</h2>
-              <div class="calc-form__top">
-                <fieldset>
-                  <span class="base-text">Язык оригинала</span>
-                  <select class="custom-select">
-                    <option selected="selected">Английский язык</option>
-                    <option>Французский язык</option>
-                    <option>Немецкий язык</option>
-                    <option>Русский язык</option>
-                  </select>
-                </fieldset>
-                <fieldset><span class="base-text">Язык перевода</span>
-                  <select class="custom-select">
-                    <option>Английский язык</option>
-                    <option>Французский язык</option>
-                    <option>Немецкий язык</option>
-                    <option selected="selected">Русский язык</option>
-                  </select>
-                </fieldset>
-              </div><span class="base-text">Дополнительные услуги</span>
-              <fieldset>
+              <p class="base-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium maxime, nemo nisi, iste dicta qui labore cupiditate, deserunt architecto aspernatur veniam sunt atque pariatur rem distinctio delectus laboriosam non mollitia?</p>
+              <fieldset class="calc-form__section calc-form__section--input-group">
+                          <div class="main-input-wrapper">
+                            <label>
+                              <input type="text" id="lang_from" placeholder="Язык оригинала" name="Язык оригинала">
+                            </label>
+                          </div>
+                          <div class="main-input-wrapper">
+                            <label>
+                              <input type="text" id="lang_to" placeholder="Язык перевода" name="Язык перевода">
+                            </label>
+                          </div>
+              </fieldset>
+              <fieldset class="calc-form__section calc-form__section--wrap"><span class="base-text calc-form__section-title">Дополнительные услуги</span>
                           <div class="main-checkbox-wrapper">
                             <input type="checkbox" id="calc_1" name="Редактура перевода" data-price="0">
                             <label class="main-checkbox" for="calc_1"><span>Редактура перевода</span></label>
@@ -53,8 +47,8 @@
                             <input type="checkbox" id="calc_5" name="Доставка документации" data-price="500">
                             <label class="main-checkbox" for="calc_5"><span>Доставка документации</span></label>
                           </div>
-              </fieldset><span class="base-text">Стоимость: <strong class="calc__total-price" data-base-price="500"> от <span></span> руб*</strong></span>
-              <fieldset>
+              </fieldset><strong class="calc-form__total-price" data-base-price="500"> Предварительная стоимость: от <span></span> руб*</strong>
+              <fieldset class="calc-form__section calc-form__section--input-group">
                           <div class="main-input-wrapper">
                             <label>
                               <input type="text" id="user_name" placeholder="Ваше имя" name="Имя">
@@ -70,14 +64,16 @@
                               <input type="text" id="user_mail" placeholder="Email" name="Email">
                             </label>
                           </div>
+              </fieldset>
+              <fieldset class="calc-form__section calc-form__section--column">
+                          <div class="main-checkbox-wrapper">
+                            <input type="checkbox" id="user_accept_2" name="Согласие на обработку персональных данных" checked="true">
+                            <label class="main-checkbox" for="user_accept_2"><span>Отправляю форму, Вы даете свое согласие на <a href="#" target="_blank">обработку персональных данных</a></span></label>
+                          </div>
                 <div class="main-input-wrapper"> 
                   <input class="main-btn" type="submit" value="Отправить">
                 </div>
-              </fieldset>
-                        <div class="main-checkbox-wrapper">
-                          <input type="checkbox" id="user_accept_2" name="Согласие на обработку персональных данных" checked="true">
-                          <label class="main-checkbox" for="user_accept_2"><span>Отправляю форму, Вы даете свое согласие на <a href="#" target="_blank">обработку персональных данных</a></span></label>
-                        </div><small class="base-text">*Вся информация предварительная, точную стоимость и срок выполнения услуг Вам сообщит менеджер.</small>
+              </fieldset><small class="base-text">*Вся информация предварительная, точную стоимость и срок выполнения услуг Вам сообщит менеджер.</small>
             </form>
           </div>
         </div>

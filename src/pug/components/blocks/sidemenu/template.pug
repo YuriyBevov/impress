@@ -1,0 +1,73 @@
+mixin sidemenu(data)
+  .sidemenu
+    ul.sidemenu__list
+      //- li.sidemenu__list-item
+      //-   span Название раздела
+      //-   svg(width='24' height='24' role='img' aria-hidden='true' focusable='false')
+      //-     use(xlink:href='./assets/sprite.svg#icon-menu-arrow')
+      //-   ul
+      //-     li
+      //-       a(href="#").selected ссылка активного раздела 
+      each item in data
+        li.sidemenu__list-item 
+          a(href="#")!= item.title
+          if item.inner
+            button(type="button" aria-label="Открыть меню").sidemenu__opener
+              svg(width='24' height='24' role='img' aria-hidden='true' focusable='false')
+                use(xlink:href='./assets/sprite.svg#icon-menu-arrow')
+          if item.inner
+            ul
+              each inner in item.inner
+                li
+                  a(href="#")!= inner.title
+
+                  if inner.inner
+                    button(type="button" aria-label="Открыть меню").sidemenu__opener
+                      svg(width='24' height='24' role='img' aria-hidden='true' focusable='false')
+                        use(xlink:href='./assets/sprite.svg#icon-menu-arrow')
+                  if inner.inner
+                    ul
+                      each item in inner.inner
+                        li
+                          a(href="#").selected!= item.title
+
+
++sidemenu([
+  {
+    title: 'Апостиль',
+    inner: [
+      {
+        title: 'Загс',
+        
+      },
+      { title: 'МВД'}
+    ]
+  },
+  {
+    title: 'Консульская легализация'
+  },
+  {
+    title: 'Переводы с языков мира',
+    inner: [
+      {
+        title: 'Документов',
+        inner: [
+          {
+            title: 'С английского'
+          },
+          {
+            title: 'С немецкого'
+          }
+        ]
+      },
+      {
+        title: 'Для юридических лиц',
+        inner: [
+          {
+            title: 'Переводы для ИП',
+          }
+        ]
+      }
+    ]
+  }
+])

@@ -1,56 +1,87 @@
 @forward "@styles/_extends/flexbox.scss";
 
 .main-btn {
-  @extend %flex-align;
-  width: fit-content;
+	@extend %flex-align;
+	width: fit-content;
 
-  font-size: clamp(14px, 2.2vw, 16px);
-  font-weight: 600;
-  padding: 10px 20px 10px;
-  border: 2px solid var(--primary);
-  border-radius: 30px;
+	font-size: clamp(14px, 2.2vw, 16px);
+	font-weight: 600;
+	padding: 10px 20px 10px;
+	border: 2px solid var(--primary);
+	border-radius: 30px;
 
-  transition: opacity var(--main-transition), background-color var(--main-transition), color var(--main-transition);
+	transition: opacity var(--main-transition),
+		background-color var(--main-transition), color var(--main-transition);
 
-  &:not(.main-btn--outlined) {
-    background-color: var(--primary);
-    color: var(--light);
- 
-    @media(hover:hover)  {
-      &:hover {
-        background-color: transparent;
-        color: var(--primary);
-      }
-    }
+	&:not(.main-btn--outlined) {
+		background-color: var(--primary);
+		color: var(--light);
 
-    &:focus {
-      background-color: transparent; 
-      color: var(--primary);
-    }
+		@media (hover: hover) {
+			&:hover {
+				background-color: transparent;
+				color: var(--primary);
+			}
+		}
 
-    &:active {
-      opacity: .6;
-    }
-  }
+		&:focus {
+			background-color: transparent;
+			color: var(--primary);
+		}
 
-  &--outlined {
-    background-color: transparent;
-    color: var(--primary);
+		&:active {
+			opacity: 0.6;
+		}
+	}
 
-    @media(hover:hover)  {
-      &:hover {
-        background-color: var(--primary);
-        color: var(--light);
-      }
-    }
-  
-    &:focus {
-      background-color: var(--primary); 
-      color: var(--light);
-    }
-  
-    &:active {
-      opacity: .6;
-    }
-  }
+	&--outlined {
+		background-color: transparent;
+		color: var(--primary);
+
+		@media (hover: hover) {
+			&:hover {
+				background-color: var(--primary);
+				color: var(--light);
+			}
+		}
+
+		&:focus {
+			background-color: var(--primary);
+			color: var(--light);
+		}
+
+		&:active {
+			opacity: 0.6;
+		}
+	}
+
+	&--expander {
+		position: relative;
+		padding-left: 32px;
+
+		&::after,
+		&::before {
+			position: absolute;
+			top: 50%;
+
+			transform: translateY(-50%);
+			content: "";
+			background-color: var(--primary);
+		}
+
+		&::after {
+			left: 17px;
+			width: 2px;
+			height: 12px;
+		}
+		&::before {
+			left: 12px;
+			width: 12px;
+			height: 2px;
+		}
+
+		&.hidden {
+			display: none;
+		}
+	}
 }

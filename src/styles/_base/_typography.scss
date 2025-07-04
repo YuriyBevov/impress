@@ -1,36 +1,48 @@
 .base-title {
-  display: block;
-  font-weight: 700;
-  font-size: clamp(22px, 6vw, 48px);
-  margin: 0;
-  margin-bottom: clamp(36px, 3.2vw,50px);
-  color: var(--primary);
+	display: block;
+	font-weight: 700;
+	font-size: clamp(22px, 6vw, 48px);
+	margin: 0;
+	margin-bottom: clamp(24px, 3.2vw, 50px);
+	color: var(--primary);
 
-  &--lightColor {
-    color: var(--white);
-  }
+	&--lightColor {
+		color: var(--white);
+	}
 }
 
 .main-title {
-  display: block;
-  font-weight: 700;
-  font-size: clamp(36px, 3.8vw, 54px);
-  margin: 24px 0;
-  color: var(--primary);
+	display: block;
+	font-weight: 700;
+	font-size: clamp(36px, 3.8vw, 54px);
+	margin: 24px 0;
+	color: var(--primary);
 }
 
 .base-subtitle {
-  display: block;
-  font-weight: 600;
-  font-size: clamp(16px, 2.6vw, 20px);
-  margin: 0;
-  color: var(--site-base-text-color);
+	display: block;
+	font-weight: 600;
+	font-size: clamp(16px, 2.6vw, 20px);
+	margin: 0;
+	color: var(--site-base-text-color);
 }
 
 .base-text {
-  display: inline-block; 
-  font-size: 15px;
-  font-weight: 500;
-  margin: 0;
-  color: var(--site-base-text-color);
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 500;
+	margin: 0;
+	color: var(--site-base-text-color);
+}
+
+.accent-text {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	margin: 0;
+	color: var(--primary);
+
+	&--lg {
+		font-size: clamp(20px, 3vw, 32px);
+	}
 }

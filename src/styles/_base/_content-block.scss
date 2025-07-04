@@ -1,7 +1,23 @@
 .content-block {
-  margin: 40px 0;
-  p {
-    font-size: 15px;
-    font-weight: 500;
-  }
+	margin: 40px 0;
+
+	h2:not(:first-child) {
+		margin-top: clamp(24px, 3vw, 44px);
+	}
+
+	p {
+		font-size: 15px;
+		font-weight: 500;
+	}
+
+	strong,
+	a {
+		color: var(--primary);
+	}
+
+	a {
+		color: var(--primary);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
 }

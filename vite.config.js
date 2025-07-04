@@ -33,7 +33,7 @@ export default defineConfig({
 			styles: false,
 			injectSVGOnDev: true,
 
-			prefix: "sprite-", // префикс перед иконкой use(xlink:href='./sprite.svg#{PREFIX}icon-chevron-down')
+			prefix: "", // префикс перед иконкой use(xlink:href='./sprite.svg#{PREFIX}icon-chevron-down')
 			route: "assets/sprite.svg", // название файла спрайта use(xlink:href='./{ROUTE}#icon-chevron-down')
 			output: {
 				filename: "sprite.svg", // название файла спрайта на выходе
@@ -55,7 +55,7 @@ export default defineConfig({
 			},
 		}),
 		ViteImageOptimizer({
-			test: /\.(jpe?g|png|svg)$/i,
+			test: /\.(jpe?g|png)$/i,
 			includePublic: true,
 			logStats: true,
 			ansiColors: true,

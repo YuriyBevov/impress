@@ -10,12 +10,14 @@
 	flex-direction: column;
 	overflow: hidden;
 
-	width: 40px;
+	width: 50px;
 	min-width: 40px;
 	height: 40px;
 	min-height: 40px;
-	padding: 5px;
+	padding: 8px;
 	position: relative;
+	border: 2px solid var(--primary);
+	border-radius: 50%;
 
 	&-line {
 		width: 100%;
@@ -32,9 +34,9 @@
 		&--middle-bottom {
 			position: absolute;
 			top: 50%;
-			left: 6px;
+			left: 10px;
 			transform: translateY(-50%);
-			width: calc(100% - 12px);
+			width: calc(100% - 20px);
 		}
 
 		&--bottom {

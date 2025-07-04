@@ -751,31 +751,31 @@ var eventsEmitter = {
     if (!self2.eventsListeners || self2.destroyed) return self2;
     if (!self2.eventsListeners) return self2;
     let events2;
-    let data;
+    let data2;
     let context3;
     for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
       args[_key2] = arguments[_key2];
     }
     if (typeof args[0] === "string" || Array.isArray(args[0])) {
       events2 = args[0];
-      data = args.slice(1, args.length);
+      data2 = args.slice(1, args.length);
       context3 = self2;
     } else {
       events2 = args[0].events;
-      data = args[0].data;
+      data2 = args[0].data;
       context3 = args[0].context || self2;
     }
-    data.unshift(context3);
+    data2.unshift(context3);
     const eventsArray = Array.isArray(events2) ? events2 : events2.split(" ");
     eventsArray.forEach((event) => {
       if (self2.eventsAnyListeners && self2.eventsAnyListeners.length) {
         self2.eventsAnyListeners.forEach((eventHandler) => {
-          eventHandler.apply(context3, [event, ...data]);
+          eventHandler.apply(context3, [event, ...data2]);
         });
       }
       if (self2.eventsListeners && self2.eventsListeners[event]) {
         self2.eventsListeners[event].forEach((eventHandler) => {
-          eventHandler.apply(context3, data);
+          eventHandler.apply(context3, data2);
         });
       }
     });
@@ -2511,14 +2511,14 @@ function onTouchStart(event) {
   const document2 = getDocument();
   let e2 = event;
   if (e2.originalEvent) e2 = e2.originalEvent;
-  const data = swiper.touchEventsData;
+  const data2 = swiper.touchEventsData;
   if (e2.type === "pointerdown") {
-    if (data.pointerId !== null && data.pointerId !== e2.pointerId) {
+    if (data2.pointerId !== null && data2.pointerId !== e2.pointerId) {
       return;
     }
-    data.pointerId = e2.pointerId;
+    data2.pointerId = e2.pointerId;
   } else if (e2.type === "touchstart" && e2.targetTouches.length === 1) {
-    data.touchId = e2.targetTouches[0].identifier;
+    data2.touchId = e2.targetTouches[0].identifier;
   }
   if (e2.type === "touchstart") {
     preventEdgeSwipe(swiper, e2, e2.targetTouches[0].pageX);
@@ -2543,7 +2543,7 @@ function onTouchStart(event) {
   }
   if ("which" in e2 && e2.which === 3) return;
   if ("button" in e2 && e2.button > 0) return;
-  if (data.isTouched && data.isMoved) return;
+  if (data2.isTouched && data2.isMoved) return;
   const swipingClassHasValue = !!params.noSwipingClass && params.noSwipingClass !== "";
   const eventPath = e2.composedPath ? e2.composedPath() : e2.path;
   if (swipingClassHasValue && e2.target && e2.target.shadowRoot && eventPath) {
@@ -2565,7 +2565,7 @@ function onTouchStart(event) {
   if (!preventEdgeSwipe(swiper, e2, startX)) {
     return;
   }
-  Object.assign(data, {
+  Object.assign(data2, {
     isTouched: true,
     isMoved: false,
     allowTouchCallbacks: true,
@@ -2574,19 +2574,19 @@ function onTouchStart(event) {
   });
   touches.startX = startX;
   touches.startY = startY;
-  data.touchStartTime = now();
+  data2.touchStartTime = now();
   swiper.allowClick = true;
   swiper.updateSize();
   swiper.swipeDirection = void 0;
-  if (params.threshold > 0) data.allowThresholdMove = false;
+  if (params.threshold > 0) data2.allowThresholdMove = false;
   let preventDefault = true;
-  if (targetEl.matches(data.focusableElements)) {
+  if (targetEl.matches(data2.focusableElements)) {
     preventDefault = false;
     if (targetEl.nodeName === "SELECT") {
-      data.isTouched = false;
+      data2.isTouched = false;
     }
   }
-  if (document2.activeElement && document2.activeElement.matches(data.focusableElements) && document2.activeElement !== targetEl && (e2.pointerType === "mouse" || e2.pointerType !== "mouse" && !targetEl.matches(data.focusableElements))) {
+  if (document2.activeElement && document2.activeElement.matches(data2.focusableElements) && document2.activeElement !== targetEl && (e2.pointerType === "mouse" || e2.pointerType !== "mouse" && !targetEl.matches(data2.focusableElements))) {
     document2.activeElement.blur();
   }
   const shouldPreventDefault = preventDefault && swiper.allowTouchMove && params.touchStartPreventDefault;
@@ -2601,7 +2601,7 @@ function onTouchStart(event) {
 function onTouchMove(event) {
   const document2 = getDocument();
   const swiper = this;
-  const data = swiper.touchEventsData;
+  const data2 = swiper.touchEventsData;
   const {
     params,
     touches,
@@ -2613,19 +2613,19 @@ function onTouchMove(event) {
   let e2 = event;
   if (e2.originalEvent) e2 = e2.originalEvent;
   if (e2.type === "pointermove") {
-    if (data.touchId !== null) return;
+    if (data2.touchId !== null) return;
     const id = e2.pointerId;
-    if (id !== data.pointerId) return;
+    if (id !== data2.pointerId) return;
   }
   let targetTouch;
   if (e2.type === "touchmove") {
-    targetTouch = [...e2.changedTouches].filter((t2) => t2.identifier === data.touchId)[0];
-    if (!targetTouch || targetTouch.identifier !== data.touchId) return;
+    targetTouch = [...e2.changedTouches].filter((t2) => t2.identifier === data2.touchId)[0];
+    if (!targetTouch || targetTouch.identifier !== data2.touchId) return;
   } else {
     targetTouch = e2;
   }
-  if (!data.isTouched) {
-    if (data.startMoving && data.isScrolling) {
+  if (!data2.isTouched) {
+    if (data2.startMoving && data2.isScrolling) {
       swiper.emit("touchMoveOpposite", e2);
     }
     return;
@@ -2638,42 +2638,42 @@ function onTouchMove(event) {
     return;
   }
   if (!swiper.allowTouchMove) {
-    if (!e2.target.matches(data.focusableElements)) {
+    if (!e2.target.matches(data2.focusableElements)) {
       swiper.allowClick = false;
     }
-    if (data.isTouched) {
+    if (data2.isTouched) {
       Object.assign(touches, {
         startX: pageX,
         startY: pageY,
         currentX: pageX,
         currentY: pageY
       });
-      data.touchStartTime = now();
+      data2.touchStartTime = now();
     }
     return;
   }
   if (params.touchReleaseOnEdges && !params.loop) {
     if (swiper.isVertical()) {
       if (pageY < touches.startY && swiper.translate <= swiper.maxTranslate() || pageY > touches.startY && swiper.translate >= swiper.minTranslate()) {
-        data.isTouched = false;
-        data.isMoved = false;
+        data2.isTouched = false;
+        data2.isMoved = false;
         return;
       }
     } else if (pageX < touches.startX && swiper.translate <= swiper.maxTranslate() || pageX > touches.startX && swiper.translate >= swiper.minTranslate()) {
       return;
     }
   }
-  if (document2.activeElement && document2.activeElement.matches(data.focusableElements) && document2.activeElement !== e2.target && e2.pointerType !== "mouse") {
+  if (document2.activeElement && document2.activeElement.matches(data2.focusableElements) && document2.activeElement !== e2.target && e2.pointerType !== "mouse") {
     document2.activeElement.blur();
   }
   if (document2.activeElement) {
-    if (e2.target === document2.activeElement && e2.target.matches(data.focusableElements)) {
-      data.isMoved = true;
+    if (e2.target === document2.activeElement && e2.target.matches(data2.focusableElements)) {
+      data2.isMoved = true;
       swiper.allowClick = false;
       return;
     }
   }
-  if (data.allowTouchCallbacks) {
+  if (data2.allowTouchCallbacks) {
     swiper.emit("touchMove", e2);
   }
   touches.previousX = touches.currentX;
@@ -2683,30 +2683,30 @@ function onTouchMove(event) {
   const diffX = touches.currentX - touches.startX;
   const diffY = touches.currentY - touches.startY;
   if (swiper.params.threshold && Math.sqrt(diffX ** 2 + diffY ** 2) < swiper.params.threshold) return;
-  if (typeof data.isScrolling === "undefined") {
+  if (typeof data2.isScrolling === "undefined") {
     let touchAngle;
     if (swiper.isHorizontal() && touches.currentY === touches.startY || swiper.isVertical() && touches.currentX === touches.startX) {
-      data.isScrolling = false;
+      data2.isScrolling = false;
     } else {
       if (diffX * diffX + diffY * diffY >= 25) {
         touchAngle = Math.atan2(Math.abs(diffY), Math.abs(diffX)) * 180 / Math.PI;
-        data.isScrolling = swiper.isHorizontal() ? touchAngle > params.touchAngle : 90 - touchAngle > params.touchAngle;
+        data2.isScrolling = swiper.isHorizontal() ? touchAngle > params.touchAngle : 90 - touchAngle > params.touchAngle;
       }
     }
   }
-  if (data.isScrolling) {
+  if (data2.isScrolling) {
     swiper.emit("touchMoveOpposite", e2);
   }
-  if (typeof data.startMoving === "undefined") {
+  if (typeof data2.startMoving === "undefined") {
     if (touches.currentX !== touches.startX || touches.currentY !== touches.startY) {
-      data.startMoving = true;
+      data2.startMoving = true;
     }
   }
-  if (data.isScrolling || e2.type === "touchmove" && data.preventTouchMoveFromPointerMove) {
-    data.isTouched = false;
+  if (data2.isScrolling || e2.type === "touchmove" && data2.preventTouchMoveFromPointerMove) {
+    data2.isTouched = false;
     return;
   }
-  if (!data.startMoving) {
+  if (!data2.startMoving) {
     return;
   }
   swiper.allowClick = false;
@@ -2733,13 +2733,13 @@ function onTouchMove(event) {
   swiper.touchesDirection = touchesDiff > 0 ? "prev" : "next";
   const isLoop = swiper.params.loop && !params.cssMode;
   const allowLoopFix = swiper.touchesDirection === "next" && swiper.allowSlideNext || swiper.touchesDirection === "prev" && swiper.allowSlidePrev;
-  if (!data.isMoved) {
+  if (!data2.isMoved) {
     if (isLoop && allowLoopFix) {
       swiper.loopFix({
         direction: swiper.swipeDirection
       });
     }
-    data.startTranslate = swiper.getTranslate();
+    data2.startTranslate = swiper.getTranslate();
     swiper.setTransition(0);
     if (swiper.animating) {
       const evt = new window.CustomEvent("transitionend", {
@@ -2751,7 +2751,7 @@ function onTouchMove(event) {
       });
       swiper.wrapperEl.dispatchEvent(evt);
     }
-    data.allowMomentumBounce = false;
+    data2.allowMomentumBounce = false;
     if (params.grabCursor && (swiper.allowSlideNext === true || swiper.allowSlidePrev === true)) {
       swiper.setGrabCursor(true);
     }
@@ -2759,79 +2759,79 @@ function onTouchMove(event) {
   }
   let loopFixed;
   (/* @__PURE__ */ new Date()).getTime();
-  if (data.isMoved && data.allowThresholdMove && prevTouchesDirection !== swiper.touchesDirection && isLoop && allowLoopFix && Math.abs(diff) >= 1) {
+  if (data2.isMoved && data2.allowThresholdMove && prevTouchesDirection !== swiper.touchesDirection && isLoop && allowLoopFix && Math.abs(diff) >= 1) {
     Object.assign(touches, {
       startX: pageX,
       startY: pageY,
       currentX: pageX,
       currentY: pageY,
-      startTranslate: data.currentTranslate
+      startTranslate: data2.currentTranslate
     });
-    data.loopSwapReset = true;
-    data.startTranslate = data.currentTranslate;
+    data2.loopSwapReset = true;
+    data2.startTranslate = data2.currentTranslate;
     return;
   }
   swiper.emit("sliderMove", e2);
-  data.isMoved = true;
-  data.currentTranslate = diff + data.startTranslate;
+  data2.isMoved = true;
+  data2.currentTranslate = diff + data2.startTranslate;
   let disableParentSwiper = true;
   let resistanceRatio = params.resistanceRatio;
   if (params.touchReleaseOnEdges) {
     resistanceRatio = 0;
   }
   if (diff > 0) {
-    if (isLoop && allowLoopFix && !loopFixed && data.allowThresholdMove && data.currentTranslate > (params.centeredSlides ? swiper.minTranslate() - swiper.slidesSizesGrid[swiper.activeIndex + 1] - (params.slidesPerView !== "auto" && swiper.slides.length - params.slidesPerView >= 2 ? swiper.slidesSizesGrid[swiper.activeIndex + 1] + swiper.params.spaceBetween : 0) - swiper.params.spaceBetween : swiper.minTranslate())) {
+    if (isLoop && allowLoopFix && !loopFixed && data2.allowThresholdMove && data2.currentTranslate > (params.centeredSlides ? swiper.minTranslate() - swiper.slidesSizesGrid[swiper.activeIndex + 1] - (params.slidesPerView !== "auto" && swiper.slides.length - params.slidesPerView >= 2 ? swiper.slidesSizesGrid[swiper.activeIndex + 1] + swiper.params.spaceBetween : 0) - swiper.params.spaceBetween : swiper.minTranslate())) {
       swiper.loopFix({
         direction: "prev",
         setTranslate: true,
         activeSlideIndex: 0
       });
     }
-    if (data.currentTranslate > swiper.minTranslate()) {
+    if (data2.currentTranslate > swiper.minTranslate()) {
       disableParentSwiper = false;
       if (params.resistance) {
-        data.currentTranslate = swiper.minTranslate() - 1 + (-swiper.minTranslate() + data.startTranslate + diff) ** resistanceRatio;
+        data2.currentTranslate = swiper.minTranslate() - 1 + (-swiper.minTranslate() + data2.startTranslate + diff) ** resistanceRatio;
       }
     }
   } else if (diff < 0) {
-    if (isLoop && allowLoopFix && !loopFixed && data.allowThresholdMove && data.currentTranslate < (params.centeredSlides ? swiper.maxTranslate() + swiper.slidesSizesGrid[swiper.slidesSizesGrid.length - 1] + swiper.params.spaceBetween + (params.slidesPerView !== "auto" && swiper.slides.length - params.slidesPerView >= 2 ? swiper.slidesSizesGrid[swiper.slidesSizesGrid.length - 1] + swiper.params.spaceBetween : 0) : swiper.maxTranslate())) {
+    if (isLoop && allowLoopFix && !loopFixed && data2.allowThresholdMove && data2.currentTranslate < (params.centeredSlides ? swiper.maxTranslate() + swiper.slidesSizesGrid[swiper.slidesSizesGrid.length - 1] + swiper.params.spaceBetween + (params.slidesPerView !== "auto" && swiper.slides.length - params.slidesPerView >= 2 ? swiper.slidesSizesGrid[swiper.slidesSizesGrid.length - 1] + swiper.params.spaceBetween : 0) : swiper.maxTranslate())) {
       swiper.loopFix({
         direction: "next",
         setTranslate: true,
         activeSlideIndex: swiper.slides.length - (params.slidesPerView === "auto" ? swiper.slidesPerViewDynamic() : Math.ceil(parseFloat(params.slidesPerView, 10)))
       });
     }
-    if (data.currentTranslate < swiper.maxTranslate()) {
+    if (data2.currentTranslate < swiper.maxTranslate()) {
       disableParentSwiper = false;
       if (params.resistance) {
-        data.currentTranslate = swiper.maxTranslate() + 1 - (swiper.maxTranslate() - data.startTranslate - diff) ** resistanceRatio;
+        data2.currentTranslate = swiper.maxTranslate() + 1 - (swiper.maxTranslate() - data2.startTranslate - diff) ** resistanceRatio;
       }
     }
   }
   if (disableParentSwiper) {
     e2.preventedByNestedSwiper = true;
   }
-  if (!swiper.allowSlideNext && swiper.swipeDirection === "next" && data.currentTranslate < data.startTranslate) {
-    data.currentTranslate = data.startTranslate;
+  if (!swiper.allowSlideNext && swiper.swipeDirection === "next" && data2.currentTranslate < data2.startTranslate) {
+    data2.currentTranslate = data2.startTranslate;
   }
-  if (!swiper.allowSlidePrev && swiper.swipeDirection === "prev" && data.currentTranslate > data.startTranslate) {
-    data.currentTranslate = data.startTranslate;
+  if (!swiper.allowSlidePrev && swiper.swipeDirection === "prev" && data2.currentTranslate > data2.startTranslate) {
+    data2.currentTranslate = data2.startTranslate;
   }
   if (!swiper.allowSlidePrev && !swiper.allowSlideNext) {
-    data.currentTranslate = data.startTranslate;
+    data2.currentTranslate = data2.startTranslate;
   }
   if (params.threshold > 0) {
-    if (Math.abs(diff) > params.threshold || data.allowThresholdMove) {
-      if (!data.allowThresholdMove) {
-        data.allowThresholdMove = true;
+    if (Math.abs(diff) > params.threshold || data2.allowThresholdMove) {
+      if (!data2.allowThresholdMove) {
+        data2.allowThresholdMove = true;
         touches.startX = touches.currentX;
         touches.startY = touches.currentY;
-        data.currentTranslate = data.startTranslate;
+        data2.currentTranslate = data2.startTranslate;
         touches.diff = swiper.isHorizontal() ? touches.currentX - touches.startX : touches.currentY - touches.startY;
         return;
       }
     } else {
-      data.currentTranslate = data.startTranslate;
+      data2.currentTranslate = data2.startTranslate;
       return;
     }
   }
@@ -2843,23 +2843,23 @@ function onTouchMove(event) {
   if (params.freeMode && params.freeMode.enabled && swiper.freeMode) {
     swiper.freeMode.onTouchMove();
   }
-  swiper.updateProgress(data.currentTranslate);
-  swiper.setTranslate(data.currentTranslate);
+  swiper.updateProgress(data2.currentTranslate);
+  swiper.setTranslate(data2.currentTranslate);
 }
 function onTouchEnd(event) {
   const swiper = this;
-  const data = swiper.touchEventsData;
+  const data2 = swiper.touchEventsData;
   let e2 = event;
   if (e2.originalEvent) e2 = e2.originalEvent;
   let targetTouch;
   const isTouchEvent = e2.type === "touchend" || e2.type === "touchcancel";
   if (!isTouchEvent) {
-    if (data.touchId !== null) return;
-    if (e2.pointerId !== data.pointerId) return;
+    if (data2.touchId !== null) return;
+    if (e2.pointerId !== data2.pointerId) return;
     targetTouch = e2;
   } else {
-    targetTouch = [...e2.changedTouches].filter((t2) => t2.identifier === data.touchId)[0];
-    if (!targetTouch || targetTouch.identifier !== data.touchId) return;
+    targetTouch = [...e2.changedTouches].filter((t2) => t2.identifier === data2.touchId)[0];
+    if (!targetTouch || targetTouch.identifier !== data2.touchId) return;
   }
   if (["pointercancel", "pointerout", "pointerleave", "contextmenu"].includes(e2.type)) {
     const proceed = ["pointercancel", "contextmenu"].includes(e2.type) && (swiper.browser.isSafari || swiper.browser.isWebView);
@@ -2867,8 +2867,8 @@ function onTouchEnd(event) {
       return;
     }
   }
-  data.pointerId = null;
-  data.touchId = null;
+  data2.pointerId = null;
+  data2.touchId = null;
   const {
     params,
     touches,
@@ -2878,49 +2878,49 @@ function onTouchEnd(event) {
   } = swiper;
   if (!enabled) return;
   if (!params.simulateTouch && e2.pointerType === "mouse") return;
-  if (data.allowTouchCallbacks) {
+  if (data2.allowTouchCallbacks) {
     swiper.emit("touchEnd", e2);
   }
-  data.allowTouchCallbacks = false;
-  if (!data.isTouched) {
-    if (data.isMoved && params.grabCursor) {
+  data2.allowTouchCallbacks = false;
+  if (!data2.isTouched) {
+    if (data2.isMoved && params.grabCursor) {
       swiper.setGrabCursor(false);
     }
-    data.isMoved = false;
-    data.startMoving = false;
+    data2.isMoved = false;
+    data2.startMoving = false;
     return;
   }
-  if (params.grabCursor && data.isMoved && data.isTouched && (swiper.allowSlideNext === true || swiper.allowSlidePrev === true)) {
+  if (params.grabCursor && data2.isMoved && data2.isTouched && (swiper.allowSlideNext === true || swiper.allowSlidePrev === true)) {
     swiper.setGrabCursor(false);
   }
   const touchEndTime = now();
-  const timeDiff = touchEndTime - data.touchStartTime;
+  const timeDiff = touchEndTime - data2.touchStartTime;
   if (swiper.allowClick) {
     const pathTree = e2.path || e2.composedPath && e2.composedPath();
     swiper.updateClickedSlide(pathTree && pathTree[0] || e2.target, pathTree);
     swiper.emit("tap click", e2);
-    if (timeDiff < 300 && touchEndTime - data.lastClickTime < 300) {
+    if (timeDiff < 300 && touchEndTime - data2.lastClickTime < 300) {
       swiper.emit("doubleTap doubleClick", e2);
     }
   }
-  data.lastClickTime = now();
+  data2.lastClickTime = now();
   nextTick(() => {
     if (!swiper.destroyed) swiper.allowClick = true;
   });
-  if (!data.isTouched || !data.isMoved || !swiper.swipeDirection || touches.diff === 0 && !data.loopSwapReset || data.currentTranslate === data.startTranslate && !data.loopSwapReset) {
-    data.isTouched = false;
-    data.isMoved = false;
-    data.startMoving = false;
+  if (!data2.isTouched || !data2.isMoved || !swiper.swipeDirection || touches.diff === 0 && !data2.loopSwapReset || data2.currentTranslate === data2.startTranslate && !data2.loopSwapReset) {
+    data2.isTouched = false;
+    data2.isMoved = false;
+    data2.startMoving = false;
     return;
   }
-  data.isTouched = false;
-  data.isMoved = false;
-  data.startMoving = false;
+  data2.isTouched = false;
+  data2.isMoved = false;
+  data2.startMoving = false;
   let currentPos;
   if (params.followFinger) {
     currentPos = rtl ? swiper.translate : -swiper.translate;
   } else {
-    currentPos = -data.currentTranslate;
+    currentPos = -data2.currentTranslate;
   }
   if (params.cssMode) {
     return;
@@ -8650,28 +8650,129 @@ if (switchers.length) {
   });
 }
 const map = document.querySelector("#y-maps");
+const data = {
+  coords: "55.7486144400693,37.6534946239627",
+  zoom: 13,
+  maxZoom: 18,
+  placemarks: [
+    {
+      iconPath: "/local/templates/impression/assets/images/map-pin-yellow.svg",
+      placemarkCoords: "55.73975206899516,37.656819499999955",
+      placemarkContent: "Бюро переводов на Марксистской",
+      balloonContent: `
+          <div class="map-contact">
+            <div class="map-contact-header">
+              <span class="map-contact-header-title">Бюро переводов на Марксистской</span>
+              <button class="balloon-closer" aria-label="Закрыть"></button>
+            </div>
+
+            <div class="map-contact-content">
+              <div class="map-contact-content-top">
+                <img src="/local/templates/impression/assets/images/contact1.png" width="400" height="300"/>
+
+                <div class="contact-card">
+                  <div class="contact-card-field">
+                    <strong>Адрес:</strong>
+                    <address>г. Москва, ул. Марксистская, дом 10, строение 1, 3 этаж, оф. 306</address>
+                  </div>
+
+                  <div class="contact-card-field">
+                    <strong>Телефон:</strong>
+                    <a href="tel:+74959285366">+7 (495) 928-53-66</a>
+                  </div>
+              
+                  <div class="contact-card-field">
+                    <strong>Whatsapp:</strong>
+                    <a href="https://wa.me/+79859285366" rel="noopener nofollow noreferrer" target="_blank">+7 (985) 928-53-66</a>
+                  </div>
+                      
+                  <div class="contact-card-field">
+                    <strong>Email:</strong>
+                    <a href="mailto:info@buroimpression.ru">info@buroimpression.ru</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="map-contact-content-bottom">
+                <p>Единственный выход из ст. Марксистская, из стеклянных дверей – прямо. Выходите на улицу и идете прямо около 60 метров. Желто-белый 4 этажный исторический особняк, через калитку входите на территорию, заходите в здание (подъезд находится по правую руку), проходите прямо до лестницы и поднимаетесь на 3-й этаж.</p>
+                <p>На третьем этаже проходите по коридору прямо до конца и, повернув налево, оказываетесь перед нашим офисом № 306.</p>
+                <p>Если заблудитесь, не стесняйтесь – звоните, мы с радостью Вам подскажем!</p>
+              </div>
+            </div>
+          </div>`
+    },
+    {
+      iconPath: "/local/templates/impression/assets/images/map-pin-violet.svg",
+      placemarkCoords: "55.75701906897993,37.63815249999991",
+      placemarkContent: "Бюро переводов на Китай-городе",
+      balloonContent: `
+          <div class="map-contact">
+            <div class="map-contact-header">
+              <span class="map-contact-header-title">Бюро переводов на Китай-городе</span>
+              <button class="balloon-closer" aria-label="Закрыть"></button>
+            </div>
+
+            <div class="map-contact-content">
+              <div class="map-contact-content-top">
+                <img src="/local/templates/impression/assets/images/contact2.png" width="400" height="300"/>
+                <div class="contact-card">
+                  <div class="contact-card-field">
+                    <strong>Адрес:</strong>
+                    <address>г. Москва, Петроверигский переулок, дом № 3, строение 1, в помещении нотариальной конторы Радченко И.В.</address>
+                  </div>
+
+                  <div class="contact-card-field">
+                    <strong>Телефон:</strong>
+                    <a href="tel:+74997072130">+7 (499) 707-21-30</a>
+                    <a href="tel:+79197274334">+7 (919) 727-43-34</a>
+                  </div>
+                      
+                  <div class="contact-card-field">
+                    <strong>Email:</strong>
+                    <a href="mailto:zakaz@cldoc.ru">zakaz@cldoc.ru</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="map-contact-content-bottom">
+                <p>Метро «Китай-город» (Таганско-Краснопресненская линия). Выход в сторону улицы Маросейка, из стеклянных дверей метро направо, пройти по переходу до конца, выход налево.</p>
+                <p>Выйдя из метро, поверните направо и далее пройдите по улице Маросейка до пересечения с Петроверигским переулком.</p>
+              </div>
+            </div>
+          </div>`
+    }
+  ]
+};
 if (map) {
   let init4 = function() {
-    const options = JSON.parse(map.dataset.options);
-    let isMobileView = window.innerWidth >= responsiveWidth ? false : true;
-    let isDesktopView = window.innerWidth >= responsiveWidth ? true : false;
-    const setView = (map2, view) => {
-      let coords = null;
-      isDesktopView = view === "desktop" ? true : false;
-      isMobileView = view === "mobile" ? true : false;
-      if (view === "desktop") {
-        coords = JSON.parse("[" + options.desktopViewCenter + "]");
+    const options = window.ymapsData ? window.ymapsData : data;
+    const BalloonLayout = ymaps.templateLayoutFactory.createClass(
+      '<div class="balloon-overlay"></div><div class="custom-balloon"><div class="custom-baloon-content">$[properties.balloonContent]</div></div>',
+      {
+        build: function() {
+          BalloonLayout.superclass.build.call(this);
+          myMap.behaviors.disable(["drag", "dblClickZoom"]);
+          const closeButton = this.getElement().querySelector(".balloon-closer");
+          const overlay = this.getElement().parentElement.querySelector(".balloon-overlay");
+          closeButton.addEventListener("click", () => {
+            myMap.balloon.close();
+          });
+          overlay.addEventListener("click", (e2) => {
+            if (e2.target === overlay) {
+              myMap.balloon.close();
+            }
+          });
+        },
+        clear: function() {
+          myMap.behaviors.enable(["drag", "dblClickZoom"]);
+          BalloonLayout.superclass.clear.call(this);
+        }
       }
-      if (view === "mobile") {
-        coords = JSON.parse("[" + options.mobileViewCenter + "]");
-      }
-      map2.setCenter(coords, options.zoom);
-      map2.container.fitToViewport();
-    };
+    );
     myMap = new ymaps.Map(
       "y-maps",
       {
-        center: isDesktopView ? JSON.parse("[" + options.desktopViewCenter + "]") : JSON.parse("[" + options.mobileViewCenter + "]"),
+        center: JSON.parse("[" + options.coords + "]"),
         zoom: Number(options.zoom),
         controls: [],
         behaviors: ["drag", "dblClickZoom"]
@@ -8680,13 +8781,6 @@ if (map) {
         maxZoom: options.maxZoom
       }
     );
-    window.addEventListener("resize", () => {
-      if (window.innerWidth >= responsiveWidth && isMobileView) {
-        setView(myMap, "desktop");
-      } else if (window.innerWidth < responsiveWidth && isDesktopView) {
-        setView(myMap, "mobile");
-      }
-    });
     const MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
       '<div class="ymaps-icon-content-layout">$[properties.iconContent]</div>'
     );
@@ -8694,47 +8788,45 @@ if (map) {
       const pin = new ymaps.Placemark(
         JSON.parse("[" + placemark.placemarkCoords + "]"),
         {
-          iconContent: placemark.placemarkContent ? `<div class="ymaps-icon-content-layout-inner">${placemark.placemarkContent}</div>` : ""
+          iconContent: placemark.placemarkContent ? `<div class="ymaps-icon-content-layout-inner">${placemark.placemarkContent}</div>` : "",
+          balloonContent: placemark.balloonContent || ""
         },
         {
-          // Опции.
-          // Необходимо указать данный тип макета.
           placemarkID: index,
           iconLayout: "default#imageWithContent",
-          // Своё изображение иконки метки.
           iconImageHref: placemark.iconPath,
-          // Размеры метки.
           iconImageSize: [50, 50],
-          // Смещение левого верхнего угла иконки относительно
-          // её "ножки" (точки привязки).
           iconImageOffset: [-25, -25],
           iconContentOffset: [50, 10],
-          iconContentLayout: MyIconContentLayout
+          iconContentLayout: MyIconContentLayout,
+          balloonLayout: BalloonLayout,
+          balloonCloseButton: false,
+          balloonPanelMaxMapArea: 0
         }
       );
       myMap.geoObjects.add(pin);
-      pin.events.add("click", (evt) => {
-        evt.preventDefault();
-        console.log("test");
+      pin.events.add("click", function(e2) {
+        const target = e2.get("target");
+        const coords = target.geometry.getCoordinates();
+        myMap.balloon.close();
+        target.balloon.open(coords);
       });
     });
     let ZoomLayout = ymaps.templateLayoutFactory.createClass(
-      //Шаблон html кнопок зума
-      // "<button id='zoom-refresh' class='zoom-btn zoom-btn-refresh' aria-label='Вернуть карту в первоначальное состояние'></button>" +
-      "<div class='zoom-btns'><button id='zoom-in' class='zoom-btn zoom-btn-in' aria-label='Увеличить масштаб'></button><button id='zoom-out' class='zoom-btn zoom-btn-out' aria-label='Уменьшить масштаб'></button></div>",
+      "<div class='zoom-btns'><button id='zoom-in' class='zoom-btn zoom-btn-in'></button><button id='zoom-out' class='zoom-btn zoom-btn-out'></button></div>",
       {
-        // Переопределяем методы макета, чтобы выполнять дополнительные действия
-        // при построении и очистке макета.
         build: function() {
           ZoomLayout.superclass.build.call(this);
           this.zoomInCallback = ymaps.util.bind(this.zoomIn, this);
           this.zoomOutCallback = ymaps.util.bind(this.zoomOut, this);
-          let zoomInBtn2 = document.getElementById("zoom-in");
-          let zoomOutBtn2 = document.getElementById("zoom-out");
-          zoomInBtn2.addEventListener("click", this.zoomInCallback);
-          zoomOutBtn2.addEventListener("click", this.zoomOutCallback);
+          let zoomInBtn = document.getElementById("zoom-in");
+          let zoomOutBtn = document.getElementById("zoom-out");
+          zoomInBtn.addEventListener("click", this.zoomInCallback);
+          zoomOutBtn.addEventListener("click", this.zoomOutCallback);
         },
         clear: function() {
+          let zoomInBtn = document.getElementById("zoom-in");
+          let zoomOutBtn = document.getElementById("zoom-out");
           zoomInBtn.removeEventListener("click", this.zoomInCallback);
           zoomOutBtn.removeEventListener("click", this.zoomOutCallback);
           ZoomLayout.superclass.clear.call(this);
@@ -8754,14 +8846,13 @@ if (map) {
     let zoomControl = new ymaps.control.ZoomControl({
       options: {
         layout: ZoomLayout,
-        position: { right: "30px", bottom: "30px" }
+        position: { right: "40px", bottom: "40px" }
       }
     });
     myMap.controls.add(zoomControl);
   };
   var init5 = init4;
   let myMap = null;
-  const responsiveWidth = 960;
   window.addEventListener("load", () => {
     ymaps.ready(init4);
   });
@@ -8769,7 +8860,7 @@ if (map) {
 const calc = document.querySelector(".calc-form");
 if (calc) {
   const ctrls = calc.querySelectorAll("[data-price]");
-  const total = calc.querySelector(".calc__total-price span");
+  const total = calc.querySelector(".calc-form__total-price span");
   const basePrice = calc.querySelector("[data-base-price]");
   let currentValue = Number(basePrice.dataset.basePrice.replaceAll(" ", ""));
   const numberPrettify = (number) => {
@@ -9081,8 +9172,8 @@ var _config = {
   var parent = _ref.parent;
   return parent && parent._ts && parent._initted && !parent._lock && (parent.rawTime() < 0 || _parentPlayheadIsBeforeStart2(parent));
 }, _isFromOrFromStart = function _isFromOrFromStart2(_ref2) {
-  var data = _ref2.data;
-  return data === "isFromStart" || data === "isStart";
+  var data2 = _ref2.data;
+  return data2 === "isFromStart" || data2 === "isStart";
 }, _renderZeroDurationTween = function _renderZeroDurationTween2(tween, totalTime, suppressEvents, force) {
   var prevRatio = tween.ratio, ratio = totalTime < 0 || !totalTime && (!tween._start && _parentPlayheadIsBeforeStart(tween) && !(!tween._initted && _isFromOrFromStart(tween)) || (tween._ts < 0 || tween._dp._ts < 0) && !_isFromOrFromStart(tween)) ? 0 : 1, repeatDelay = tween._rDelay, tTime = 0, pt2, iteration, prevIteration;
   if (repeatDelay && tween._repeat) {
@@ -11183,32 +11274,32 @@ var _setterPlain = function _setterPlain2(target, property, value) {
   return target[property] = value;
 }, _setterFunc = function _setterFunc2(target, property, value) {
   return target[property](value);
-}, _setterFuncWithParam = function _setterFuncWithParam2(target, property, value, data) {
-  return target[property](data.fp, value);
+}, _setterFuncWithParam = function _setterFuncWithParam2(target, property, value, data2) {
+  return target[property](data2.fp, value);
 }, _setterAttribute = function _setterAttribute2(target, property, value) {
   return target.setAttribute(property, value);
 }, _getSetter = function _getSetter2(target, property) {
   return _isFunction(target[property]) ? _setterFunc : _isUndefined(target[property]) && target.setAttribute ? _setterAttribute : _setterPlain;
-}, _renderPlain = function _renderPlain2(ratio, data) {
-  return data.set(data.t, data.p, Math.round((data.s + data.c * ratio) * 1e6) / 1e6, data);
-}, _renderBoolean = function _renderBoolean2(ratio, data) {
-  return data.set(data.t, data.p, !!(data.s + data.c * ratio), data);
-}, _renderComplexString = function _renderComplexString2(ratio, data) {
-  var pt2 = data._pt, s2 = "";
-  if (!ratio && data.b) {
-    s2 = data.b;
-  } else if (ratio === 1 && data.e) {
-    s2 = data.e;
+}, _renderPlain = function _renderPlain2(ratio, data2) {
+  return data2.set(data2.t, data2.p, Math.round((data2.s + data2.c * ratio) * 1e6) / 1e6, data2);
+}, _renderBoolean = function _renderBoolean2(ratio, data2) {
+  return data2.set(data2.t, data2.p, !!(data2.s + data2.c * ratio), data2);
+}, _renderComplexString = function _renderComplexString2(ratio, data2) {
+  var pt2 = data2._pt, s2 = "";
+  if (!ratio && data2.b) {
+    s2 = data2.b;
+  } else if (ratio === 1 && data2.e) {
+    s2 = data2.e;
   } else {
     while (pt2) {
       s2 = pt2.p + (pt2.m ? pt2.m(pt2.s + pt2.c * ratio) : Math.round((pt2.s + pt2.c * ratio) * 1e4) / 1e4) + s2;
       pt2 = pt2._next;
     }
-    s2 += data.c;
+    s2 += data2.c;
   }
-  data.set(data.t, data.p, s2, data);
-}, _renderPropTweens = function _renderPropTweens2(ratio, data) {
-  var pt2 = data._pt;
+  data2.set(data2.t, data2.p, s2, data2);
+}, _renderPropTweens = function _renderPropTweens2(ratio, data2) {
+  var pt2 = data2._pt;
   while (pt2) {
     pt2.r(ratio, pt2.d);
     pt2 = pt2._next;
@@ -11232,8 +11323,8 @@ var _setterPlain = function _setterPlain2(target, property, value) {
     pt2 = next;
   }
   return !hasNonDependentRemaining;
-}, _setterWithModifier = function _setterWithModifier2(target, property, value, data) {
-  data.mSet(target, property, data.m.call(data.tween, value, data.mt), data);
+}, _setterWithModifier = function _setterWithModifier2(target, property, value, data2) {
+  data2.mSet(target, property, data2.m.call(data2.tween, value, data2.mt), data2);
 }, _sortPropTweensByPriority = function _sortPropTweensByPriority2(parent) {
   var pt2 = parent._pt, next, pt22, first, last;
   while (pt2) {
@@ -11257,13 +11348,13 @@ var _setterPlain = function _setterPlain2(target, property, value) {
   parent._pt = first;
 };
 var PropTween = /* @__PURE__ */ function() {
-  function PropTween2(next, target, prop, start, change, renderer, data, setter, priority) {
+  function PropTween2(next, target, prop, start, change, renderer, data2, setter, priority) {
     this.t = target;
     this.s = start;
     this.c = change;
     this.p = prop;
     this.r = renderer || _renderPlain;
-    this.d = data || this;
+    this.d = data2 || this;
     this.set = setter || _setterPlain;
     this.pr = priority || 0;
     this._next = next;
@@ -11704,8 +11795,8 @@ var gsap = _gsap.registerPlugin({
       this._props.push(p2);
     }
   },
-  render: function render(ratio, data) {
-    var pt2 = data._pt;
+  render: function render(ratio, data2) {
+    var pt2 = data2._pt;
     while (pt2) {
       _reverting$1 ? pt2.set(pt2.t, pt2.p, pt2.b, pt2) : pt2.r(ratio, pt2.d);
       pt2 = pt2._next;
@@ -11756,19 +11847,19 @@ var _win, _doc, _docElement, _pluginInitted, _tempDiv, _recentSetterPlugin, _rev
   autoAlpha: "opacity,visibility",
   scale: "scaleX,scaleY",
   alpha: "opacity"
-}, _renderCSSProp = function _renderCSSProp2(ratio, data) {
-  return data.set(data.t, data.p, Math.round((data.s + data.c * ratio) * 1e4) / 1e4 + data.u, data);
-}, _renderPropWithEnd = function _renderPropWithEnd2(ratio, data) {
-  return data.set(data.t, data.p, ratio === 1 ? data.e : Math.round((data.s + data.c * ratio) * 1e4) / 1e4 + data.u, data);
-}, _renderCSSPropWithBeginning = function _renderCSSPropWithBeginning2(ratio, data) {
-  return data.set(data.t, data.p, ratio ? Math.round((data.s + data.c * ratio) * 1e4) / 1e4 + data.u : data.b, data);
-}, _renderRoundedCSSProp = function _renderRoundedCSSProp2(ratio, data) {
-  var value = data.s + data.c * ratio;
-  data.set(data.t, data.p, ~~(value + (value < 0 ? -0.5 : 0.5)) + data.u, data);
-}, _renderNonTweeningValue = function _renderNonTweeningValue2(ratio, data) {
-  return data.set(data.t, data.p, ratio ? data.e : data.b, data);
-}, _renderNonTweeningValueOnlyAtEnd = function _renderNonTweeningValueOnlyAtEnd2(ratio, data) {
-  return data.set(data.t, data.p, ratio !== 1 ? data.b : data.e, data);
+}, _renderCSSProp = function _renderCSSProp2(ratio, data2) {
+  return data2.set(data2.t, data2.p, Math.round((data2.s + data2.c * ratio) * 1e4) / 1e4 + data2.u, data2);
+}, _renderPropWithEnd = function _renderPropWithEnd2(ratio, data2) {
+  return data2.set(data2.t, data2.p, ratio === 1 ? data2.e : Math.round((data2.s + data2.c * ratio) * 1e4) / 1e4 + data2.u, data2);
+}, _renderCSSPropWithBeginning = function _renderCSSPropWithBeginning2(ratio, data2) {
+  return data2.set(data2.t, data2.p, ratio ? Math.round((data2.s + data2.c * ratio) * 1e4) / 1e4 + data2.u : data2.b, data2);
+}, _renderRoundedCSSProp = function _renderRoundedCSSProp2(ratio, data2) {
+  var value = data2.s + data2.c * ratio;
+  data2.set(data2.t, data2.p, ~~(value + (value < 0 ? -0.5 : 0.5)) + data2.u, data2);
+}, _renderNonTweeningValue = function _renderNonTweeningValue2(ratio, data2) {
+  return data2.set(data2.t, data2.p, ratio ? data2.e : data2.b, data2);
+}, _renderNonTweeningValueOnlyAtEnd = function _renderNonTweeningValueOnlyAtEnd2(ratio, data2) {
+  return data2.set(data2.t, data2.p, ratio !== 1 ? data2.b : data2.e, data2);
 }, _setterCSSStyle = function _setterCSSStyle2(target, property, value) {
   return target.style[property] = value;
 }, _setterCSSProp = function _setterCSSProp2(target, property, value) {
@@ -11777,11 +11868,11 @@ var _win, _doc, _docElement, _pluginInitted, _tempDiv, _recentSetterPlugin, _rev
   return target._gsap[property] = value;
 }, _setterScale = function _setterScale2(target, property, value) {
   return target._gsap.scaleX = target._gsap.scaleY = value;
-}, _setterScaleWithRender = function _setterScaleWithRender2(target, property, value, data, ratio) {
+}, _setterScaleWithRender = function _setterScaleWithRender2(target, property, value, data2, ratio) {
   var cache = target._gsap;
   cache.scaleX = cache.scaleY = value;
   cache.renderTransform(ratio, cache);
-}, _setterTransformWithRender = function _setterTransformWithRender2(target, property, value, data, ratio) {
+}, _setterTransformWithRender = function _setterTransformWithRender2(target, property, value, data2, ratio) {
   var cache = target._gsap;
   cache[property] = value;
   cache.renderTransform(ratio, cache);
@@ -12090,9 +12181,9 @@ var _win, _doc, _docElement, _pluginInitted, _tempDiv, _recentSetterPlugin, _rev
   split[0] = _keywordToPercent[x2] || x2;
   split[1] = _keywordToPercent[y2] || y2;
   return split.join(" ");
-}, _renderClearProps = function _renderClearProps2(ratio, data) {
-  if (data.tween && data.tween._time === data.tween._dur) {
-    var target = data.t, style = target.style, props = data.u, cache = target._gsap, prop, clearTransforms, i2;
+}, _renderClearProps = function _renderClearProps2(ratio, data2) {
+  if (data2.tween && data2.tween._time === data2.tween._dur) {
+    var target = data2.t, style = target.style, props = data2.u, cache = target._gsap, prop, clearTransforms, i2;
     if (props === "all" || props === true) {
       style.cssText = "";
       clearTransforms = 1;
@@ -12712,15 +12803,15 @@ var CSSPlugin = {
     }
     hasPriority && _sortPropTweensByPriority(this);
   },
-  render: function render2(ratio, data) {
-    if (data.tween._time || !_reverting()) {
-      var pt2 = data._pt;
+  render: function render2(ratio, data2) {
+    if (data2.tween._time || !_reverting()) {
+      var pt2 = data2._pt;
       while (pt2) {
         pt2.r(ratio, pt2.d);
         pt2 = pt2._next;
       }
     } else {
-      data.styles.revert();
+      data2.styles.revert();
     }
   },
   get: _get,
@@ -12805,7 +12896,7 @@ window.addEventListener("load", () => {
     padding: "5px",
     border: "none",
     transform: "translateY(150px)",
-    backgroundImage: "url(/assets/img/icon-up.svg)",
+    backgroundImage: "url(/local/templates/impression/assets/images/icon-up.svg)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "16px",
     backgroundPosition: "center"

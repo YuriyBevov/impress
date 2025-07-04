@@ -9,11 +9,13 @@
 @use "@pug/blocks/faq-preview/faq-preview";
 @use "@pug/blocks/clients-preview/clients-preview";
 @use "@pug/blocks/contacts-preview/contacts-preview";
-
+@use "@pug/blocks/info-grid-section/info-grid-section";
 @use "@pug/components/_ui/search-title/search-title";
 @use "@pug/components/_ui/nav/top-multilevel-menu/top-multilevel-menu";
 @use "@pug/components/_ui/nav/bottom-menu/bottom-menu";
 @use "@pug/components/_ui/nav/top-menu/top-menu";
 @use "@pug/blocks/callback/callback";
+
+@use "@pug/blocks/catalog/catalog-section-list/catalog-section-list";
 
 // @use "@pug/blocks/licenses/licenses";

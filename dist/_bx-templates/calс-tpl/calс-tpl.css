@@ -10,53 +10,17 @@
   padding:clamp(24px, 2.4vw, 32px) clamp(16px, 2vw, 24px);
 }
 
-.calc-form__top fieldset:first-child::after{
+.calc-form__section{
   display:-webkit-box;
   display:-ms-flexbox;
   display:flex;
-  -webkit-box-align:center;
-      -ms-flex-align:center;
-          align-items:center;
-  -webkit-box-pack:center;
-      -ms-flex-pack:center;
-          justify-content:center;
-  position:relative;
-  content:"";
-  background-image:url("data:image/svg+xml,%3csvg%20width='24'%20height='25'%20viewBox='0%200%2024%2025'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M6.24039%2010.8631C5.95239%2010.8631%205.76039%2010.7671%205.56839%2010.5751L2.68839%207.69511C2.30439%207.31111%202.30439%206.73511%202.68839%206.35111L5.56839%203.47111C5.95239%203.08711%206.52839%203.08711%206.91239%203.47111C7.29639%203.85511%207.29639%204.43111%206.91239%204.81511L4.70439%207.02311L6.91239%209.23111C7.29639%209.61511%207.29639%2010.1911%206.91239%2010.5751C6.72039%2010.7671%206.52839%2010.8631%206.24039%2010.8631ZM17.7604%2022.3831C17.4724%2022.3831%2017.2804%2022.2871%2017.0884%2022.0951C16.7044%2021.7111%2016.7044%2021.1351%2017.0884%2020.7511L19.2964%2018.5431L17.0884%2016.3351C16.7044%2015.9511%2016.7044%2015.3751%2017.0884%2014.9911C17.4724%2014.6071%2018.0484%2014.6071%2018.4324%2014.9911L21.3124%2017.8711C21.6964%2018.2551%2021.6964%2018.8311%2021.3124%2019.2151L18.4324%2022.0951C18.2404%2022.2871%2018.0484%2022.3831%2017.7604%2022.3831Z'%20fill='%237D3A3A'/%3e%3cpath%20d='M20.6404%207.98299H3.84039C3.26439%207.98299%202.88039%207.59899%202.88039%207.02299C2.88039%206.44699%203.26439%206.06299%203.84039%206.06299H20.6404C21.2164%206.06299%2021.6004%206.44699%2021.6004%207.02299C21.6004%207.59899%2021.2164%207.98299%2020.6404%207.98299ZM19.6804%2019.503H3.36039C2.78439%2019.503%202.40039%2019.119%202.40039%2018.543C2.40039%2017.967%202.78439%2017.583%203.36039%2017.583H19.6804C20.2564%2017.583%2020.6404%2017.967%2020.6404%2018.543C20.6404%2019.119%2020.2564%2019.503%2019.6804%2019.503Z'%20fill='%237D3A3A'/%3e%3c/svg%3e");
-  width:40px;
-  height:40px;
-  background-repeat:no-repeat;
-  background-color:var(--secondary);
-  background-position:center;
-  background-size:24px;
-  border-radius:50%;
-}
-
-.calc-form__top{
-  display:-webkit-box;
-  display:-ms-flexbox;
-  display:flex;
-  -webkit-box-align:center;
-      -ms-flex-align:center;
-          align-items:center;
-  gap:32px;
-  margin-bottom:12px;
-}
-
-.calc-form fieldset{
-  display:-webkit-box;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:wrap;
-      flex-wrap:wrap;
-  gap:clamp(16px, 2.4vw, 24px);
   margin:0;
   padding:0;
   border:none;
   -webkit-box-align:center;
       -ms-flex-align:center;
           align-items:center;
-  gap:8px;
+  gap:16px 8px;
 }
 
 .calc-form{
@@ -68,6 +32,13 @@
 }
 .calc-form small{
   font-size:12px;
+}
+.calc-form__total-price{
+  font-size:clamp(18px, 3.2vw, 22px);
+  font-weight:700;
+}
+.calc-form__total-price span{
+  color:var(--primary);
 }
 .calc-form form > fieldset{
   margin-bottom:12px;
@@ -92,98 +63,33 @@
     max-width:376px;
   }
 }
-@container calc-form (max-width: 1023px){
-  .calc-form__top{
-    -webkit-box-align:start;
-        -ms-flex-align:start;
-            align-items:flex-start;
-    gap:12px;
-  }
+.calc-form__section--wrap{
+  -ms-flex-wrap:wrap;
+      flex-wrap:wrap;
 }
-@container calc-form (max-width: 534px){
-  .calc-form__top{
-    -webkit-box-orient:vertical;
-    -webkit-box-direction:normal;
-        -ms-flex-direction:column;
-            flex-direction:column;
-  }
+.calc-form__section--input-group{
+  gap:3px;
 }
-.calc-form__top fieldset{
-  -webkit-box-align:center;
-      -ms-flex-align:center;
-          align-items:center;
-  gap:0;
+.calc-form__section--input-group .main-input-wrapper input{
+  border-radius:0;
 }
-.calc-form__top fieldset > span{
-  background-color:var(--secondary);
-  padding:12px 20px;
-  padding-right:44px;
-  border-radius:30px;
-  min-width:220px;
+.calc-form__section--input-group .main-input-wrapper:first-child input{
+  border-radius:30px 0 0 30px;
 }
-.calc-form__top fieldset .custom-select-opener{
-  margin-left:-32px;
-  border:2px solid var(--site-bg-color);
+.calc-form__section--input-group .main-input-wrapper:last-child input{
+  border-radius:0 30px 30px 0;
 }
-.calc-form__top fieldset .custom-select-panel{
-  left:-32px;
+.calc-form__section-title{
+  width:100%;
 }
-.calc-form__top fieldset:first-child{
-  position:relative;
-}
-@container calc-form (max-width: 1023px){
-  .calc-form__top fieldset{
-    -webkit-box-orient:vertical;
-    -webkit-box-direction:normal;
-        -ms-flex-direction:column;
-            flex-direction:column;
-    -webkit-box-align:start;
-        -ms-flex-align:start;
-            align-items:flex-start;
-    gap:6px;
-  }
-  .calc-form__top fieldset > span{
-    background-color:transparent;
-    padding:0;
-    min-width:140px;
-  }
-  .calc-form__top fieldset .custom-select-opener{
-    margin-left:0;
-    border:none;
-  }
-  .calc-form__top fieldset .custom-select-panel{
-    left:0;
-  }
-  .calc-form__top fieldset:first-child{
-    padding-right:44px;
-  }
-  .calc-form__top fieldset:first-child::after{
-    position:absolute;
-    bottom:0;
-    right:0;
-    width:32px;
-    height:44px;
-    background-size:20px;
-    background-color:transparent;
-  }
-}
-@container calc-form (max-width: 534px){
-  .calc-form__top fieldset{
-    -webkit-box-orient:horizontal;
-    -webkit-box-direction:normal;
-        -ms-flex-direction:row;
-            flex-direction:row;
-    -webkit-box-align:center;
-        -ms-flex-align:center;
-            align-items:center;
-    gap:8px 16px;
-  }
-  .calc-form__top fieldset:first-child{
-    padding-right:0;
-  }
-  .calc-form__top fieldset:first-child::after{
-    display:none;
-  }
+.calc-form__section--column{
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+      -ms-flex-direction:column;
+          flex-direction:column;
+  -webkit-box-align:start;
+      -ms-flex-align:start;
+          align-items:flex-start;
 }
 
 .calc{
