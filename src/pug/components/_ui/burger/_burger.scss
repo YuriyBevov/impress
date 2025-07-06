@@ -18,6 +18,13 @@
 	position: relative;
 	border: 2px solid var(--primary);
 	border-radius: 50%;
+	transition: opacity var(--main-transition);
+
+	@media (hover: hover) {
+		&:hover {
+			opacity: 0.6;
+		}
+	}
 
 	&-line {
 		width: 100%;
@@ -41,6 +48,23 @@
 
 		&--bottom {
 			margin-top: 7px;
+		}
+	}
+
+	&.mobile-menu-closer {
+		// outline: 1px solid red;
+		.burger-line {
+			&--bottom,
+			&--top {
+				display: none;
+			}
+
+			&--middle-top {
+				transform: rotate(45deg);
+			}
+			&--middle-bottom {
+				transform: rotate(-45deg);
+			}
 		}
 	}
 }

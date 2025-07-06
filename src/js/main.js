@@ -7,7 +7,7 @@ import "./modules/custom-select";
 import "@pug/components/_ui/tabs/tabs";
 import "@pug/components/_ui/yMaps/yMaps";
 import "@pug/components/_ui/forms/calc-form/calc-form";
-import "@pug/blocks/header/header";
+import "@pug/blocks/mobile-menu/mobile-menu";
 import "@pug/components/blocks/sidemenu/sidemenu";
 import "./modules/scroll-up-btn";
 import "@pug/components/_ui/nav/top-multilevel-menu/top-multilevel-menu";

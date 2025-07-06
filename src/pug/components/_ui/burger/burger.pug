@@ -1,5 +1,6 @@
-button(type="button" aria-label="Меню" tabindex="0").burger
-  span.burger-line.burger-line--top
-  span.burger-line.burger-line--middle-top
-  span.burger-line.burger-line--middle-bottom
-  span.burger-line.burger-line--bottom
+mixin burger(cls)
+  button(type="button" aria-label="Меню" tabindex="0" class= cls ? cls : null).burger
+    span.burger-line.burger-line--top
+    span.burger-line.burger-line--middle-top
+    span.burger-line.burger-line--middle-bottom
+    span.burger-line.burger-line--bottom
