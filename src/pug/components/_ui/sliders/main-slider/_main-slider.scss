@@ -5,10 +5,10 @@
 	.swiper-slide {
 		@extend %flex-center;
 		width: 100%;
-		max-width: 320px;
+		max-width: 280px;
 		height: auto;
 		background-color: var(--white);
-		padding: 30px;
+		// padding: 30px;
 		border-radius: 30px;
 		border: 20px solid var(--secondary);
 

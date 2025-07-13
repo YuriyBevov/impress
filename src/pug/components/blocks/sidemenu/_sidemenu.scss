@@ -13,15 +13,11 @@
 		@extend %flex-column;
 
 		& > li {
-			// background-image: url(/assets/img/mountain-bg.svg);
-			// background-size: cover;
-			// background-position: top;
-			// background-repeat: no-repeat;
 			background-color: var(--lighter);
 		}
 
 		li {
-			padding: 12px 0;
+			// padding: 16px 0;
 
 			a {
 				font-weight: 500;
@@ -34,18 +30,21 @@
 
 		ul {
 			display: none;
-			padding-top: 6px;
+			padding-top: 12px;
 			padding-left: 8px;
 
 			li {
 				position: relative;
 				padding: 2px 0;
 
-				margin-bottom: 4px;
+				&:not(:last-child) {
+					margin-bottom: 8px;
+				}
 
 				a {
 					position: relative;
 					padding-left: 12px;
+					font-size: 15px;
 
 					&::before {
 						position: absolute;

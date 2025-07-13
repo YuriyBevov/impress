@@ -1,0 +1,48 @@
+@forward "@styles/_extends/flexbox.scss";
+@forward "@styles/_extends/effects.scss";
+@forward "@styles/_extends/resets.scss";
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+.image-row {
+	// outline: 1px solid red;
+	@extend %flex-wrap;
+	gap: 16px;
+	width: 100%;
+
+	&-wrapper {
+		margin: 30px 0;
+	}
+
+	&-title {
+		display: inline-block;
+		margin-bottom: 20px;
+	}
+
+	figure {
+		// outline: 1px solid red;
+		width: 100%;
+		max-width: 240px;
+		margin: 0;
+		border: 1px solid var(--primary);
+		border-radius: 12px;
+		overflow: hidden;
+		background-color: rgba(0, 0, 0, 0.1);
+
+		img {
+			object-fit: contain;
+			width: 100%;
+			height: auto;
+			// max-height: 320px;
+			// padding: 12px;
+		}
+		figcaption {
+			// outline: 1px solid red;
+
+			padding: 8px 12px;
+			font-size: 15px;
+			font-weight: 500;
+			border-top: 1px solid var(--primary);
+		}
+	}
+}
