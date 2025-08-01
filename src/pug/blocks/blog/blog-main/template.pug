@@ -1,0 +1,39 @@
+include ../../../components/_ui/main-btn/main-btn
+
+
+section.section.inner-top-section.section--decorated.section--paper-bg
+  .container
+    .inner-top-section__header
+      h1.base-title Блог
+      p.base-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum neque quaerat assumenda vitae reprehenderit, earum doloribus dolor molestias tempore illum iure repudiandae architecto, doloremque voluptates sint atque veniam. Earum!
+    
+    .inner-top-section__wrapper
+      .inner-top-section__aside
+        include ../../../components/blocks/sidemenu/template
+      .inner-top-section__content
+        include ../../../components/_ui/cards/base-card/base-card
+        ul.masonry-column-list
+          li
+            +base-card({
+              detailLink: true,
+              title: 'Основные достопримечательности ОАЭ',
+              text: 'Осуществляем письменные и устные переводы со всех распространённых языков мира. К Вашим услугам дипломированные переводчики и носители языка. Мы удостоверяем письменные переводы подписью переводчика и печатью нашего бюро или нотариально, в зависимости от требований, которые предъявляет к переводу принимающая сторона.'
+            })
+          
+          li
+            +base-card({
+              title: 'Основные достопримечательности ОАЭ',
+              text: 'Осуществляем письменные'
+            })
+          li
+            +base-card({
+              title: 'Основные достопримечательности ОАЭ',
+              text: 'Осуществляем письменные'
+            })
+          li
+            +base-card({
+              title: 'Основные достопримечательности ОАЭ',
+              text: 'письменные и устные переводы со всех распространённых языков мира. К Вашим услугам дипломированные переводчики и носители языка. Мы удостоверяем письменные переводы подписью переводчика и печатью нашего бюро или нотариально, в зависимости от требований, которые предъявляет к переводу принимающая'
+            })
+
+  

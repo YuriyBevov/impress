@@ -17,3 +17,7 @@
           break-inside:avoid;
   margin-bottom:10px;
 }
+
+@container linked-list  (max-width: 440px){}
+@container linked-list  (max-width: 768px){}
+@container main (min-width: 768px ){}

@@ -18,6 +18,10 @@
   margin-bottom:10px;
 }
 
+@container linked-list  (max-width: 440px){}
+@container linked-list  (max-width: 768px){}
+@container main (min-width: 768px ){}
+
 .services-preview{
   background-image:url("../../assets/img/services-preview-bg.svg");
   background-size:cover;

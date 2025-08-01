@@ -1,0 +1,51 @@
+@forward "@styles/_extends/effects.scss";
+@forward "@styles/_extends/resets.scss";
+
+main:has(.breadcrumbs + .inner-top-section.section--paper-bg) {
+	.breadcrumbs {
+		position: relative;
+		min-height: 70px;
+		z-index: 10;
+	}
+
+	.inner-top-section {
+		margin-top: -70px;
+	}
+}
+
+.breadcrumbs {
+	padding: 25px 0;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+
+	&__list {
+		@extend %list-reset;
+		@extend %flex-wrap;
+	}
+
+	a {
+		position: relative;
+		padding-right: 16px;
+		color: var(--dark);
+
+		&::after {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 6px;
+			content: "";
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background-color: var(--primary);
+		}
+
+		@extend %hover-opacity;
+	}
+
+	li > span {
+		color: var(--primary);
+	}
+}

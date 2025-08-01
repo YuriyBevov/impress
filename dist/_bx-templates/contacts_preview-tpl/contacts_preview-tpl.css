@@ -50,6 +50,10 @@
   color:var(--primary);
   opacity:0.4;
 }
+
+@container linked-list  (max-width: 440px){}
+@container linked-list  (max-width: 768px){}
+@container main (min-width: 768px ){}
 #y-maps{
   width:100%;
   height:100%;

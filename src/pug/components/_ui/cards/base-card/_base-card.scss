@@ -5,109 +5,121 @@
 @use "@styles/_vars/scoped" as *;
 
 :root {
-  --base-card-info-item-gap: 10px;
+	--base-card-info-item-gap: 10px;
 }
 
 .base-card {
-  @extend %flex-column;
-  gap: 20px;
-  padding: clamp(24px, 2.4vw, 30px);
-  border-radius: var(--main-border-radius);
-  background-color: var(--white);
-  box-shadow: var(--base-box-shadow);
-  container: base-card / inline-size;
+	@extend %flex-column;
+	gap: 20px;
+	padding: 24px clamp(16px, 2.4vw, 30px);
+	border-radius: var(--main-border-radius);
+	background-color: var(--white);
+	box-shadow: var(--base-box-shadow);
+	container: base-card / inline-size;
 
-  &__header {
-    @extend %flex-align;
-    gap: 12px;
+	&__header {
+		position: relative;
+		@extend %flex-align;
+		gap: 12px;
+		min-height: 40px;
 
-    a {
-      @extend %primary-color-hover;
-    }
+		.collapsed-link {
+			margin-left: auto;
+		}
 
-    @include container-down('base-card', 375px) {
-      & img {
-        display: none;
-      }
-    }
-  }
+		a {
+			@extend %primary-color-hover;
+		}
 
-  &__list {
-    @extend %list-reset;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px 24px;
+		@include container-down("base-card", 375px) {
+			& img {
+				display: none;
+			}
+		}
+	}
 
-    @include container-down('main', $mobile-width) {
-      grid-template-columns: 1fr;
-    }
+	&__list {
+		@extend %list-reset;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 5px 24px;
 
-    li {
-      width: fit-content;
-      margin-left: -10px;
+		@include container-down("main", $mobile-width) {
+			grid-template-columns: 1fr;
+		}
 
-      a {
-        position: relative;
-        @extend %flex-align;
-        gap: 6px;
-        font-size: 14px;
-        padding: 5px 10px;
-        font-style: italic;
-        font-weight: 500;
-        color: var(--primary);
+		li {
+			width: fit-content;
+			margin-left: -10px;
 
-        @extend %hover-opacity; 
+			a {
+				position: relative;
+				@extend %flex-align;
+				gap: 6px;
+				font-size: 14px;
+				padding: 5px 10px;
+				font-style: italic;
+				font-weight: 500;
+				color: var(--primary);
 
-        &::before {
-          position: relative;
-          left: 0;
-          top: 0;
-          content: '';
-          width: 24px;
-          min-width: 24px;
-          height: 24px;
-          background-image: url("@img/logo-small.svg");
-          background-size: contain;
-          background-repeat: no-repeat;
-        }
-      }
-    }
-  }
+				@extend %hover-opacity;
 
-  &__info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 10px;
+				&::before {
+					position: relative;
+					left: 0;
+					top: 0;
+					content: "";
+					width: 24px;
+					min-width: 24px;
+					height: 24px;
+					background-image: url("@img/logo-small.svg");
+					background-size: contain;
+					background-repeat: no-repeat;
+				}
+			}
+		}
+	}
 
-    &-item {
-      @extend %flex-column;
-      gap: 5px;
+	&__info {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		gap: 10px;
 
-      font-weight: 500;
-      font-size: 15px;
+		&-item {
+			@extend %flex-column;
+			gap: 5px;
 
-      span {
-        position: relative;
-        padding-left: var(--base-card-info-item-gap);
+			font-weight: 500;
+			font-size: 15px;
 
-        &::before {
-          position: absolute;
-          top: 7px;
-          left: 0;
-          content: '';
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          background-color: var(--primary);
-        }
-      }
+			span {
+				position: relative;
+				padding-left: var(--base-card-info-item-gap);
 
-      a {
-        padding-left: var(--base-card-info-item-gap);
-        color: var(--primary);
+				&::before {
+					position: absolute;
+					top: 7px;
+					left: 0;
+					content: "";
+					width: 5px;
+					height: 5px;
+					border-radius: 50%;
+					background-color: var(--primary);
+				}
+			}
 
-        @extend %hover-opacity;
-      }
-    }
-  }
+			a {
+				padding-left: var(--base-card-info-item-gap);
+				color: var(--primary);
+
+				@extend %hover-opacity;
+			}
+		}
+	}
+
+	&__detail-link {
+		font-weight: 500;
+		color: var(--primary);
+		@extend %hover-opacity;
+	}
 }

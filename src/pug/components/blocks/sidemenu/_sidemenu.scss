@@ -6,25 +6,40 @@
 
 .sidemenu {
 	width: 100%;
+	background-color: var(--white);
+	box-shadow: var(--base-box-shadow);
+	border-radius: var(--main-border-radius);
+	padding: 12px 24px;
+
+	&__title {
+		position: relative;
+		display: block;
+		font-weight: 500;
+		font-size: 20px;
+		padding-bottom: 12px;
+		color: var(--primary);
+
+		&::before {
+			position: absolute;
+			bottom: 0;
+			left: -24px;
+			width: 70%;
+			height: 1px;
+			content: "";
+			background-color: var(--primary);
+		}
+	}
 
 	ul {
 		width: 100%;
 		@extend %list-reset;
 		@extend %flex-column;
 
-		& > li {
-			background-color: var(--lighter);
-		}
-
-		li {
-			// padding: 16px 0;
-
-			a {
-				font-weight: 500;
-				color: var(--dark);
-				&.selected {
-					opacity: 0.6;
-				}
+		a {
+			font-weight: 500;
+			color: var(--dark);
+			&.selected {
+				opacity: 0.6;
 			}
 		}
 
@@ -34,7 +49,6 @@
 			padding-left: 8px;
 
 			li {
-				position: relative;
 				padding: 2px 0;
 
 				&:not(:last-child) {
@@ -46,16 +60,16 @@
 					padding-left: 12px;
 					font-size: 15px;
 
-					&::before {
-						position: absolute;
-						top: 11px;
-						left: 0;
-						transform: translateY(-50%);
-						background-color: var(--dark);
-						content: "";
-						width: 8px;
-						height: 2px;
-					}
+					// &::before {
+					// 	position: absolute;
+					// 	top: 11px;
+					// 	left: 0;
+					// 	transform: translateY(-50%);
+					// 	background-color: var(--dark);
+					// 	content: "";
+					// 	width: 8px;
+					// 	height: 2px;
+					// }
 				}
 			}
 		}
@@ -69,19 +83,25 @@
 		}
 
 		li {
-			&:has(svg) {
+			&:has(.sidemenu__opener) {
 				@extend %flex-wrap;
 				justify-content: space-between;
-				align-items: center;
+				gap: 0 16px;
+
+				& > a {
+					max-width: calc(100% - 40px);
+				}
 			}
 		}
 	}
 
 	& > ul > li {
-		padding: 12px 16px;
-		border: 1px solid var(--muted);
-		border-radius: 20px;
-		margin-bottom: 12px;
+		padding: 12px 0;
+		&:not(:last-child) {
+			border-bottom: 1px solid var(--lighter);
+		}
+		// border-radius: 20px;
+		// margin-bottom: 12px;
 
 		& > a {
 			color: var(--primary);
@@ -90,8 +110,8 @@
 
 	&__opener {
 		@extend %btn-reset;
-		width: 20px;
-		height: 20px;
+		width: 24px;
+		height: 24px;
 
 		transform: rotate(180deg);
 		transition: transform var(--main-transition);

@@ -15,8 +15,8 @@
 @use "@pug/components/_ui/nav/bottom-menu/bottom-menu";
 @use "@pug/components/_ui/nav/top-menu/top-menu";
 @use "@pug/blocks/callback/callback";
-
-@use "@pug/blocks/catalog/catalog-section-list/catalog-section-list";
-@use "@pug/blocks/blog/blog";
-
+// @use "@pug/blocks/catalog/catalog-section-list/catalog-section-list";
+@use "@pug/blocks/blog/blog-main/blog-main";
+@use "@pug/blocks/blog/blog-detail/blog-detail";
 // @use "@pug/blocks/licenses/licenses";
+@use "@pug/components/blocks/breadcrumbs/breadcrumbs";

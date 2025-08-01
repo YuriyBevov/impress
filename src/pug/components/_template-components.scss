@@ -6,6 +6,7 @@
 @use "@pug/components/_ui/lists/linked-list/linked-list";
 @use "@pug/components/_ui/lists/linked-side-list/linked-side-list";
 @use "@pug/components/_ui/cards/base-card/base-card";
+@use "@pug/components/_ui/cards/example-card/example-card";
 @use "@pug/components/_ui/social/social";
 @use "@pug/components/_ui/tables/table";
 @use "@pug/components/_ui/main-logo/main-logo";
@@ -17,9 +18,12 @@
 // @use "@pug/components/_ui/search-field/search-field";
 @use "@pug/components/_ui/lang-switcher/lang-switcher";
 @use "@pug/components/_ui/burger/burger";
+@use "@pug/components/_ui/collapsed-link/collapsed-link";
 @use "@pug/blocks/mobile-menu/mobile-menu";
 @use "@pug/components/blocks/image-row/image-row";
-@use "@pug/components/blocks/inner-section/inner-section";
+@use "@pug/components/blocks/inner-top-section/inner-top-section";
+// @use "@pug/components/blocks/breadcrumbs/breadcrumbs";
+@use "@pug/components/blocks/masonry-column-list/masonry-column-list";
 // @use "@pug/components/_ui/nav/top-menu/top-menu";
-
-/* purgecss end ignore */
+@use "@pug/components/blocks/sidemenu/sidemenu";
+@use "@pug/components/blocks/features-sm/features-sm"; /* purgecss end ignore */

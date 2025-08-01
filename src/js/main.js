@@ -12,3 +12,4 @@ import "@pug/components/blocks/sidemenu/sidemenu";
 import "./modules/scroll-up-btn";
 import "@pug/components/_ui/nav/top-multilevel-menu/top-multilevel-menu";
 import "./modules/btn-expander";
+import "@pug/components/_ui/collapsed-link/collapsed-link";

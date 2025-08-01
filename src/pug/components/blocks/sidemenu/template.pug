@@ -1,15 +1,9 @@
 mixin sidemenu(data)
   .sidemenu
-    ul.sidemenu__list
-      //- li.sidemenu__list-item
-      //-   span Название раздела
-      //-   svg(width='24' height='24' role='img' aria-hidden='true' focusable='false')
-      //-     use(xlink:href='./assets/sprite.svg#icon-menu-arrow')
-      //-   ul
-      //-     li
-      //-       a(href="#").selected ссылка активного раздела 
+    span.sidemenu__title Наши услуги
+    ul
       each item in data
-        li.sidemenu__list-item 
+        li
           a(href="#")!= item.title
           if item.inner
             button(type="button" aria-label="Открыть меню").sidemenu__opener
@@ -37,10 +31,10 @@ mixin sidemenu(data)
     title: 'Апостиль',
     inner: [
       {
-        title: 'Загс',
+        title: '- Загс',
         
       },
-      { title: 'МВД'}
+      { title: '- МВД'}
     ]
   },
   {
@@ -50,21 +44,21 @@ mixin sidemenu(data)
     title: 'Переводы с языков мира',
     inner: [
       {
-        title: 'Документов',
+        title: '- Документов',
         inner: [
           {
-            title: 'С английского'
+            title: '- С английского'
           },
           {
-            title: 'С немецкого'
+            title: '- С немецкого'
           }
         ]
       },
       {
-        title: 'Для юридических лиц',
+        title: '- Для юридических лиц',
         inner: [
           {
-            title: 'Переводы для ИП',
+            title: '- Переводы для ИП',
           }
         ]
       }

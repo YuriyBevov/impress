@@ -1,0 +1,4 @@
+mixin example-card(data)
+  figure.example-card
+    img(src=`./assets/img/${data.img}` data-fancybox="example-collection" alt="" width="400" height="300")
+    figcaption!= data.text

@@ -3,8 +3,8 @@
 @forward "@styles/_extends/resets.scss";
 @use "@styles/_mixins/container-queries" as *;
 
-@use "@pug/components/blocks/features-sm/features-sm" as *;
-@use "@pug/components/blocks/sidemenu/sidemenu" as *;
+// @use "@pug/components/blocks/features-sm/features-sm" as *;
+// @use "@pug/components/blocks/sidemenu/sidemenu" as *;
 
 .catalog-section-list {
 }

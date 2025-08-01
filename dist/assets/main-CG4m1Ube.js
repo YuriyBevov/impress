@@ -12848,34 +12848,88 @@ _forEachName("x,y,z,top,right,bottom,left,width,height,fontSize,padding,margin,p
 gsap.registerPlugin(CSSPlugin);
 var gsapWithCSS = gsap.registerPlugin(CSSPlugin) || gsap;
 gsapWithCSS.core.Tween;
-const burger = document.querySelector(".burger");
-if (burger) {
+const menuOpener = document.querySelector(".burger");
+if (menuOpener) {
+  const menu = document.querySelector(".mobile-menu");
+  const mobileMenuOverlay = document.querySelector(".mobile-menu-overlay");
+  const menuCloser = document.querySelector(".burger.mobile-menu-closer");
   const tl2 = gsapWithCSS.timeline().pause();
-  tl2.to(".burger-line--top", {
-    xPercent: -150,
-    opacity: 0,
-    duration: 0.2
+  gsapWithCSS.set(menu, {
+    x: "-100vw"
   });
-  tl2.to(".burger-line--bottom", {
-    xPercent: 150,
-    opacity: 0,
-    duration: 0.2
-  }, "-=0.2");
-  tl2.to(".burger-line--middle-top", {
-    rotate: "45deg",
-    duration: 0.3
-  }, "-=0.2");
-  tl2.to(".burger-line--middle-bottom", {
-    rotate: "-45deg",
-    duration: 0.3
-  }, "-=0.2");
-  let isOpen = false;
-  const onClickOpenNav = () => {
-    !isOpen ? tl2.play() : tl2.reverse();
-    isOpen = !isOpen;
+  gsapWithCSS.set(mobileMenuOverlay, {
+    alpha: 0
+  });
+  tl2.to(mobileMenuOverlay, {
+    visibility: "visible",
+    duration: 0
+  }).to(mobileMenuOverlay, {
+    alpha: 1,
+    duration: 0.2,
+    ease: "linear"
+  }).to(menu, {
+    x: 0,
+    duration: 0.3,
+    ease: "linear"
+  });
+  const closeMobileMenuHandler = () => {
+    var _a;
+    menu.classList.remove("opened");
+    menuCloser.removeEventListener("click", closeMobileMenuHandler);
+    menuOpener.addEventListener("click", openMobileMenuHandler);
+    mobileMenuOverlay.removeEventListener(
+      "click",
+      onOverlayClickCloseMobileMenu
+    );
+    tl2.reverse();
+    (_a = menu.querySelectorAll(".expanded")) == null ? void 0 : _a.forEach((item) => {
+      item.classList.remove("expanded");
+    });
   };
-  burger.addEventListener("click", onClickOpenNav);
+  const openMobileMenuHandler = () => {
+    menu.classList.add("opened");
+    menuOpener.removeEventListener("click", openMobileMenuHandler);
+    menuCloser.addEventListener("click", closeMobileMenuHandler);
+    mobileMenuOverlay.addEventListener("click", onOverlayClickCloseMobileMenu);
+    tl2.play();
+  };
+  const onOverlayClickCloseMobileMenu = (evt) => {
+    if (evt.target === mobileMenuOverlay) {
+      closeMobileMenuHandler();
+    }
+  };
+  menuOpener.addEventListener("click", openMobileMenuHandler);
 }
+const openers = document.querySelectorAll(".mobile-menu__inner-opener-btn");
+if (openers.length) {
+  const onClickExpandItem = (evt) => {
+    evt.preventDefault();
+    const target = evt.currentTarget;
+    target.parentNode.nextElementSibling.classList.toggle("expanded");
+  };
+  openers.forEach((opener) => {
+    opener.addEventListener("click", onClickExpandItem);
+  });
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const openers2 = document.querySelectorAll(".sidemenu__opener");
+  if (openers2.length) {
+    const items = document.querySelectorAll(".sidemenu__list-item");
+    const onClickToogleItem = (target) => {
+      items.forEach((item) => {
+        const active = item.querySelector(".initial-expanded");
+        active ? active.classList.remove("initial-expanded") : null;
+      });
+      target.classList.toggle("expanded");
+    };
+    openers2.forEach((opener) => {
+      opener.addEventListener("click", () => {
+        console.log(opener.closest("li"));
+        onClickToogleItem(opener.closest("li"));
+      });
+    });
+  }
+});
 window.addEventListener("load", () => {
   const btn = document.createElement("button");
   btn.classList.add("scroll-up-btn");
@@ -12986,3 +13040,29 @@ if (inners) {
     inner.addEventListener("click", onClickToggleNavItemHandler);
   });
 }
+const btns = document.querySelectorAll(".main-btn--expander");
+if (btns.length) {
+  btns.forEach((btn) => {
+    const contentNodeHeight = btn.previousElementSibling;
+    if (contentNodeHeight.clientHeight > 240) {
+      contentNodeHeight.classList.add("collapsed");
+      btn.style.display = "flex";
+    }
+    btn.addEventListener("click", () => {
+      btn.previousElementSibling.classList.toggle("collapsed");
+      btn.classList.add("hidden");
+    });
+  });
+}
+const navMain = document.querySelector(".main-nav");
+const navToggle = document.querySelector(".main-nav__toggle");
+navMain == null ? void 0 : navMain.classList.remove("main-nav--nojs");
+navToggle == null ? void 0 : navToggle.addEventListener("click", () => {
+  if (navMain == null ? void 0 : navMain.classList.contains("main-nav--closed")) {
+    navMain == null ? void 0 : navMain.classList.remove("main-nav--closed");
+    navMain == null ? void 0 : navMain.classList.add("main-nav--opened");
+  } else {
+    navMain == null ? void 0 : navMain.classList.add("main-nav--closed");
+    navMain == null ? void 0 : navMain.classList.remove("main-nav--opened");
+  }
+});

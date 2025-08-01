@@ -3,9 +3,6 @@
 @forward "@styles/_extends/resets.scss";
 @use "@styles/_mixins/container-queries" as *;
 
-@use "@pug/components/blocks/features-sm/features-sm" as *;
-@use "@pug/components/blocks/sidemenu/sidemenu" as *;
-
 .image-set {
 	@extend %flex-wrap;
 	gap: 12px;

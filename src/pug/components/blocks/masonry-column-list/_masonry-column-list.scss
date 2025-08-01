@@ -1,0 +1,5 @@
+@forward "@styles/_extends/common.scss";
+
+.masonry-column-list {
+	@extend %column-list;
+}

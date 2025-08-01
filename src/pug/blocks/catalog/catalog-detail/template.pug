@@ -1,5 +1,52 @@
-section.section.catalog-detail
+include ../../../components/_ui/main-btn/main-btn
+
+section.section.inner-top-section.section--paper-bg.section--decorated
   .container
-    h1.base-title catalog-detail
+    .inner-top-section
+      .inner-top-section__header
+        h1.base-title Наши услуги
+        span.base-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque dolor cupiditate, veniam saepe dignissimos modi consequuntur tenetur, recusandae omnis necessitatibus iure quibusdam placeat. Totam quis debitis tempora velit commodi! Dicta.
+        small.accent-text.accent-text--lg от 12 400 руб
+        +main-btn({
+          text: 'Заказать услугу'
+        })
+
+        include ../../../components/blocks/features-sm/template
+      
+      .inner-top-section__wrapper
+        .inner-top-section__aside
+          .sidebar
+            include ../../../components/blocks/sidemenu/template
+            include ../../../components/_ui/lists/linked-side-list/template
+
+        .inner-top-section__content
+          .content-block
+            h2 title h2
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+            
+            h3 title h3
+            p Lorem ipsum <strong>dolor sit, amet</strong> consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+            
+            a(href="#") Lorem ipsum dolor sit
+
+            h4 title h4
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam obcaecati aspernatur quis iure iste ut soluta, quos minus veniam! Culpa, rerum totam. Similique obcaecati dignissimos, at quos architecto eos veritatis.
+            
+          button(type="button").main-btn.main-btn--outlined.main-btn--expander.active
+            span Показать весь текст
+
+
 
       

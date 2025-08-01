@@ -1,9 +1,14 @@
-mixin main-slider(slides)
+include ../../cards/example-card/example-card
+
+mixin main-slider(slides, isExampleCardView)
   .swiper.main-slider
     .swiper-wrapper
       each slide in slides
         .swiper-slide
-          != slide
+          if isExampleCardView
+            +example-card(slide)
+          else
+            != slide
     .swiper-controls
       .swiper-pagination
       .swiper-navigation

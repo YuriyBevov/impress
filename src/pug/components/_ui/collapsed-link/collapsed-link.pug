@@ -1,0 +1,5 @@
+mixin collapsed-link(data)
+  a(href="#").collapsed-link
+    span!= data.text
+    //- svg(width='32' height='32' role='img' aria-hidden='true' focusable='false')
+      use(xlink:href='./assets/sprite.svg#icon-right')

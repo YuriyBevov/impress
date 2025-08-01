@@ -2,13 +2,13 @@
 @forward "@styles/_extends/resets.scss";
 
 .main-slider {
+	margin-bottom: 24px;
 	.swiper-slide {
 		@extend %flex-center;
 		width: 100%;
 		max-width: 280px;
 		height: auto;
 		background-color: var(--white);
-		// padding: 30px;
 		border-radius: 30px;
 		border: 20px solid var(--secondary);
 
@@ -16,6 +16,7 @@
 			width: 100%;
 			height: auto;
 			object-fit: contain;
+			border-radius: 10px;
 		}
 	}
 

@@ -52,6 +52,12 @@
 			background-image: url("@img/section-underlay.svg");
 		}
 	}
+
+	&--paper-bg {
+		background-image: url(/assets/img/services-preview-bg.svg);
+		background-size: cover;
+		background-position: top;
+	}
 }
 
 /* purgecss end ignore */
